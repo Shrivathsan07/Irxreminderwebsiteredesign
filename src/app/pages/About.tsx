@@ -55,39 +55,39 @@ const leaders = [
     title: "Founder & Chief Executive Officer",
     bio: "BS Engineering (University of Michigan), PhD Organizational Psychology (University of Akron). Pioneer in gerontechnology with 12 US patents, 33 publications, and 100+ international presentations. Created Memory Magic Program impacting 500K+ older adults across 2,400+ facilities in 7 countries. Secretary General, International Society for Gerontechnology. Led iRxReminder through 10 years of dementia care research to FDA-cleared IoT platform.",
     email: "asterns@irxreminder.com",
-    image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&h=400&fit=crop",
+    image: "/images/team/anthony-sterns.jpg",
   },
   {
     name: "Fred Ma, MD, PhD",
     title: "Chief Operating Officer",
     bio: "Conducted 1,200+ clinical trials and taken 200+ drugs and medical devices through FDA validation and clearance processes. Leading iRxReminder's FDA Class II clearance submission. Brings unparalleled regulatory expertise to ensure product safety, efficacy, and compliance.",
     email: "fma@irxreminder.com",
-    image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop",
+    image: "/images/team/fred-ma.jpeg",
   },
   {
     name: "Owen Muir, M.D.",
     title: "Chief Medical Officer",
     bio: "Board-certified Psychiatrist and Mayo Clinic faculty member, specializing in child and adolescent psychology. Experienced principal investigator with deep expertise in behavioral health and telehealth. Joined September 2022 to guide clinical validation and product development strategy.",
-    image: "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=400&h=400&fit=crop",
+    image: "/images/team/owen-muir.jpeg",
   },
   {
     name: "William Yuan",
     title: "Chief Strategy Officer",
     bio: "Former CEO of nGloballink and media G3. Led early-stage company from inception to $310M public company. Track record of successful exits including IPO and acquisitions with 100x ROI. Joined October 2022 to drive strategic growth and market expansion.",
-    image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=400&h=400&fit=crop",
+    image: "/images/team/william-yuan.jpg",
   },
   {
     name: "Larry Tusick",
     title: "Chief Business Officer / VP Sales",
     bio: "25+ years of healthcare experience. Former director at Baxter and Care USA. University of Alabama graduate. Leads partnership development, market expansion strategies, and commercial growth initiatives.",
     email: "ltusick@irxreminder.com",
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop",
+    image: "/images/team/larry-tusick.jpg",
   },
   {
     name: "Josh Smith, MBA",
     title: "Chief Technology Officer",
     bio: "Former IBM and IBM Watson engineer. Agile practitioner with full software lifecycle experience in online media and mobile products. Leads technology development and platform architecture for iRxReminder's cloud-app-IoT ecosystem.",
-    image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&h=400&fit=crop",
+    image: "",
   },
 ];
 
@@ -302,11 +302,19 @@ export function About() {
                 >
                   <div className="md:w-1/3 flex-shrink-0">
                     <div className="relative overflow-hidden rounded-2xl shadow-[0_4px_16px_rgba(30,58,138,0.1),0_12px_32px_rgba(30,58,138,0.08)]">
-                      <ImageWithFallback
-                        src={leader.image}
-                        alt={leader.name}
-                        className="w-full aspect-square object-cover"
-                      />
+                      {leader.image ? (
+                        <ImageWithFallback
+                          src={leader.image}
+                          alt={leader.name}
+                          className="w-full aspect-square object-cover"
+                        />
+                      ) : (
+                        <div className="w-full aspect-square bg-gradient-to-br from-[#1e3a8a] to-[#2d4fa6] flex items-center justify-center">
+                          <span className="text-6xl md:text-7xl font-bold text-white/90 tracking-tight select-none">
+                            {leader.name.split(" ").map((n) => n[0]).filter((_, i, a) => i === 0 || i === a.length - 1).join("")}
+                          </span>
+                        </div>
+                      )}
                       <div className="absolute inset-0 bg-gradient-to-t from-[#1e3a8a]/20 to-transparent" />
                     </div>
                   </div>
