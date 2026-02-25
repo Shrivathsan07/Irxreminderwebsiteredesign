@@ -70,17 +70,20 @@ export function Home() {
               transition={{ duration: 0.7, type: "spring", stiffness: 300, damping: 30 }}
             >
               <p className="text-[#0891b2] font-semibold text-sm tracking-widest uppercase mb-6">
-                Safe. Connected. Reimbursable.
+                Digital Health Technologies — Saving Lives, Reducing Costs
               </p>
               <h1 className="text-5xl sm:text-6xl lg:text-7xl font-extrabold text-white tracking-tight leading-[1.05] mb-6">
                 Monitor. Remind.
                 <br />
                 <span className="text-[#0891b2]">Connect.</span>
               </h1>
-              <p className="text-xl md:text-2xl text-blue-100/90 leading-relaxed mb-10 max-w-2xl">
-                iRxReminder is a smart medication management system designed to
-                improve adherence, reduce hospitalizations, and support
-                independent living — for patients who need it most.
+              <p className="text-xl md:text-2xl text-white/95 leading-relaxed mb-4 max-w-2xl font-semibold">
+                Empowering patients to achieve and thrive in independence.
+              </p>
+              <p className="text-lg md:text-xl text-blue-100/80 leading-relaxed mb-10 max-w-2xl">
+                iRxReminder delivers strong ROI potential while making a
+                measurable social impact — a clinically validated medication
+                management platform saving lives and reducing healthcare costs.
               </p>
             </motion.div>
 
@@ -134,25 +137,45 @@ export function Home() {
         </div>
       </section>
 
-      {/* ======= SECTION 2: THE PROBLEM (AMA BLOCKQUOTE) ======= */}
+      {/* ======= SECTION 2: THE PROBLEM ======= */}
       <Section className="py-24 md:py-32 bg-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <FadeUp>
             <p className="text-[#0891b2] font-semibold text-sm tracking-widest uppercase mb-4 text-center">
               The Problem
             </p>
-            <h2 className="text-4xl md:text-5xl font-bold text-[#1e3a8a] text-center mb-16 tracking-tight">
+            <h2 className="text-4xl md:text-5xl font-bold text-[#1e3a8a] text-center mb-6 tracking-tight">
               A Crisis Hiding in Plain Sight
             </h2>
           </FadeUp>
 
+          {/* $43B crisis stat */}
+          <FadeUp delay={0.05}>
+            <div className="text-center mb-12">
+              <div className="text-6xl md:text-7xl font-extrabold text-[#0891b2] tracking-tight mb-3">
+                $43B
+              </div>
+              <p className="text-xl text-gray-700 max-w-2xl mx-auto leading-relaxed">
+                Medication non-adherence is a{" "}
+                <span className="font-semibold text-[#1e3a8a]">$43 billion crisis</span>{" "}
+                in the U.S. alone — leading to emergency room visits,
+                hospitalizations, and long-term deterioration, especially in
+                vulnerable populations like mental health patients and older adults.
+              </p>
+              <p className="text-lg text-gray-500 mt-3">
+                The human and economic cost is massive and growing.
+              </p>
+            </div>
+          </FadeUp>
+
           {/* AMA Blockquote */}
-          <FadeUp delay={0.1}>
+          <FadeUp delay={0.15}>
             <div className="relative bg-gradient-to-br from-[#f8fafc] to-[#eef5ff] p-8 md:p-12 rounded-2xl border border-[#1e3a8a]/10">
               <div className="absolute top-6 left-8 text-[#1e3a8a]/10 text-8xl font-serif leading-none">&ldquo;</div>
               <blockquote className="relative text-xl md:text-2xl text-gray-800 leading-relaxed mb-6 pl-4 md:pl-8">
-                Medication non-adherence causes approximately 125,000 deaths and
-                costs the U.S. healthcare system up to $300 billion annually.
+                Poor medication adherence takes the lives of 125,000 Americans
+                annually, and costs the healthcare system as much as $300
+                billion a year.
               </blockquote>
               <div className="pl-4 md:pl-8 text-gray-500 font-medium">
                 — American Medical Association
@@ -189,9 +212,9 @@ export function Home() {
                   Mental &amp; Behavioral Health
                 </h3>
                 <p className="text-gray-600 leading-relaxed mb-6">
-                  Americans with serious mental illness. Medication adherence is
-                  critical for stability — missed doses can trigger crises, ER
-                  visits, and readmissions.
+                  Americans struggle with serious mental illness where missed
+                  doses can result in hospitalization, homelessness, or worse.
+                  Medication adherence is critical for stability.
                 </p>
                 <span className="inline-flex items-center text-[#0891b2] font-semibold text-sm group-hover:gap-3 gap-2 transition-[gap]">
                   Learn more <ArrowRight className="w-4 h-4" />
@@ -213,9 +236,9 @@ export function Home() {
                   Aging &amp; Chronic Care
                 </h3>
                 <p className="text-gray-600 leading-relaxed mb-6">
-                  Older adults managing multiple medications. Polypharmacy,
-                  cognitive decline, and care coordination gaps make adherence a
-                  daily challenge.
+                  Seniors rely on medications to maintain independence and
+                  quality of life, but often forget or double-dose — leading to
+                  decline and costly care.
                 </p>
                 <span className="inline-flex items-center text-[#0891b2] font-semibold text-sm group-hover:gap-3 gap-2 transition-[gap]">
                   Learn more <ArrowRight className="w-4 h-4" />
@@ -223,6 +246,16 @@ export function Home() {
               </Link>
             </FadeUp>
           </div>
+
+          {/* Future expansion */}
+          <FadeUp delay={0.3}>
+            <div className="mt-10 text-center">
+              <div className="inline-flex items-center gap-2 bg-[#1e3a8a]/5 text-[#1e3a8a] px-5 py-3 rounded-full text-sm font-semibold">
+                <Zap className="w-4 h-4 text-[#0891b2]" />
+                Coming Next: Drug overdose prevention — another vital use case and growth opportunity
+              </div>
+            </div>
+          </FadeUp>
         </div>
       </Section>
 
@@ -236,9 +269,14 @@ export function Home() {
             <h2 className="text-4xl md:text-5xl font-bold text-[#1e3a8a] text-center mb-4 tracking-tight">
               One Integrated Platform
             </h2>
-            <p className="text-xl text-gray-600 text-center mb-6 max-w-3xl mx-auto leading-relaxed">
-              The only system that combines physical medication control with
-              digital monitoring and real-time provider alerts.
+            <p className="text-xl text-gray-600 text-center mb-4 max-w-3xl mx-auto leading-relaxed">
+              iRxReminder offers a clinically validated, market-ready digital
+              health platform with patented IP that ensures patients take their
+              medications correctly and on time.
+            </p>
+            <p className="text-lg text-gray-500 text-center mb-6 max-w-3xl mx-auto leading-relaxed">
+              Our intelligent B2B medication management system supports both
+              patients and healthcare providers in real time.
             </p>
           </FadeUp>
 
@@ -328,11 +366,12 @@ export function Home() {
           </FadeUp>
 
           {/* Badges */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-16">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
             {[
               { icon: Shield, label: "NIH-Funded", sub: "$871K SBIR Grant" },
-              { icon: Award, label: "12 US Patents", sub: "Defensive IP Moat" },
-              { icon: FileCheck, label: "Clinically Validated", sub: "350+ Trial Participants" },
+              { icon: Award, label: "Multiple Patents", sub: "Protected IP Portfolio" },
+              { icon: FileCheck, label: "Clinically Validated", sub: "Fully Developed Technology" },
+              { icon: Zap, label: "Market-Ready", sub: "Positioned for Rapid Entry" },
             ].map((badge, i) => (
               <FadeUp key={badge.label} delay={0.15 + i * 0.1}>
                 <div className="bg-white/[0.06] backdrop-blur-sm border border-white/10 rounded-xl p-6 text-center">
@@ -458,8 +497,8 @@ export function Home() {
             </h2>
             <p className="text-xl text-blue-100/80 mb-12 max-w-2xl mx-auto leading-relaxed">
               iRxReminder helps reduce ER visits, prevent decline, and keep
-              people functioning independently. This creates real value for
-              healthcare systems, healthcare providers, and society.
+              people functioning independently — creating real value for
+              healthcare systems, providers, and society.
             </p>
           </FadeUp>
 
