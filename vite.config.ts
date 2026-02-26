@@ -3,8 +3,10 @@ import path from 'path'
 import tailwindcss from '@tailwindcss/vite'
 import react from '@vitejs/plugin-react'
 
+const isGitHubPages = process.env.GITHUB_ACTIONS === "true";
+
 export default defineConfig({
-  base: "/Irxreminderwebsiteredesign/",
+  base: isGitHubPages ? "/Irxreminderwebsiteredesign/" : "/",
   plugins: [
     // The React and Tailwind plugins are both required for Make, even if
     // Tailwind is not being actively used – do not remove them
