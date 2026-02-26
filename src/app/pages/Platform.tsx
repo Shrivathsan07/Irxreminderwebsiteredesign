@@ -45,18 +45,19 @@ export function Platform() {
               Platform
             </p>
             <h1 className="text-4xl md:text-6xl font-extrabold text-white mb-6 tracking-tight">
-              One Intelligent Platform for
+              One Platform. Three Components.
               <br />
-              <span className="text-[#0891b2]">Medication Management</span>
+              <span className="text-[#0891b2]">Complete Visibility.</span>
             </h1>
             <p className="text-xl text-blue-100/80 max-w-2xl mx-auto leading-relaxed">
-              A complete system combining IoT hardware, mobile apps, and cloud dashboards to ensure medication adherence
+              See exactly what&rsquo;s happening with your patients&rsquo;
+              medication behavior&nbsp;&mdash; from dispensing to adherence to intervention.
             </p>
           </motion.div>
         </div>
       </section>
 
-      {/* Sticky Sub-Navigation — 4 links */}
+      {/* Sticky Sub-Navigation */}
       <div className="sticky top-20 z-40 bg-white/95 backdrop-blur-md border-b border-gray-100 shadow-[0_1px_3px_rgba(30,58,138,0.04)]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex overflow-x-auto py-3 gap-6 text-sm font-medium scrollbar-hide">
@@ -78,18 +79,20 @@ export function Platform() {
         </div>
       </div>
 
-      {/* iLidRx Pod — trimmed to 4 features */}
+      {/* ======= iLidRx Pod — Problem → Solution → Outcome ======= */}
       <section id="pod" className="py-24 bg-[#f8fafc] scroll-mt-32">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <FadeUp>
             <p className="text-[#0891b2] font-semibold text-sm tracking-widest uppercase mb-4">
-              Hardware
+              Smart Dispensing
             </p>
             <h2 className="text-4xl md:text-5xl font-bold text-[#1e3a8a] mb-4 tracking-tight">
               iLidRx Pod
             </h2>
-            <p className="text-xl text-gray-600 mb-12 max-w-2xl">
-              Patent-pending IoT dispensing device with Hold, Place, and Tilt&trade; gesture-based activation and smart LED alerting
+            <p className="text-xl text-gray-600 mb-12 max-w-3xl leading-relaxed">
+              Pill organizers cause sorting errors that send patients to the ER.
+              Bottle caps count openings but can&rsquo;t verify dosing. The iLidRx pod
+              dispenses the right medication, at the right time, one dose at a time.
             </p>
           </FadeUp>
 
@@ -97,10 +100,10 @@ export function Platform() {
             <FadeUp delay={0.1}>
               <div className="space-y-5">
                 {[
-                  { title: "Hold, Place, and Tilt\u2122 Dispensing", desc: "Patent-pending gesture-based activation ensures intentional medication taking and prevents accidental dispensing" },
-                  { title: "Smart LED Alerting System", desc: "Green \u2192 Yellow \u2192 Red progression guides dosing windows intuitively" },
-                  { title: "Real-Time Dose Recording", desc: "Every dispensing event automatically sent to app and dashboard \u2014 cannot game compliance data" },
-                  { title: "Overdose Prevention", desc: "Only dispenses correct amount at correct time \u2014 patients cannot double-dose" },
+                  { title: "90-Day Supply Per Pod", desc: "Pharmacist fills the pod. Patient never sorts pills. Zero sorting errors." },
+                  { title: "Hold, Place, and Tilt\u2122 Dispensing", desc: "Gesture-based activation ensures intentional dosing. Patients can\u2019t accidentally double-dose or \u201ccatch up\u201d on missed doses." },
+                  { title: "Real-Time Dose Recording", desc: "Every dispensing event is automatically reported to your team. Compliance data can\u2019t be gamed." },
+                  { title: "Inductive Charging", desc: "Place the pod on its stand to charge. No cables. Portable during the day." },
                 ].map((feature, i) => (
                   <div key={i} className="flex items-start gap-3">
                     <CheckCircle2 className="w-5 h-5 text-[#0891b2] flex-shrink-0 mt-0.5" />
@@ -119,9 +122,9 @@ export function Platform() {
                 <h3 className="text-xl font-bold text-gray-900 mb-6">LED Color System</h3>
                 <div className="space-y-4">
                   {[
-                    { color: "bg-green-500", label: "Green: Window Open", desc: "Dosing window is open. Patient can dispense." },
-                    { color: "bg-yellow-400", label: "Yellow: Mid-Window Alert", desc: "Reminder that dosing window is halfway through." },
-                    { color: "bg-red-500", label: "Red: Window Closing", desc: "Final alert to ensure adherence before window closes." },
+                    { color: "bg-green-500", label: "Green: Window Open", desc: "Dosing window is active. Patient can dispense." },
+                    { color: "bg-yellow-400", label: "Yellow: Mid-Window", desc: "Gentle reminder. Dosing window is halfway through." },
+                    { color: "bg-red-500", label: "Red: Window Closing", desc: "Final alert before the window closes." },
                   ].map((led) => (
                     <div key={led.label} className="flex items-start gap-4">
                       <div className={`w-8 h-8 ${led.color} rounded-full flex-shrink-0 mt-0.5`} />
@@ -132,36 +135,43 @@ export function Platform() {
                     </div>
                   ))}
                 </div>
+                <div className="mt-6 pt-5 border-t border-gray-100">
+                  <p className="text-sm text-[#1e3a8a] font-semibold">
+                    Patients take the right dose. Period.
+                  </p>
+                </div>
               </div>
             </FadeUp>
           </div>
         </div>
       </section>
 
-      {/* iRxCapture App — includes ESmCapture as a bullet */}
+      {/* ======= iRxCapture App — Problem → Solution → Outcome ======= */}
       <section id="app" className="py-24 bg-white scroll-mt-32">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <FadeUp>
             <p className="text-[#0891b2] font-semibold text-sm tracking-widest uppercase mb-4">
-              Mobile App
+              Patient App
             </p>
             <h2 className="text-4xl md:text-5xl font-bold text-[#1e3a8a] mb-4 tracking-tight">
               iRxCapture App
             </h2>
-            <p className="text-xl text-gray-600 mb-12 max-w-2xl">
-              Patient-facing mobile application for medication reminders, education, and symptom tracking
+            <p className="text-xl text-gray-600 mb-12 max-w-3xl leading-relaxed">
+              Most reminders nag. Patients tune them out within weeks.
+              iRxCapture only alerts when a patient actually forgets&nbsp;&mdash;
+              turning reminders from annoying to meaningful.
             </p>
           </FadeUp>
 
           <FadeUp delay={0.1}>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               {[
-                { title: "Medication Reminders", desc: "Push notifications and in-app alerts ensure patients never miss a dose" },
-                { title: "Educational Content", desc: "Medication-specific information and side effect guidance" },
-                { title: "Symptom Tracking", desc: "Patients log symptoms and share with care team in real time" },
-                { title: "Pod Connectivity", desc: "Seamless Bluetooth connection to iLidRx Pod for real-time sync" },
-                { title: "Adherence Visualization", desc: "Patients see their own progress and adherence patterns" },
-                { title: "ESmCapture Surveys", desc: "Customizable ecological momentary assessment surveys for health behavior and symptom tracking" },
+                { title: "Smart, Not Nagging", desc: "Only alerts when the patient truly forgets. No alert fatigue." },
+                { title: "Study Mode", desc: "Enter study ID and participant ID. Auto-loads medications, education, and regimen schedules." },
+                { title: "Symptom Reporting", desc: "Patients log symptoms directly in the app. Data flows to the care team." },
+                { title: "Patient Education", desc: "Medication-specific information delivered at the right moment." },
+                { title: "Adherence Visualization", desc: "Patients see their own progress. Autonomy, not surveillance." },
+                { title: "ESmCapture Surveys", desc: "Customizable ecological momentary assessments for health behavior and symptom tracking." },
               ].map((feature, i) => (
                 <div key={i} className="bg-[#f8fafc] p-6 rounded-xl border border-gray-100">
                   <CheckCircle2 className="w-5 h-5 text-[#0891b2] mb-3" />
@@ -171,10 +181,16 @@ export function Platform() {
               ))}
             </div>
           </FadeUp>
+
+          <FadeUp delay={0.2}>
+            <p className="mt-10 text-[#1e3a8a] font-semibold text-center">
+              Adherence through support, not nagging.
+            </p>
+          </FadeUp>
         </div>
       </section>
 
-      {/* iRxControl Center — without Study/Participant Management cards */}
+      {/* ======= iRxControl Center — Problem → Solution → Outcome ======= */}
       <section id="dashboard" className="py-24 bg-[#f8fafc] scroll-mt-32">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <FadeUp>
@@ -184,19 +200,21 @@ export function Platform() {
             <h2 className="text-4xl md:text-5xl font-bold text-[#1e3a8a] mb-4 tracking-tight">
               iRxControl Center
             </h2>
-            <p className="text-xl text-gray-600 mb-12 max-w-2xl">
-              Cloud-based hub for healthcare professionals — deploy regimens remotely and receive real-time adherence data
+            <p className="text-xl text-gray-600 mb-12 max-w-3xl leading-relaxed">
+              You can&rsquo;t manage what you can&rsquo;t see. The iRxControl
+              Center shows every dose&nbsp;&mdash; taken or missed&nbsp;&mdash;
+              across your entire patient population, in real time.
             </p>
           </FadeUp>
 
           <FadeUp delay={0.1}>
             <div className="space-y-4">
               {[
-                { title: "Deploy Medication Regimens Remotely", desc: "Set up and modify dosing schedules without requiring patient visits or physical repackaging" },
-                { title: "Real-Time Adherence Data", desc: "See overall summaries and individual medication adherence for each patient in real-time" },
-                { title: "Calendar View for Pattern Recognition", desc: "Identify patterns of missed doses by day and time to intervene proactively" },
-                { title: "Alert Care Team on Missed Doses", desc: "Automatic notifications enable timely intervention before problems escalate" },
-                { title: "EHR/EDC System Integration", desc: "Interface with Electronic Health Records for seamless workflows" },
+                { title: "Deploy Regimens Remotely", desc: "Set up and modify dosing schedules without patient visits or physical repackaging." },
+                { title: "Real-Time Adherence Data", desc: "Summary views and individual medication adherence for every patient. No waiting for clinic visits." },
+                { title: "Calendar View for Pattern Recognition", desc: "Spot patterns of missed doses by day and time. Intervene proactively, not reactively." },
+                { title: "Missed-Dose Alerts", desc: "Your team gets notified the moment a patient misses a dose. Act before problems escalate." },
+                { title: "Role-Based Access", desc: "Assign team roles. Researchers, clinicians, and coordinators each see what they need." },
               ].map((cap, i) => (
                 <div key={i} className="flex items-start gap-3 bg-white p-5 rounded-xl border border-gray-100">
                   <CheckCircle2 className="w-5 h-5 text-[#0891b2] flex-shrink-0 mt-0.5" />
@@ -208,10 +226,16 @@ export function Platform() {
               ))}
             </div>
           </FadeUp>
+
+          <FadeUp delay={0.2}>
+            <p className="mt-10 text-[#1e3a8a] font-semibold text-center">
+              Intervene early. Not after the ER visit.
+            </p>
+          </FadeUp>
         </div>
       </section>
 
-      {/* EHR Integration — includes FDA Class II badge */}
+      {/* ======= EHR Integration ======= */}
       <section id="integration" className="py-24 bg-white scroll-mt-32">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <FadeUp>
@@ -219,22 +243,23 @@ export function Platform() {
               Integration
             </p>
             <h2 className="text-4xl md:text-5xl font-bold text-[#1e3a8a] mb-4 tracking-tight">
-              EHR &amp; Device Integration
+              Works with Your EHR
             </h2>
-            <p className="text-xl text-gray-600 mb-12 max-w-2xl">
-              100% seamless integration with electronic health records and existing hospital systems
+            <p className="text-xl text-gray-600 mb-12 max-w-3xl leading-relaxed">
+              Medication orders flow from the EHR. Adherence data flows back.
+              No manual data entry. No workflow disruption.
             </p>
           </FadeUp>
 
           <div className="grid md:grid-cols-2 gap-8 mb-12">
             <FadeUp delay={0.1}>
               <div className="space-y-4">
-                <h3 className="font-bold text-gray-900 text-lg">Integration Capabilities</h3>
+                <h3 className="font-bold text-gray-900 text-lg">Integration</h3>
                 {[
-                  { title: "HL7 FHIR Compatibility", desc: "Industry-standard data exchange protocols for maximum interoperability" },
-                  { title: "Bi-Directional Data Flow", desc: "Medication orders flow from EHR; adherence data flows back to patient record" },
-                  { title: "No Manual Data Entry", desc: "Automated workflows eliminate duplicate entry and reduce staff burden" },
-                  { title: "Epic, Cerner, Allscripts Ready", desc: "Pre-built connectors for major EHR platforms" },
+                  { title: "HL7 FHIR Compatible", desc: "Industry-standard data exchange for maximum interoperability." },
+                  { title: "Bi-Directional Data Flow", desc: "Orders in. Adherence data out. Automated." },
+                  { title: "Zero Manual Entry", desc: "Automated workflows eliminate duplicate data entry for your staff." },
+                  { title: "Epic, Cerner, Allscripts Ready", desc: "Pre-built connectors for major EHR platforms." },
                 ].map((item, i) => (
                   <div key={i} className="flex items-start gap-3">
                     <CheckCircle2 className="w-5 h-5 text-[#0891b2] flex-shrink-0 mt-0.5" />
@@ -251,10 +276,10 @@ export function Platform() {
               <div className="space-y-4">
                 <h3 className="font-bold text-gray-900 text-lg">Security &amp; Compliance</h3>
                 {[
-                  { title: "HIPAA Compliant", desc: "Full compliance with healthcare data privacy regulations" },
-                  { title: "End-to-End Encryption", desc: "All patient data encrypted in transit and at rest" },
-                  { title: "SOC 2 Type II Certified", desc: "Third-party audited security controls and practices" },
-                  { title: "FDA Class II Clearance Pathway", desc: "Led by Dr. Fred Ma, MD PhD — 1,200+ clinical trials and 200+ drugs/devices through FDA clearance" },
+                  { title: "HIPAA Compliant", desc: "Full compliance with healthcare data privacy regulations." },
+                  { title: "End-to-End Encryption", desc: "All patient data encrypted in transit and at rest." },
+                  { title: "SOC 2 Type II Certified", desc: "Third-party audited security controls." },
+                  { title: "FDA Class II Clearance Pathway", desc: "Led by Dr. Fred Ma, MD PhD\u2009\u2014\u20091,200+ clinical trials and 200+ drugs/devices through FDA clearance." },
                 ].map((item, i) => (
                   <div key={i} className="flex items-start gap-3">
                     <CheckCircle2 className="w-5 h-5 text-[#0891b2] flex-shrink-0 mt-0.5" />
@@ -273,9 +298,9 @@ export function Platform() {
               <h3 className="font-bold text-gray-900 mb-6">Implementation Timeline</h3>
               <div className="grid md:grid-cols-4 gap-6">
                 {[
-                  { week: "Week 1-2", task: "Technical planning and EHR mapping", color: "#1e3a8a" },
-                  { week: "Week 3-4", task: "Development and testing in sandbox", color: "#0891b2" },
-                  { week: "Week 5-6", task: "User acceptance testing", color: "#1e3a8a" },
+                  { week: "Week 1\u20132", task: "Technical planning and EHR mapping", color: "#1e3a8a" },
+                  { week: "Week 3\u20134", task: "Development and sandbox testing", color: "#0891b2" },
+                  { week: "Week 5\u20136", task: "User acceptance testing", color: "#1e3a8a" },
                   { week: "Week 7", task: "Production launch and monitoring", color: "#0891b2" },
                 ].map((item) => (
                   <div key={item.week}>
@@ -289,27 +314,27 @@ export function Platform() {
         </div>
       </section>
 
-      {/* CTA — updated per Phase 4: Platform = Evaluation stage */}
+      {/* CTA */}
       <section className="relative py-24 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-[#0f1d3d] via-[#152c6e] to-[#1e3a8a]" />
         <div className="absolute bottom-0 right-1/4 w-[400px] h-[400px] bg-[#0891b2]/15 rounded-full blur-[80px]" />
         <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <FadeUp>
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 tracking-tight">
-              Ready to See the Platform in Action?
+              See What Real-Time Monitoring Looks Like
             </h2>
             <p className="text-xl text-blue-100/80 mb-10">
-              Calculate your potential ROI or schedule a personalized pilot program
+              Calculate your potential ROI or schedule a personalized pilot
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button asChild size="lg" className="bg-[#0891b2] hover:bg-[#0e7490] text-white shadow-[0_1px_3px_rgba(8,145,178,0.3),0_6px_20px_rgba(8,145,178,0.25)] transition-[background-color,box-shadow]">
-                <Link to="/roi-calculator">
-                  Calculate Your ROI
+                <Link to="/schedule-pilot">
+                  Schedule a Pilot
                   <ArrowRight className="w-4 h-4 ml-2" />
                 </Link>
               </Button>
               <Button asChild size="lg" variant="outline" className="border-white/60 hover:border-white/80 text-white hover:bg-white/10 transition-colors">
-                <Link to="/schedule-pilot">Schedule a Pilot</Link>
+                <Link to="/roi-calculator">Calculate Your ROI</Link>
               </Button>
             </div>
           </FadeUp>

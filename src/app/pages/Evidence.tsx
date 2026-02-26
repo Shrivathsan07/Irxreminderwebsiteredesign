@@ -53,12 +53,14 @@ export function Evidence() {
               Clinical Evidence
             </p>
             <h1 className="text-4xl md:text-6xl font-extrabold text-white mb-6 tracking-tight">
-              Clinically Validated. Federally Funded.
+              Clinically Validated.
               <br />
-              <span className="text-[#0891b2]">University-Proven.</span>
+              Peer-Reviewed. <span className="text-[#0891b2]">Patent-Protected.</span>
             </h1>
             <p className="text-xl text-blue-100/80 max-w-2xl mx-auto leading-relaxed">
-              iRxReminder's platform is backed by nationally recognized research institutions and multi-year federal grant awards
+              Tested in NIH-funded studies. Deployed at university medical
+              centers. Proven to drive high adherence&nbsp;&mdash; even in
+              patients with cognitive impairments.
             </p>
           </motion.div>
         </div>
@@ -69,10 +71,10 @@ export function Evidence() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex overflow-x-auto py-3 gap-6 text-sm font-medium scrollbar-hide">
             {[
-              { href: "#problem", label: "The Problem" },
+              { href: "#problem", label: "The Crisis" },
               { href: "#trials", label: "Clinical Trials" },
-              { href: "#grants", label: "NIH & Federal Grants" },
-              { href: "#partners", label: "University Partners" },
+              { href: "#grants", label: "NIH Grants" },
+              { href: "#partners", label: "Partners" },
               { href: "#publications", label: "Publications" },
               { href: "#awards", label: "Awards" },
             ].map((item) => (
@@ -88,7 +90,7 @@ export function Evidence() {
         </div>
       </div>
 
-      {/* ======= CENTRAL STAT HERO ======= */}
+      {/* ======= CENTRAL STAT ======= */}
       <section className="py-20 md:py-24 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <FadeUp>
@@ -102,34 +104,37 @@ export function Evidence() {
               <span className="text-6xl md:text-8xl font-extrabold text-[#0891b2] tracking-tight">80%+</span>
             </div>
             <p className="text-xl md:text-2xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
-              Adherence improvement validated through NIH-funded clinical trials across 350+ participants in behavioral health networks
+              Adherence improvement across 350+ participants in behavioral health
+              networks. Validated in NIH-funded clinical trials.
             </p>
           </FadeUp>
         </div>
       </section>
 
-      {/* ======= SECTION 1: THE NON-ADHERENCE CRISIS ======= */}
+      {/* ======= THE NON-ADHERENCE CRISIS ======= */}
       <section id="problem" className="py-24 md:py-32 bg-[#f8fafc] scroll-mt-32">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <FadeUp>
             <p className="text-[#0891b2] font-semibold text-sm tracking-widest uppercase mb-4">
-              The Problem
+              The Crisis
             </p>
             <h2 className="text-4xl md:text-5xl font-bold text-[#1e3a8a] mb-4 tracking-tight">
-              The Non-Adherence Crisis
+              The Numbers Don&rsquo;t Lie
             </h2>
             <p className="text-xl text-gray-600 mb-16 max-w-3xl">
-              Medication non-adherence is a massive, growing problem in healthcare with devastating human and financial consequences
+              Medication non-adherence is one of healthcare&rsquo;s most
+              expensive unsolved problems. The human and financial toll is
+              massive&nbsp;&mdash; and growing.
             </p>
           </FadeUp>
 
           {/* Crisis Stats */}
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
             {[
-              { stat: "700K", label: "ER visits annually", color: "#1e3a8a" },
-              { stat: "341K", label: "Hospitalizations annually", color: "#0891b2" },
-              { stat: "125K", label: "Deaths annually", color: "#1e3a8a" },
-              { stat: "$300B+", label: "Avoidable healthcare costs", color: "#0891b2" },
+              { stat: "700K", label: "ER visits per year", color: "#1e3a8a" },
+              { stat: "341K", label: "Hospitalizations per year", color: "#0891b2" },
+              { stat: "125K", label: "Deaths per year", color: "#1e3a8a" },
+              { stat: "$300B+", label: "In avoidable costs", color: "#0891b2" },
             ].map((item, i) => (
               <FadeUp key={item.stat} delay={i * 0.08}>
                 <div className="bg-white p-8 rounded-2xl border border-gray-100 shadow-[0_1px_3px_rgba(8,145,178,0.04),0_4px_12px_rgba(8,145,178,0.06),0_16px_40px_rgba(30,58,138,0.06)] text-center">
@@ -148,7 +153,9 @@ export function Evidence() {
               <Quote className="w-10 h-10 text-[#0891b2]/20 absolute top-6 left-6" />
               <div className="pl-8 md:pl-12">
                 <blockquote className="text-xl md:text-2xl text-gray-800 italic leading-relaxed mb-4">
-                  "Poor medication adherence takes the lives of 125,000 Americans annually, and costs the healthcare system as much as $300 billion a year."
+                  &ldquo;Poor medication adherence takes the lives of 125,000
+                  Americans annually, and costs the healthcare system as much
+                  as $300 billion a year.&rdquo;
                 </blockquote>
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-0.5 bg-[#0891b2]" />
@@ -158,10 +165,10 @@ export function Evidence() {
             </div>
           </FadeUp>
 
-          {/* Why Existing Solutions Fall Short */}
+          {/* Why Existing Solutions Fail */}
           <FadeUp>
             <h3 className="text-3xl font-bold text-[#1e3a8a] mb-8 tracking-tight">
-              Why Existing Solutions Fall Short
+              Why Current Tools Fail
             </h3>
           </FadeUp>
 
@@ -170,20 +177,20 @@ export function Evidence() {
               {
                 title: "Pill Packing",
                 subtitle: "PillPak, ExactCare",
-                problem: "Dangerous when days are skipped. If a patient misses a day, they may take double doses. Regimen changes require complete repackaging, creating delays and complexity.",
-                solution: "Flexible dosing windows and real-time regimen adjustments without physical repackaging.",
+                problem: "Skip a day, take a double dose. Regimen changes require complete repackaging.",
+                solution: "Flexible dosing windows. Real-time regimen adjustments. No repackaging.",
               },
               {
                 title: "Wireless Pill Bottles",
                 subtitle: "MEMSCaps, GlowCaps, AdhereTech",
-                problem: "Cannot prevent overdosing. Patients can open the bottle and take any amount. Alerts are passive or nagging, leading to alert fatigue.",
-                solution: "Controlled dispensing with gesture activation, preventing overdose and gaming.",
+                problem: "Count openings, not doses. Patients can take any amount. Passive alerts get ignored.",
+                solution: "Controlled dispensing. Gesture activation. Can\u2019t overdose or game data.",
               },
               {
-                title: "Smart Pill Organizers",
+                title: "Smart Organizers",
                 subtitle: "Consumer devices",
-                problem: "Patient still sorts pills (error-prone). No real-time data. Easy to game by opening without taking medication.",
-                solution: "Pharmacist-filled, automated dose recording, tamper-proof data.",
+                problem: "Patient sorts pills (error-prone). No real-time data. Easy to game.",
+                solution: "Pharmacist-filled. Automatic dose recording. Tamper-proof data.",
               },
             ].map((item, i) => (
               <FadeUp key={item.title} delay={i * 0.1}>
@@ -200,7 +207,7 @@ export function Evidence() {
                   <div className="flex items-start gap-2.5 mt-auto pt-4 border-t border-gray-50">
                     <CheckCircle2 className="w-5 h-5 text-[#0891b2] flex-shrink-0 mt-0.5" />
                     <div>
-                      <span className="text-xs font-semibold uppercase tracking-wider text-[#0891b2]">iRxReminder Solution</span>
+                      <span className="text-xs font-semibold uppercase tracking-wider text-[#0891b2]">iRxReminder</span>
                       <p className="text-sm text-gray-600 mt-1">{item.solution}</p>
                     </div>
                   </div>
@@ -211,7 +218,7 @@ export function Evidence() {
         </div>
       </section>
 
-      {/* ======= SECTION 2: CLINICAL TRIALS & RESULTS ======= */}
+      {/* ======= CLINICAL TRIALS ======= */}
       <section id="trials" className="py-24 md:py-32 bg-white scroll-mt-32">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <FadeUp>
@@ -219,15 +226,15 @@ export function Evidence() {
               Clinical Trials
             </p>
             <h2 className="text-4xl md:text-5xl font-bold text-[#1e3a8a] mb-4 tracking-tight">
-              Clinical Trials &amp; Results
+              Rigorous Studies. Real-World Results.
             </h2>
             <p className="text-xl text-gray-600 mb-16 max-w-2xl">
-              Rigorous, multi-site studies validating real-world adherence outcomes
+              Multi-site studies validating adherence outcomes in diverse patient populations
             </p>
           </FadeUp>
 
           <div className="space-y-6">
-            {/* TDtect Study - Featured/Active */}
+            {/* TDtect Study */}
             <FadeUp>
               <div className="bg-white p-8 md:p-10 rounded-2xl border-2 border-[#0891b2]/30 shadow-[0_1px_3px_rgba(8,145,178,0.06),0_8px_20px_rgba(8,145,178,0.1),0_24px_48px_rgba(30,58,138,0.1)]">
                 <div className="flex flex-wrap items-center gap-3 mb-5">
@@ -239,7 +246,9 @@ export function Evidence() {
                 </div>
                 <h3 className="text-2xl font-bold text-gray-900 mb-3">TDtect&trade; Diagnostic Study</h3>
                 <p className="text-gray-600 mb-6 max-w-3xl">
-                  NIMH-funded study for Tardive Dyskinesia detection and remote monitoring in behavioral health populations. First patients enrolled August 2023.
+                  NIMH-funded study for Tardive Dyskinesia detection and remote
+                  monitoring in behavioral health populations. First patients
+                  enrolled August 2023.
                 </p>
                 <div className="grid sm:grid-cols-3 gap-4">
                   {[
@@ -267,7 +276,8 @@ export function Evidence() {
                 </div>
                 <h3 className="text-2xl font-bold text-gray-900 mb-3">NIH Adherence Improvement Study</h3>
                 <p className="text-gray-600 mb-6 max-w-3xl">
-                  Multi-site study across 350+ participants in behavioral health networks demonstrating <strong className="text-gray-900">48% to 80%+ improvement in medication adherence</strong>.
+                  Multi-site study across behavioral health networks.
+                  Result: <strong className="text-gray-900">48% to 80%+ medication adherence improvement</strong>.
                 </p>
                 <div className="grid sm:grid-cols-3 gap-4">
                   {[
@@ -293,9 +303,10 @@ export function Evidence() {
                   </span>
                   <span className="text-xs text-gray-400 font-medium">HOPA-Funded</span>
                 </div>
-                <h3 className="text-2xl font-bold text-gray-900 mb-3">University of Michigan Cancer Center Study</h3>
+                <h3 className="text-2xl font-bold text-gray-900 mb-3">University of Michigan Cancer Center</h3>
                 <p className="text-gray-600 mb-6 max-w-3xl">
-                  HOPA-funded study monitoring medication adherence in oncology patients, demonstrating <strong className="text-gray-900">25% reduction in clinical trial dropouts</strong>.
+                  Oncology adherence study.
+                  Result: <strong className="text-gray-900">25% reduction in clinical trial dropouts</strong>.
                 </p>
                 <div className="grid sm:grid-cols-3 gap-4">
                   {[
@@ -312,7 +323,7 @@ export function Evidence() {
               </div>
             </FadeUp>
 
-            {/* 83% Adherence Callout */}
+            {/* 83% Callout */}
             <FadeUp delay={0.2}>
               <div className="relative bg-gradient-to-br from-[#0f1d3d] via-[#152c6e] to-[#1e3a8a] p-8 md:p-10 rounded-2xl overflow-hidden">
                 <div className="absolute top-0 right-0 w-[300px] h-[300px] bg-[#0891b2]/15 rounded-full blur-[80px]" />
@@ -321,7 +332,9 @@ export function Evidence() {
                   <div>
                     <h3 className="text-xl font-bold text-white mb-2">Consistent Adherence Rate</h3>
                     <p className="text-blue-100/80 max-w-xl">
-                      Across multiple clinical studies, iRxReminder has consistently achieved 83% medication adherence rates in diverse patient populations — far exceeding industry benchmarks and demonstrating real-world effectiveness.
+                      Across multiple studies and diverse populations, iRxReminder
+                      consistently achieves 83% medication adherence&nbsp;&mdash;
+                      far exceeding industry benchmarks.
                     </p>
                   </div>
                 </div>
@@ -331,7 +344,7 @@ export function Evidence() {
         </div>
       </section>
 
-      {/* ======= SECTION 3: NIH & FEDERAL GRANTS ======= */}
+      {/* ======= NIH & FEDERAL GRANTS ======= */}
       <section id="grants" className="py-24 md:py-32 bg-[#f8fafc] scroll-mt-32">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <FadeUp>
@@ -339,10 +352,10 @@ export function Evidence() {
               Federal Funding
             </p>
             <h2 className="text-4xl md:text-5xl font-bold text-[#1e3a8a] mb-4 tracking-tight">
-              NIH &amp; Federal Grant Awards
+              NIH &amp; Federal Grants
             </h2>
             <p className="text-xl text-gray-600 mb-16 max-w-2xl">
-              Peer-reviewed federal grants validating scientific merit, innovation, and public health impact
+              Peer-reviewed federal grants validating scientific merit and public health impact
             </p>
           </FadeUp>
 
@@ -352,13 +365,15 @@ export function Evidence() {
                 <div className="w-12 h-12 rounded-xl bg-[#1e3a8a]/10 flex items-center justify-center mb-5">
                   <Award className="w-6 h-6 text-[#1e3a8a]" />
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-2">NIMH AI Telehealth Research Grant</h3>
+                <h3 className="text-xl font-bold text-gray-900 mb-2">NIMH AI Telehealth Grant</h3>
                 <div className="text-3xl font-extrabold text-[#1e3a8a] mb-4 tracking-tight">$871,153</div>
                 <p className="text-sm text-gray-500 mb-4">
                   <strong className="text-gray-700">Awarded:</strong> March 2023
                 </p>
                 <p className="text-gray-600 text-sm leading-relaxed">
-                  Advanced research in AI-powered telehealth monitoring for behavioral health. Funding supports TDtect&trade; study for Tardive Dyskinesia detection and medication monitoring technology development.
+                  Funding for TDtect&trade; study&nbsp;&mdash; AI-powered Tardive
+                  Dyskinesia detection and medication monitoring in behavioral
+                  health populations.
                 </p>
               </div>
             </FadeUp>
@@ -370,10 +385,12 @@ export function Evidence() {
                 </div>
                 <h3 className="text-xl font-bold text-gray-900 mb-2">NIH Grant No. 1R43AG033500</h3>
                 <p className="text-sm text-gray-500 mb-4">
-                  <strong className="text-gray-700">Focus:</strong> Stroke Recovery &amp; Aging Populations
+                  <strong className="text-gray-700">Focus:</strong> Stroke Recovery &amp; Aging
                 </p>
                 <p className="text-gray-600 text-sm leading-relaxed">
-                  Pilot study validating medication adherence technology for stroke recovery patients. This early-stage NIH funding demonstrated the platform's potential and paved the way for larger trials.
+                  Pilot study validating medication adherence technology for
+                  stroke recovery patients. Demonstrated platform potential and
+                  paved the way for larger trials.
                 </p>
               </div>
             </FadeUp>
@@ -385,11 +402,10 @@ export function Evidence() {
                 <ShieldCheck className="w-6 h-6 text-[#0891b2] flex-shrink-0 mt-1" />
                 <div>
                   <h3 className="text-lg font-bold text-gray-900 mb-3">What NIH Funding Means</h3>
-                  <p className="text-gray-600 text-sm leading-relaxed mb-3">
-                    National Institutes of Health grants are awarded only to projects that undergo rigorous peer review for scientific merit, innovation, and public health impact. These federal awards validate iRxReminder's clinical approach, research methodology, and potential to transform medication adherence.
-                  </p>
                   <p className="text-gray-600 text-sm leading-relaxed">
-                    The $871K NIMH grant positions iRxReminder at the forefront of behavioral health technology innovation, with federal backing for our AI-powered diagnostic capabilities and medication monitoring platform.
+                    NIH grants undergo rigorous peer review for scientific merit,
+                    innovation, and public health impact. Federal funding validates
+                    iRxReminder&rsquo;s clinical approach and research methodology.
                   </p>
                 </div>
               </div>
@@ -398,7 +414,7 @@ export function Evidence() {
         </div>
       </section>
 
-      {/* ======= SECTION 4: UNIVERSITY PARTNERS ======= */}
+      {/* ======= UNIVERSITY PARTNERS ======= */}
       <section id="partners" className="py-24 md:py-32 bg-white scroll-mt-32">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <FadeUp>
@@ -409,7 +425,7 @@ export function Evidence() {
               University &amp; Research Partners
             </h2>
             <p className="text-xl text-gray-600 mb-16 max-w-2xl">
-              Collaborating with leading institutions to advance medication adherence science
+              Collaborating with leading institutions to validate and advance the platform
             </p>
           </FadeUp>
 
@@ -432,30 +448,10 @@ export function Evidence() {
               </FadeUp>
             ))}
           </div>
-
-          <FadeUp delay={0.2}>
-            <div className="bg-[#f8fafc] p-8 rounded-2xl border border-gray-100">
-              <h3 className="text-xl font-bold text-gray-900 mb-6">Academic Collaborations</h3>
-              <div className="grid md:grid-cols-2 gap-8">
-                <div>
-                  <h4 className="text-sm font-semibold uppercase tracking-wider text-gray-400 mb-3">Clinical Research Sites</h4>
-                  <p className="text-gray-600 text-sm leading-relaxed">
-                    Our university partners serve as clinical research sites for medication adherence trials, providing access to diverse patient populations and rigorous scientific oversight.
-                  </p>
-                </div>
-                <div>
-                  <h4 className="text-sm font-semibold uppercase tracking-wider text-gray-400 mb-3">Technology Development</h4>
-                  <p className="text-gray-600 text-sm leading-relaxed">
-                    Academic collaborations accelerate platform development through joint research initiatives, bringing together clinical expertise and technological innovation.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </FadeUp>
         </div>
       </section>
 
-      {/* ======= SECTION 5: PUBLICATIONS ======= */}
+      {/* ======= PUBLICATIONS ======= */}
       <section id="publications" className="py-24 md:py-32 bg-[#f8fafc] scroll-mt-32">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <FadeUp>
@@ -476,21 +472,21 @@ export function Evidence() {
                 title: "Medication Adherence Technology for Behavioral Health Populations",
                 journal: "Journal of Medical Internet Research (JMIR)",
                 date: "2023",
-                description: "Peer-reviewed publication documenting 48% \u2192 80%+ adherence improvement in NIH-funded trial across behavioral health networks.",
+                description: "48% \u2192 80%+ adherence improvement in NIH-funded trial across behavioral health networks.",
                 color: "#1e3a8a",
               },
               {
                 title: "Reducing Clinical Trial Dropouts Through IoT Medication Monitoring",
                 journal: "Journal of Clinical Oncology",
                 date: "2022",
-                description: "University of Michigan Cancer Center study demonstrating 25% reduction in trial dropouts using iRxReminder platform.",
+                description: "University of Michigan Cancer Center: 25% reduction in trial dropouts.",
                 color: "#0891b2",
               },
               {
                 title: "Gerontechnology and Medication Management for Aging Populations",
                 journal: "Multiple conference presentations",
                 date: "2015\u20132020",
-                description: "Dr. Anthony Sterns' 100+ international presentations on medication adherence technology, including keynotes at Gerontological Society of America and Consumer Healthcare Products Association.",
+                description: "100+ international presentations including keynotes at Gerontological Society of America and Consumer Healthcare Products Association.",
                 color: "#1e3a8a",
               },
             ].map((pub, i) => (
@@ -511,10 +507,10 @@ export function Evidence() {
             ))}
           </div>
 
-          {/* Dr. Sterns' Research Impact */}
+          {/* Research Impact */}
           <FadeUp delay={0.2}>
             <div className="bg-white p-8 rounded-2xl border border-gray-100 shadow-[0_1px_3px_rgba(8,145,178,0.04),0_4px_12px_rgba(8,145,178,0.06),0_16px_40px_rgba(30,58,138,0.06)]">
-              <h4 className="font-bold text-gray-900 mb-6">Dr. Sterns' Research Impact</h4>
+              <h4 className="font-bold text-gray-900 mb-6">Research Impact</h4>
               <div className="grid md:grid-cols-3 gap-6 text-center">
                 {[
                   { stat: "33", label: "Publications", color: "#1e3a8a" },
@@ -534,7 +530,7 @@ export function Evidence() {
         </div>
       </section>
 
-      {/* ======= SECTION 6: AWARDS TIMELINE ======= */}
+      {/* ======= AWARDS ======= */}
       <section id="awards" className="py-24 md:py-32 bg-white scroll-mt-32">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <FadeUp>
@@ -547,50 +543,48 @@ export function Evidence() {
           </FadeUp>
 
           <div className="relative">
-            {/* Timeline line */}
             <div className="absolute left-[23px] top-0 bottom-0 w-px bg-gradient-to-b from-[#0891b2]/40 via-[#1e3a8a]/20 to-transparent hidden md:block" />
 
             <div className="space-y-8">
               {[
                 {
                   year: "2023",
-                  title: "$871,153 NIH Grant for AI Telehealth Research",
-                  description: "NIMH-funded grant for Tardive Dyskinesia detection and medication monitoring",
+                  title: "$871K NIMH Grant for AI Telehealth Research",
+                  description: "Federal funding for TDtect\u2122 study",
                   color: "#0891b2",
                   featured: false,
                 },
                 {
                   year: "2023",
                   title: "First Patients Enrolled in TDtect\u2122 Study",
-                  description: "Groundbreaking NIMH-funded diagnostic study begins",
+                  description: "NIMH-funded diagnostic study begins enrollment",
                   color: "#1e3a8a",
                   featured: false,
                 },
                 {
                   year: "2019",
-                  title: "Winner: AMIA PitchIT 2019 \u2014 $12,500 Prize",
-                  description: "American Medical Informatics Association's national competition grand prize. This prestigious award recognizes iRxReminder's potential to transform medication adherence through technology innovation.",
+                  title: "AMIA PitchIT Grand Prize \u2014 $12,500",
+                  description: "American Medical Informatics Association national competition. Recognized for potential to transform medication adherence.",
                   color: "#0891b2",
                   featured: true,
                 },
                 {
                   year: "2019",
-                  title: "Named Best Tech Startup in Cleveland",
-                  description: "Recognized as the leading technology startup in Cleveland",
+                  title: "Best Tech Startup in Cleveland",
+                  description: "Recognized as the leading technology startup in the region",
                   color: "#1e3a8a",
                   featured: false,
                 },
                 {
                   year: "2017",
-                  title: "AARP/MedCity News Names Anthony Sterns '50+ Innovation Leader'",
-                  description: "Founder and CEO Dr. Anthony Sterns recognized nationally for leadership in aging and technology innovation",
+                  title: "AARP/MedCity \u201850+ Innovation Leader\u2019",
+                  description: "Dr. Anthony Sterns recognized for leadership in aging and technology",
                   color: "#0891b2",
                   featured: false,
                 },
               ].map((award, i) => (
                 <FadeUp key={`${award.year}-${i}`} delay={i * 0.08}>
                   <div className="flex items-start gap-5 md:gap-6">
-                    {/* Timeline dot */}
                     <div className="flex-shrink-0 relative z-10">
                       <div
                         className="w-12 h-12 rounded-xl flex items-center justify-center"
@@ -603,8 +597,6 @@ export function Evidence() {
                         )}
                       </div>
                     </div>
-
-                    {/* Content */}
                     <div className={`flex-1 ${award.featured ? "bg-white p-6 md:p-8 rounded-2xl border border-gray-100 shadow-[0_1px_3px_rgba(8,145,178,0.04),0_4px_12px_rgba(8,145,178,0.06),0_16px_40px_rgba(30,58,138,0.06)]" : "pt-1"}`}>
                       <div className="text-xs font-semibold uppercase tracking-wider text-gray-400 mb-1">{award.year}</div>
                       <h3 className={`font-bold text-gray-900 mb-1.5 ${award.featured ? "text-xl" : "text-lg"}`}>
@@ -627,20 +619,20 @@ export function Evidence() {
         <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <FadeUp>
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 tracking-tight">
-              Evidence-Based Solutions for Your Organization
+              The Evidence Speaks for Itself
             </h2>
             <p className="text-xl text-blue-100/80 mb-10">
-              See how clinically validated technology can transform medication adherence in your patient population
+              See how clinically validated technology can transform adherence for your patients
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button asChild size="lg" className="bg-[#0891b2] hover:bg-[#0e7490] text-white shadow-[0_1px_3px_rgba(8,145,178,0.3),0_6px_20px_rgba(8,145,178,0.25)] transition-[background-color,box-shadow]">
-                <Link to="/roi-calculator">
-                  Calculate Your ROI
+                <Link to="/schedule-pilot">
+                  Schedule a Pilot
                   <ArrowRight className="w-4 h-4 ml-2" />
                 </Link>
               </Button>
               <Button asChild size="lg" variant="outline" className="border-white/60 hover:border-white/80 text-white hover:bg-white/10 transition-colors">
-                <Link to="/schedule-pilot">Schedule a Pilot</Link>
+                <Link to="/roi-calculator">Calculate Your ROI</Link>
               </Button>
             </div>
           </FadeUp>

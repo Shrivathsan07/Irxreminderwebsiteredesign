@@ -7,6 +7,9 @@ import {
   Zap,
   Award,
   FileCheck,
+  FlaskConical,
+  Pill,
+  Building2,
 } from "lucide-react";
 import { Button } from "../components/ui/button";
 import { motion } from "motion/react";
@@ -55,7 +58,7 @@ function FadeUp({
 export function Home() {
   return (
     <div className="bg-white overflow-hidden">
-      {/* ======= SECTION 1: MISSION HERO ======= */}
+      {/* ======= SECTION 1: HERO — What the hero gets ======= */}
       <section className="relative min-h-[90vh] flex items-center overflow-hidden">
         {/* Background gradient */}
         <div className="absolute inset-0 bg-gradient-to-br from-[#0f1d3d] via-[#152c6e] to-[#1e3a8a]" />
@@ -70,20 +73,19 @@ export function Home() {
               transition={{ duration: 0.7, type: "spring", stiffness: 300, damping: 30 }}
             >
               <p className="text-[#0891b2] font-semibold text-sm tracking-widest uppercase mb-6">
-                Digital Health Technologies — Saving Lives, Reducing Costs
+                Real-Time Medication Monitoring
               </p>
               <h1 className="text-5xl sm:text-6xl lg:text-7xl font-extrabold text-white tracking-tight leading-[1.05] mb-6">
-                Monitor. Remind.
+                Know when your patients
                 <br />
-                <span className="text-[#0891b2]">Connect.</span>
+                take their medications.
+                <br />
+                <span className="text-[#0891b2]">Act when they don&rsquo;t.</span>
               </h1>
-              <p className="text-xl md:text-2xl text-white/95 leading-relaxed mb-4 max-w-2xl font-semibold">
-                Empowering patients to achieve and thrive in independence.
-              </p>
-              <p className="text-lg md:text-xl text-blue-100/80 leading-relaxed mb-10 max-w-2xl">
-                iRxReminder delivers strong ROI potential while making a
-                measurable social impact — a clinically validated medication
-                management platform saving lives and reducing healthcare costs.
+              <p className="text-xl md:text-2xl text-blue-100/90 leading-relaxed mb-10 max-w-2xl">
+                iRxReminder connects healthcare teams to their patients' daily
+                medication behavior through smart dispensing, real-time monitoring,
+                and targeted intervention.
               </p>
             </motion.div>
 
@@ -96,20 +98,20 @@ export function Home() {
               <Button
                 asChild
                 size="lg"
-                variant="outline"
-                className="border-white/60 hover:border-white/80 text-white hover:bg-white/10 text-lg px-8 py-6 transition-colors"
+                className="bg-[#0891b2] hover:bg-[#0e7490] text-white text-lg px-8 py-6 shadow-[0_1px_3px_rgba(8,145,178,0.3),0_6px_20px_rgba(8,145,178,0.25)] hover:shadow-[0_1px_3px_rgba(8,145,178,0.4),0_8px_28px_rgba(8,145,178,0.3)] transition-[background-color,box-shadow]"
               >
-                <a href="#how-it-works">
-                  See How It Works
+                <Link to="/schedule-pilot">
+                  Schedule a Pilot
                   <ArrowRight className="w-5 h-5 ml-2" />
-                </a>
+                </Link>
               </Button>
               <Button
                 asChild
                 size="lg"
-                className="bg-[#0891b2] hover:bg-[#0e7490] text-white text-lg px-8 py-6 shadow-[0_1px_3px_rgba(8,145,178,0.3),0_6px_20px_rgba(8,145,178,0.25)] hover:shadow-[0_1px_3px_rgba(8,145,178,0.4),0_8px_28px_rgba(8,145,178,0.3)] transition-[background-color,box-shadow]"
+                variant="outline"
+                className="border-white/60 hover:border-white/80 text-white hover:bg-white/10 text-lg px-8 py-6 transition-colors"
               >
-                <Link to="/platform">Explore the Platform</Link>
+                <Link to="/evidence">See the Research</Link>
               </Button>
             </motion.div>
 
@@ -122,7 +124,7 @@ export function Home() {
             >
               <span className="flex items-center gap-2">
                 <Shield className="w-4 h-4 text-[#0891b2]" />
-                NIH-Funded
+                NIH-Funded Research
               </span>
               <span className="flex items-center gap-2">
                 <Award className="w-4 h-4 text-[#0891b2]" />
@@ -137,33 +139,29 @@ export function Home() {
         </div>
       </section>
 
-      {/* ======= SECTION 2: THE PROBLEM ======= */}
+      {/* ======= SECTION 2: THE STAKES — The problem ======= */}
       <Section className="py-24 md:py-32 bg-white">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <FadeUp>
             <p className="text-[#0891b2] font-semibold text-sm tracking-widest uppercase mb-4 text-center">
-              The Problem
+              The Crisis
             </p>
-            <h2 className="text-4xl md:text-5xl font-bold text-[#1e3a8a] text-center mb-6 tracking-tight">
-              A Crisis Hiding in Plain Sight
+            <h2 className="text-4xl md:text-5xl font-bold text-[#1e3a8a] text-center mb-8 tracking-tight">
+              Healthcare&rsquo;s Most Expensive
+              <br className="hidden md:block" /> Unsolved Problem
             </h2>
           </FadeUp>
 
-          {/* $43B crisis stat */}
           <FadeUp delay={0.05}>
             <div className="text-center mb-12">
-              <div className="text-6xl md:text-7xl font-extrabold text-[#0891b2] tracking-tight mb-3">
-                $43B
-              </div>
-              <p className="text-xl text-gray-700 max-w-2xl mx-auto leading-relaxed">
-                Medication non-adherence is a{" "}
-                <span className="font-semibold text-[#1e3a8a]">$43 billion crisis</span>{" "}
-                in the U.S. alone — leading to emergency room visits,
-                hospitalizations, and long-term deterioration, especially in
-                vulnerable populations like mental health patients and older adults.
+              <p className="text-xl text-gray-700 max-w-3xl mx-auto leading-relaxed mb-8">
+                700,000 ER visits. 125,000 deaths. $300 billion in avoidable
+                costs. Every year. Medication non-adherence isn&rsquo;t a minor
+                inconvenience&nbsp;&mdash; it&rsquo;s a systemic failure.
               </p>
-              <p className="text-lg text-gray-500 mt-3">
-                The human and economic cost is massive and growing.
+              <p className="text-lg text-gray-500 max-w-2xl mx-auto leading-relaxed">
+                Current tools either nag patients into ignoring them or count
+                bottle openings without knowing if the right dose was taken.
               </p>
             </div>
           </FadeUp>
@@ -178,166 +176,187 @@ export function Home() {
                 billion a year.
               </blockquote>
               <div className="pl-4 md:pl-8 text-gray-500 font-medium">
-                — American Medical Association
+                &mdash; American Medical Association
               </div>
             </div>
           </FadeUp>
         </div>
       </Section>
 
-      {/* ======= SECTION 3: WHO WE SERVE ======= */}
+      {/* ======= SECTION 3: THE GUIDE — Position iRx as the answer ======= */}
       <Section className="py-24 md:py-32 bg-[#f8fafc]">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <FadeUp>
             <p className="text-[#0891b2] font-semibold text-sm tracking-widest uppercase mb-4 text-center">
-              Who We Serve
+              The Answer
             </p>
-            <h2 className="text-4xl md:text-5xl font-bold text-[#1e3a8a] text-center mb-16 tracking-tight">
-              Designed for Those Who Need It Most
+            <h2 className="text-4xl md:text-5xl font-bold text-[#1e3a8a] text-center mb-6 tracking-tight">
+              Built on a Decade of NIH-Funded Research
             </h2>
+            <p className="text-xl text-gray-600 text-center mb-16 max-w-3xl mx-auto leading-relaxed">
+              iRxReminder is the only platform that controls dispensing,
+              monitors adherence, and connects the healthcare team&nbsp;&mdash;
+              all in real time.
+            </p>
           </FadeUp>
 
-          <div className="grid md:grid-cols-2 gap-8">
-            {/* Mental & Behavioral Health */}
-            <FadeUp delay={0.1}>
-              <Link
-                to="/solutions#mental-health"
-                className="group block bg-white p-8 md:p-10 rounded-2xl border border-gray-100 shadow-[0_1px_3px_rgba(8,145,178,0.04),0_4px_12px_rgba(8,145,178,0.06),0_16px_40px_rgba(30,58,138,0.06)] hover:shadow-[0_1px_3px_rgba(8,145,178,0.06),0_8px_20px_rgba(8,145,178,0.1),0_24px_48px_rgba(30,58,138,0.1)] transition-[box-shadow,transform] duration-300 hover:-translate-y-1"
-              >
-                <Activity className="w-10 h-10 text-[#1e3a8a] mb-5" />
-                <div className="text-5xl font-extrabold text-[#1e3a8a] mb-3 tracking-tight">
-                  19M+
-                </div>
-                <h3 className="text-2xl font-bold text-gray-900 mb-4">
-                  Mental &amp; Behavioral Health
-                </h3>
-                <p className="text-gray-600 leading-relaxed mb-6">
-                  Americans struggle with serious mental illness where missed
-                  doses can result in hospitalization, homelessness, or worse.
-                  Medication adherence is critical for stability.
-                </p>
-                <span className="inline-flex items-center text-[#0891b2] font-semibold text-sm group-hover:gap-3 gap-2 transition-[gap]">
-                  Learn more <ArrowRight className="w-4 h-4" />
-                </span>
-              </Link>
-            </FadeUp>
-
-            {/* Aging & Chronic Care */}
-            <FadeUp delay={0.2}>
-              <Link
-                to="/solutions#aging"
-                className="group block bg-white p-8 md:p-10 rounded-2xl border border-gray-100 shadow-[0_1px_3px_rgba(8,145,178,0.04),0_4px_12px_rgba(8,145,178,0.06),0_16px_40px_rgba(30,58,138,0.06)] hover:shadow-[0_1px_3px_rgba(8,145,178,0.06),0_8px_20px_rgba(8,145,178,0.1),0_24px_48px_rgba(30,58,138,0.1)] transition-[box-shadow,transform] duration-300 hover:-translate-y-1"
-              >
-                <Users className="w-10 h-10 text-[#0891b2] mb-5" />
-                <div className="text-5xl font-extrabold text-[#0891b2] mb-3 tracking-tight">
-                  65M+
-                </div>
-                <h3 className="text-2xl font-bold text-gray-900 mb-4">
-                  Aging &amp; Chronic Care
-                </h3>
-                <p className="text-gray-600 leading-relaxed mb-6">
-                  Seniors rely on medications to maintain independence and
-                  quality of life, but often forget or double-dose — leading to
-                  decline and costly care.
-                </p>
-                <span className="inline-flex items-center text-[#0891b2] font-semibold text-sm group-hover:gap-3 gap-2 transition-[gap]">
-                  Learn more <ArrowRight className="w-4 h-4" />
-                </span>
-              </Link>
-            </FadeUp>
-          </div>
-
-          {/* Future expansion */}
-          <FadeUp delay={0.3}>
-            <div className="mt-10 text-center">
-              <div className="inline-flex items-center gap-2 bg-[#1e3a8a]/5 text-[#1e3a8a] px-5 py-3 rounded-full text-sm font-semibold">
-                <Zap className="w-4 h-4 text-[#0891b2]" />
-                Coming Next: Drug overdose prevention — another vital use case and growth opportunity
+          {/* Trust signal logos */}
+          <FadeUp delay={0.1}>
+            <div className="text-center">
+              <p className="text-gray-400 text-sm uppercase tracking-widest mb-6">
+                Research &amp; Institutional Partners
+              </p>
+              <div className="flex flex-wrap justify-center items-center gap-x-8 gap-y-4 text-gray-500 font-medium">
+                {[
+                  "University of Michigan",
+                  "Harvard University",
+                  "Brown University",
+                  "Kent State University",
+                  "MetroHealth",
+                  "NIH / NIA / NIMH",
+                ].map((name) => (
+                  <span key={name} className="text-sm whitespace-nowrap">
+                    {name}
+                  </span>
+                ))}
               </div>
             </div>
           </FadeUp>
         </div>
       </Section>
 
-      {/* ======= SECTION 4: HOW IT WORKS ======= */}
+      {/* ======= SECTION 4: THE PLAN — 3 steps ======= */}
       <Section id="how-it-works" className="py-24 md:py-32 bg-white scroll-mt-24">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <FadeUp>
             <p className="text-[#0891b2] font-semibold text-sm tracking-widest uppercase mb-4 text-center">
-              The Solution
+              How It Works
             </p>
-            <h2 className="text-4xl md:text-5xl font-bold text-[#1e3a8a] text-center mb-4 tracking-tight">
-              One Integrated Platform
+            <h2 className="text-4xl md:text-5xl font-bold text-[#1e3a8a] text-center mb-16 tracking-tight">
+              Three Steps to Real-Time Visibility
             </h2>
-            <p className="text-xl text-gray-600 text-center mb-4 max-w-3xl mx-auto leading-relaxed">
-              iRxReminder offers a clinically validated, market-ready digital
-              health platform with patented IP that ensures patients take their
-              medications correctly and on time.
-            </p>
-            <p className="text-lg text-gray-500 text-center mb-6 max-w-3xl mx-auto leading-relaxed">
-              Our intelligent B2B medication management system supports both
-              patients and healthcare providers in real time.
-            </p>
           </FadeUp>
 
-          {/* Differentiator callout */}
-          <FadeUp delay={0.1}>
-            <div className="max-w-2xl mx-auto mb-16 text-center">
-              <div className="inline-flex items-center gap-2 bg-[#0891b2]/10 text-[#0891b2] px-4 py-2 rounded-full text-sm font-semibold">
-                <Zap className="w-4 h-4" />
-                No other system physically controls medication access
-              </div>
-            </div>
-          </FadeUp>
-
-          {/* How it works steps */}
-          <div className="grid md:grid-cols-4 gap-8">
+          <div className="grid md:grid-cols-3 gap-10">
             {[
               {
                 num: "1",
-                title: "Pharmacy Fills the Pod",
-                desc: "Pharmacist loads up to 90 days of a single medication. Zero sorting errors.",
+                title: "Configure",
+                desc: "Set up regimens, schedules, and patient education in the Control Center. We configure the platform for your use case.",
                 color: "#1e3a8a",
               },
               {
                 num: "2",
-                title: "Patient Dispenses at Home",
-                desc: "Hold, Place, and Tilt\u2122 gesture ensures the right dose at the right time.",
+                title: "Deploy",
+                desc: "Pharmacy loads medications into pods. Patients use the Hold, Place, and Tilt\u2122 gesture to dispense. No sorting. No nagging.",
                 color: "#0891b2",
               },
               {
                 num: "3",
-                title: "Data Flows in Real Time",
-                desc: "Every dose is automatically recorded and shared with the care team.",
+                title: "Monitor",
+                desc: "Every dose taken or missed is reported in real time. See who\u2019s on track, who needs help, and intervene before a crisis\u2009\u2014\u2009not after.",
                 color: "#1e3a8a",
-              },
-              {
-                num: "4",
-                title: "Care Team Intervenes",
-                desc: "Clinicians see real-time dashboards and act before problems escalate.",
-                color: "#0891b2",
               },
             ].map((step, i) => (
               <FadeUp key={step.num} delay={0.1 + i * 0.1}>
                 <div className="text-center">
                   <div
-                    className="w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-4 text-white font-bold text-lg"
+                    className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-5 text-white font-bold text-xl"
                     style={{ backgroundColor: step.color }}
                   >
                     {step.num}
                   </div>
-                  <h4 className="font-bold text-gray-900 mb-2">{step.title}</h4>
-                  <p className="text-sm text-gray-500 leading-relaxed">
+                  <h4 className="text-xl font-bold text-gray-900 mb-3">{step.title}</h4>
+                  <p className="text-gray-500 leading-relaxed">
                     {step.desc}
                   </p>
                 </div>
               </FadeUp>
             ))}
           </div>
+
+          <FadeUp delay={0.4} className="text-center mt-12">
+            <Link
+              to="/platform"
+              className="inline-flex items-center gap-2 text-[#0891b2] font-semibold hover:gap-3 transition-[gap]"
+            >
+              See the full platform <ArrowRight className="w-4 h-4" />
+            </Link>
+          </FadeUp>
         </div>
       </Section>
 
-      {/* ======= SECTION 5: PROVEN RESULTS ======= */}
+      {/* ======= SECTION 5: WHO IT'S FOR — Solution area cards ======= */}
+      <Section className="py-24 md:py-32 bg-[#f8fafc]">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <FadeUp>
+            <p className="text-[#0891b2] font-semibold text-sm tracking-widest uppercase mb-4 text-center">
+              Who It&rsquo;s For
+            </p>
+            <h2 className="text-4xl md:text-5xl font-bold text-[#1e3a8a] text-center mb-16 tracking-tight">
+              One Platform. Four Use Cases.
+            </h2>
+          </FadeUp>
+
+          <div className="grid md:grid-cols-2 gap-8">
+            {[
+              {
+                icon: FlaskConical,
+                title: "Clinical Research",
+                problem: "Participant dropout costs studies 30% more than planned.",
+                outcome: "iRxReminder gives researchers real-time compliance data\u2009\u2014\u2009so you finish on schedule with clean data.",
+                to: "/solutions",
+                color: "#1e3a8a",
+              },
+              {
+                icon: Activity,
+                title: "Behavioral Health",
+                problem: "Clients leave inpatient care stabilized. Many stop taking medications within weeks.",
+                outcome: "Real-time dose tracking lets your team see non-adherence the day it starts, not the day the patient ends up in the ER.",
+                to: "/solutions#mental-health",
+                color: "#0891b2",
+              },
+              {
+                icon: Pill,
+                title: "Pharmacies",
+                problem: "You fill prescriptions but have no visibility once the patient leaves.",
+                outcome: "Build lasting relationships through shared adherence data and a service your competitors can\u2019t match.",
+                to: "/solutions",
+                color: "#1e3a8a",
+              },
+              {
+                icon: Building2,
+                title: "Health Systems",
+                problem: "Readmissions erode bundled payment margins. Post-discharge visibility is near zero.",
+                outcome: "Track medication behavior after discharge. Reduce readmissions. Increase bundled payment margins.",
+                to: "/solutions#aging",
+                color: "#0891b2",
+              },
+            ].map((card, i) => (
+              <FadeUp key={card.title} delay={0.1 + i * 0.08}>
+                <Link
+                  to={card.to}
+                  className="group block bg-white p-8 md:p-10 rounded-2xl border border-gray-100 shadow-[0_1px_3px_rgba(8,145,178,0.04),0_4px_12px_rgba(8,145,178,0.06),0_16px_40px_rgba(30,58,138,0.06)] hover:shadow-[0_1px_3px_rgba(8,145,178,0.06),0_8px_20px_rgba(8,145,178,0.1),0_24px_48px_rgba(30,58,138,0.1)] transition-[box-shadow,transform] duration-300 hover:-translate-y-1"
+                >
+                  <card.icon className="w-8 h-8 mb-5" style={{ color: card.color }} />
+                  <h3 className="text-2xl font-bold text-gray-900 mb-3">
+                    {card.title}
+                  </h3>
+                  <p className="text-gray-500 mb-3">{card.problem}</p>
+                  <p className="text-gray-700 font-medium leading-relaxed mb-6">
+                    {card.outcome}
+                  </p>
+                  <span className="inline-flex items-center text-[#0891b2] font-semibold text-sm group-hover:gap-3 gap-2 transition-[gap]">
+                    Learn more <ArrowRight className="w-4 h-4" />
+                  </span>
+                </Link>
+              </FadeUp>
+            ))}
+          </div>
+        </div>
+      </Section>
+
+      {/* ======= SECTION 6: EVIDENCE — Social proof ======= */}
       <Section className="relative py-24 md:py-32 overflow-hidden">
         {/* Dark gradient background */}
         <div className="absolute inset-0 bg-gradient-to-br from-[#0f1d3d] via-[#152c6e] to-[#1e3a8a]" />
@@ -348,44 +367,38 @@ export function Home() {
             <p className="text-[#0891b2] font-semibold text-sm tracking-widest uppercase mb-4 text-center">
               Proven Results
             </p>
-            <h2 className="text-4xl md:text-5xl font-bold text-white text-center mb-16 tracking-tight">
+            <h2 className="text-4xl md:text-5xl font-bold text-white text-center mb-6 tracking-tight">
               Clinically Validated. Federally Funded.
             </h2>
+            <p className="text-xl text-blue-100/80 text-center mb-16 max-w-2xl mx-auto">
+              Participants using iRxReminder achieved high adherence&nbsp;&mdash;
+              even those with cognitive impairments.
+            </p>
           </FadeUp>
 
-          {/* Central stat */}
-          <FadeUp delay={0.1}>
-            <div className="text-center mb-16">
-              <div className="text-7xl md:text-8xl font-extrabold text-white tracking-tight mb-4">
-                83<span className="text-[#0891b2]">%</span>
-              </div>
-              <p className="text-xl text-blue-200">
-                adherence rate achieved in clinical trials — up from 48%
-              </p>
-            </div>
-          </FadeUp>
-
-          {/* Badges */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+          {/* Stats grid */}
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
             {[
-              { icon: Shield, label: "NIH-Funded", sub: "$871K SBIR Grant" },
-              { icon: Award, label: "Multiple Patents", sub: "Protected IP Portfolio" },
-              { icon: FileCheck, label: "Clinically Validated", sub: "Fully Developed Technology" },
-              { icon: Zap, label: "Market-Ready", sub: "Positioned for Rapid Entry" },
-            ].map((badge, i) => (
-              <FadeUp key={badge.label} delay={0.15 + i * 0.1}>
+              { stat: "83%", label: "Adherence rate in clinical trials", color: "#0891b2" },
+              { stat: "25%", label: "Fewer clinical trial dropouts", color: "#ffffff" },
+              { stat: "$871K", label: "NIH SBIR Grant", color: "#0891b2" },
+              { stat: "12", label: "US patents protecting the technology", color: "#ffffff" },
+            ].map((item, i) => (
+              <FadeUp key={item.label} delay={0.1 + i * 0.08}>
                 <div className="bg-white/[0.06] backdrop-blur-sm border border-white/10 rounded-xl p-6 text-center">
-                  <badge.icon className="w-8 h-8 text-[#0891b2] mx-auto mb-3" />
-                  <div className="text-white font-bold text-lg mb-1">
-                    {badge.label}
+                  <div
+                    className="text-4xl md:text-5xl font-extrabold mb-2 tracking-tight"
+                    style={{ color: item.color }}
+                  >
+                    {item.stat}
                   </div>
-                  <div className="text-blue-200/70 text-sm">{badge.sub}</div>
+                  <div className="text-blue-200/70 text-sm">{item.label}</div>
                 </div>
               </FadeUp>
             ))}
           </div>
 
-          {/* University partners */}
+          {/* Research partners */}
           <FadeUp delay={0.3}>
             <div className="text-center">
               <p className="text-blue-200/60 text-sm uppercase tracking-widest mb-6">
@@ -409,43 +422,43 @@ export function Home() {
                 to="/evidence"
                 className="inline-flex items-center gap-2 text-[#0891b2] font-semibold text-sm mt-8 hover:gap-3 transition-[gap]"
               >
-                See the full evidence <ArrowRight className="w-4 h-4" />
+                Read the evidence <ArrowRight className="w-4 h-4" />
               </Link>
             </div>
           </FadeUp>
         </div>
       </Section>
 
-      {/* ======= SECTION 6: THE BUSINESS CASE ======= */}
+      {/* ======= SECTION 7: THE BUSINESS CASE ======= */}
       <Section className="py-24 md:py-32 bg-white">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <FadeUp>
             <p className="text-[#0891b2] font-semibold text-sm tracking-widest uppercase mb-4 text-center">
-              The Business Case
+              ROI
             </p>
             <h2 className="text-4xl md:text-5xl font-bold text-[#1e3a8a] text-center mb-16 tracking-tight">
-              Measurable Outcomes That Matter
+              Outcomes You Can Measure
             </h2>
           </FadeUp>
 
           <div className="grid md:grid-cols-3 gap-8 mb-12">
             {[
               {
-                stat: "3×",
-                label: "ROI",
-                desc: "Return on investment via RPM/RTM billing codes for health systems",
+                stat: "3\u00d7",
+                label: "Cost Recovery",
+                desc: "Return via RPM/RTM billing codes for health systems",
                 color: "#0891b2",
               },
               {
                 stat: "83%",
                 label: "Adherence",
-                desc: "Medication adherence rate validated across multiple clinical trials",
+                desc: "Validated across multiple clinical trials and patient populations",
                 color: "#1e3a8a",
               },
               {
                 stat: "25%",
                 label: "Fewer Dropouts",
-                desc: "Reduction in clinical trial dropouts demonstrated at University of Michigan",
+                desc: "Reduction in clinical trial dropouts at University of Michigan",
                 color: "#0891b2",
               },
             ].map((item, i) => (
@@ -483,7 +496,20 @@ export function Home() {
         </div>
       </Section>
 
-      {/* ======= SECTION 7: IMPACT CLOSE ======= */}
+      {/* ======= SECTION 8: STAKES REMINDER ======= */}
+      <Section className="py-16 md:py-20 bg-[#f8fafc]">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <FadeUp>
+            <p className="text-xl md:text-2xl text-gray-700 leading-relaxed">
+              The population of older adults is doubling by 2030.
+              The adherence problem isn&rsquo;t going away. The question is
+              whether your organization has the tools to manage it.
+            </p>
+          </FadeUp>
+        </div>
+      </Section>
+
+      {/* ======= SECTION 9: FINAL CTA ======= */}
       <Section className="relative py-24 md:py-32 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-[#0f1d3d] via-[#152c6e] to-[#1e3a8a]" />
         <div className="absolute bottom-0 left-1/3 w-[600px] h-[600px] bg-[#0891b2]/15 rounded-full blur-[100px]" />
@@ -491,19 +517,14 @@ export function Home() {
         <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <FadeUp>
             <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 tracking-tight leading-tight">
-              We&rsquo;re not just saving costs —
+              Ready to see what real-time
               <br />
-              we&rsquo;re <span className="text-[#0891b2]">saving lives</span>.
+              medication monitoring <span className="text-[#0891b2]">looks like?</span>
             </h2>
-            <p className="text-xl text-blue-100/80 mb-12 max-w-2xl mx-auto leading-relaxed">
-              iRxReminder helps reduce ER visits, prevent decline, and keep
-              people functioning independently — creating real value for
-              healthcare systems, providers, and society.
-            </p>
           </FadeUp>
 
           <FadeUp delay={0.2}>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-6">
               <Button
                 asChild
                 size="lg"
@@ -514,15 +535,14 @@ export function Home() {
                   <ArrowRight className="w-5 h-5 ml-2" />
                 </Link>
               </Button>
-              <Button
-                asChild
-                size="lg"
-                variant="outline"
-                className="border-white/60 hover:border-white/80 text-white hover:bg-white/10 text-lg px-8 py-6 transition-colors"
-              >
-                <Link to="/contact">Contact Us</Link>
-              </Button>
             </div>
+            <p className="text-blue-200/60 text-sm">
+              Not ready to talk?{" "}
+              <Link to="/evidence" className="text-[#0891b2] hover:underline font-medium">
+                Download our research brief
+              </Link>{" "}
+              for your team.
+            </p>
           </FadeUp>
         </div>
       </Section>

@@ -53,40 +53,40 @@ const leaders = [
   {
     name: "Anthony Sterns, PhD",
     title: "Founder & Chief Executive Officer",
-    bio: "BS Engineering (University of Michigan), PhD Organizational Psychology (University of Akron). Pioneer in gerontechnology with 12 US patents, 33 publications, and 100+ international presentations. Created Memory Magic Program impacting 500K+ older adults across 2,400+ facilities in 7 countries. Secretary General, International Society for Gerontechnology. Led iRxReminder through 10 years of dementia care research to FDA-cleared IoT platform.",
+    bio: "Spent a decade researching why people with dementia lose their independence. The answer kept coming back to medication. 12 US patents, 33 publications, 100+ international presentations. Created Memory Magic Program impacting 500K+ older adults across 2,400+ facilities in 7 countries.",
     email: "asterns@irxreminder.com",
     image: "/images/team/anthony-sterns.jpg",
   },
   {
     name: "Fred Ma, MD, PhD",
     title: "Chief Operating Officer",
-    bio: "Conducted 1,200+ clinical trials and taken 200+ drugs and medical devices through FDA validation and clearance processes. Leading iRxReminder's FDA Class II clearance submission. Brings unparalleled regulatory expertise to ensure product safety, efficacy, and compliance.",
+    bio: "1,200+ clinical trials. 200+ drugs and medical devices through FDA validation and clearance. Leading iRxReminder\u2019s FDA Class II clearance submission.",
     email: "fma@irxreminder.com",
     image: "/images/team/fred-ma.jpeg",
   },
   {
     name: "Owen Muir, M.D.",
     title: "Chief Medical Officer",
-    bio: "Board-certified Psychiatrist and Mayo Clinic faculty member, specializing in child and adolescent psychology. Experienced principal investigator with deep expertise in behavioral health and telehealth. Joined September 2022 to guide clinical validation and product development strategy.",
+    bio: "Board-certified Psychiatrist. Mayo Clinic faculty. Specializes in behavioral health and telehealth. Principal investigator guiding clinical validation.",
     image: "/images/team/owen-muir.jpeg",
   },
   {
     name: "William Yuan",
     title: "Chief Strategy Officer",
-    bio: "Former CEO of nGloballink and media G3. Led early-stage company from inception to $310M public company. Track record of successful exits including IPO and acquisitions with 100x ROI. Joined October 2022 to drive strategic growth and market expansion.",
+    bio: "Former CEO of nGloballink. Led early-stage company from inception to $310M public company. Track record of 100x ROI exits. Drives strategic growth and market expansion.",
     image: "/images/team/william-yuan.jpg",
   },
   {
     name: "Larry Tusick",
     title: "Chief Business Officer / VP Sales",
-    bio: "25+ years of healthcare experience. Former director at Baxter and Care USA. University of Alabama graduate. Leads partnership development, market expansion strategies, and commercial growth initiatives.",
+    bio: "25+ years healthcare experience. Former director at Baxter and Care USA. Leads partnership development and commercial growth.",
     email: "ltusick@irxreminder.com",
     image: "/images/team/larry-tusick.jpg",
   },
   {
     name: "Josh Smith, MBA",
     title: "Chief Technology Officer",
-    bio: "Former IBM and IBM Watson engineer. Agile practitioner with full software lifecycle experience in online media and mobile products. Leads technology development and platform architecture for iRxReminder's cloud-app-IoT ecosystem.",
+    bio: "Former IBM and IBM Watson engineer. Full software lifecycle experience. Leads platform architecture for the cloud-app-IoT ecosystem.",
     image: "",
   },
 ];
@@ -121,12 +121,14 @@ export function About() {
                 Our Story
               </p>
               <h1 className="text-5xl sm:text-6xl lg:text-7xl font-extrabold text-white tracking-tight leading-[1.05] mb-6">
-                About
+                Built from a
                 <br />
-                <span className="text-[#0891b2]">iRxReminder</span>
+                <span className="text-[#0891b2]">decade of research.</span>
               </h1>
               <p className="text-xl md:text-2xl text-blue-100/90 leading-relaxed max-w-2xl">
-                Monitor. Remind. Connect.
+                Dr. Anthony Sterns spent ten years studying why people with
+                dementia lose their independence. The answer kept coming back
+                to one thing: medication. That&rsquo;s why he built iRxReminder.
               </p>
             </motion.div>
 
@@ -138,7 +140,7 @@ export function About() {
             >
               <span className="flex items-center gap-2">
                 <Shield className="w-4 h-4 text-[#0891b2]" />
-                10+ Years Research
+                10+ Years R&amp;D
               </span>
               <span className="flex items-center gap-2">
                 <Shield className="w-4 h-4 text-[#0891b2]" />
@@ -146,7 +148,7 @@ export function About() {
               </span>
               <span className="flex items-center gap-2">
                 <Shield className="w-4 h-4 text-[#0891b2]" />
-                500K+ Lives Impacted
+                NIH-Funded
               </span>
             </motion.div>
           </div>
@@ -160,12 +162,14 @@ export function About() {
             <p className="text-[#0891b2] font-semibold text-sm tracking-widest uppercase mb-4 text-center">
               Our Mission
             </p>
-            <h2 className="text-4xl md:text-5xl font-bold text-[#1e3a8a] text-center mb-6 tracking-tight">
-              Empowering Patients to Achieve
-              <br className="hidden md:block" /> and Thrive in Independence
+            <h2 className="text-4xl md:text-5xl font-bold text-[#1e3a8a] text-center mb-8 tracking-tight">
+              Give Patients and Their Healthcare Teams
+              <br className="hidden md:block" /> the Tools to Manage Medications Together
             </h2>
-            <p className="text-xl text-gray-600 text-center mb-6 max-w-3xl mx-auto leading-relaxed">
-              iRxReminder is a clinically validated digital health platform that ensures patients take their medications correctly and on time. We deliver strong ROI potential while making a measurable social impact.
+            <p className="text-xl text-gray-600 text-center max-w-3xl mx-auto leading-relaxed">
+              We have effective medications for nearly every chronic condition.
+              No one should lose their independence&nbsp;&mdash; or their
+              life&nbsp;&mdash; because they forgot a pill.
             </p>
           </FadeUp>
 
@@ -195,10 +199,10 @@ export function About() {
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <FadeUp>
             <p className="text-[#0891b2] font-semibold text-sm tracking-widest uppercase mb-4 text-center">
-              Our Origin
+              Why We Exist
             </p>
             <h2 className="text-4xl md:text-5xl font-bold text-[#1e3a8a] text-center mb-16 tracking-tight">
-              A Decade of Purpose-Driven Innovation
+              The Problem Was Never the Medication
             </h2>
           </FadeUp>
 
@@ -209,17 +213,19 @@ export function About() {
               </div>
               <div className="relative pl-4 md:pl-8">
                 <p className="text-lg md:text-xl text-gray-700 leading-relaxed mb-6">
-                  Founded by <strong className="text-[#1e3a8a]">Anthony Sterns, PhD</strong>, iRxReminder emerged from
-                  10 years of rigorous research on dementia care and medication management. Dr. Sterns, a pioneer in
-                  gerontechnology with 12 US patents and 33 publications, created the{" "}
-                  <strong className="text-[#1e3a8a]">Memory Magic Program</strong> which has impacted{" "}
-                  <strong>500,000+ older adults</strong> across <strong>2,400+ facilities</strong> in 7 countries.
+                  Dr. Sterns spent a decade researching why people with dementia
+                  lose their independence. The answer kept coming back to
+                  medication. They had the right prescriptions. They just
+                  couldn&rsquo;t manage them.
                 </p>
                 <p className="text-lg md:text-xl text-gray-700 leading-relaxed">
-                  Recognizing that medication non-adherence costs the U.S. healthcare system{" "}
-                  <strong className="text-[#1e3a8a]">$300 billion+ annually</strong> and results in 125,000 deaths each
-                  year, Dr. Sterns set out to create a technology platform that would fundamentally change how patients
-                  and providers manage medications.
+                  Medication non-adherence costs the U.S. healthcare system{" "}
+                  <strong className="text-[#1e3a8a]">$300 billion+ annually</strong>{" "}
+                  and takes 125,000 lives each year. Existing tools were part
+                  of the problem&nbsp;&mdash; pill organizers cause sorting errors,
+                  text reminders get ignored, bottle caps count openings without
+                  knowing if the right dose was taken. Every existing approach
+                  added burden instead of removing it.
                 </p>
               </div>
             </div>
@@ -227,12 +233,12 @@ export function About() {
         </div>
       </Section>
 
-      {/* ======= THREE PILLARS: SAFE. CONNECTED. REIMBURSABLE. ======= */}
+      {/* ======= SAFE. CONNECTED. REIMBURSABLE. ======= */}
       <Section className="py-24 md:py-32 bg-white">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <FadeUp>
             <p className="text-[#0891b2] font-semibold text-sm tracking-widest uppercase mb-4 text-center">
-              Our Promise
+              What We Built
             </p>
             <h2 className="text-4xl md:text-5xl font-bold text-[#1e3a8a] text-center mb-16 tracking-tight">
               Safe. Connected. Reimbursable.
@@ -245,19 +251,19 @@ export function About() {
                 icon: Shield,
                 title: "Safe",
                 color: "#1e3a8a",
-                desc: "FDA-cleared technology with 83% adherence rates proven in NIH-funded trials. Pharmacist-filled pods eliminate sorting errors.",
+                desc: "Pharmacist-filled pods. Gesture-based dispensing. 83% adherence in clinical trials. No sorting errors. No double-dosing.",
               },
               {
                 icon: Wifi,
                 title: "Connected",
                 color: "#0891b2",
-                desc: "Real-time data flow from patient to care team enables proactive intervention before problems escalate.",
+                desc: "Real-time data from patient to care team. Intervene when needed. Not after the ER visit.",
               },
               {
                 icon: DollarSign,
                 title: "Reimbursable",
                 color: "#1e3a8a",
-                desc: "RPM/RTM billing codes generate 3x ROI, making the program financially sustainable for health systems.",
+                desc: "RPM/RTM billing codes generate 3x cost recovery. Financially sustainable for health systems.",
               },
             ].map((pillar, i) => (
               <FadeUp key={pillar.title} delay={0.1 + i * 0.1}>
@@ -285,10 +291,10 @@ export function About() {
               Leadership
             </p>
             <h2 className="text-4xl md:text-5xl font-bold text-[#1e3a8a] text-center mb-4 tracking-tight">
-              Leadership Team
+              The Team
             </h2>
             <p className="text-xl text-gray-600 text-center mb-16 max-w-3xl mx-auto leading-relaxed">
-              Experienced leaders in healthcare technology, clinical medicine, regulatory affairs, and product innovation
+              Healthcare, clinical medicine, regulatory affairs, and enterprise software.
             </p>
           </FadeUp>
 
@@ -349,7 +355,7 @@ export function About() {
               Our Ecosystem
             </p>
             <h2 className="text-4xl md:text-5xl font-bold text-[#1e3a8a] text-center mb-16 tracking-tight">
-              Strategic Partners
+              Partners &amp; Collaborators
             </h2>
           </FadeUp>
 
@@ -359,7 +365,7 @@ export function About() {
                 <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-6 bg-[#1e3a8a]/10">
                   <Factory className="w-6 h-6 text-[#1e3a8a]" />
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-6">Manufacturing Partners</h3>
+                <h3 className="text-xl font-bold text-gray-900 mb-6">Manufacturing</h3>
                 <ul className="space-y-4">
                   <li className="flex items-start gap-3">
                     <div className="w-1.5 h-1.5 rounded-full bg-[#1e3a8a] mt-2.5 flex-shrink-0" />
@@ -386,7 +392,7 @@ export function About() {
                 <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-6 bg-[#0891b2]/10">
                   <Code2 className="w-6 h-6 text-[#0891b2]" />
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-6">Development & Support</h3>
+                <h3 className="text-xl font-bold text-gray-900 mb-6">Development &amp; Support</h3>
                 <ul className="space-y-4">
                   <li className="flex items-start gap-3">
                     <div className="w-1.5 h-1.5 rounded-full bg-[#0891b2] mt-2.5 flex-shrink-0" />
@@ -409,13 +415,6 @@ export function About() {
                       <span className="text-gray-500"> (Cleveland, OH)</span>
                     </div>
                   </li>
-                  <li className="flex items-start gap-3">
-                    <div className="w-1.5 h-1.5 rounded-full bg-[#0891b2] mt-2.5 flex-shrink-0" />
-                    <div>
-                      <span className="font-semibold text-gray-900">Burton Morton Mentoring</span>
-                      <span className="text-gray-500"> (JumpStart)</span>
-                    </div>
-                  </li>
                 </ul>
               </div>
             </FadeUp>
@@ -428,7 +427,7 @@ export function About() {
                 <div className="w-10 h-10 rounded-lg flex items-center justify-center bg-[#1e3a8a]/10">
                   <GraduationCap className="w-5 h-5 text-[#1e3a8a]" />
                 </div>
-                <h3 className="text-xl font-bold text-gray-900">University & Research Collaborators</h3>
+                <h3 className="text-xl font-bold text-gray-900">University &amp; Research Collaborators</h3>
               </div>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                 {universityPartners.map((partner, i) => (
@@ -451,10 +450,12 @@ export function About() {
         <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <FadeUp>
             <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 tracking-tight leading-tight">
-              Ready to Learn More?
+              See What iRxReminder
+              <br />
+              Can Do for <span className="text-[#0891b2]">Your Team</span>
             </h2>
             <p className="text-xl text-blue-100/80 mb-12 max-w-2xl mx-auto leading-relaxed">
-              See how iRxReminder can transform medication adherence for your organization
+              Schedule a pilot configured for your use case
             </p>
           </FadeUp>
 
@@ -465,8 +466,8 @@ export function About() {
                 size="lg"
                 className="bg-[#0891b2] hover:bg-[#0e7490] text-white text-lg px-8 py-6 shadow-[0_1px_3px_rgba(8,145,178,0.3),0_6px_20px_rgba(8,145,178,0.25)] hover:shadow-[0_1px_3px_rgba(8,145,178,0.4),0_8px_28px_rgba(8,145,178,0.3)] transition-[background-color,box-shadow]"
               >
-                <Link to="/contact">
-                  Contact Us
+                <Link to="/schedule-pilot">
+                  Schedule a Pilot
                   <ArrowRight className="w-5 h-5 ml-2" />
                 </Link>
               </Button>
@@ -476,7 +477,7 @@ export function About() {
                 variant="outline"
                 className="border-white/60 hover:border-white/80 text-white hover:bg-white/10 text-lg px-8 py-6 transition-colors"
               >
-                <Link to="/schedule-pilot">Schedule a Pilot</Link>
+                <Link to="/contact">Contact Us</Link>
               </Button>
             </div>
           </FadeUp>

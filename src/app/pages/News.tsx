@@ -1,5 +1,6 @@
 import { Link } from "react-router";
 import { Button } from "../components/ui/button";
+import { ArrowRight } from "lucide-react";
 import { motion } from "motion/react";
 
 function FadeUp({
@@ -27,77 +28,77 @@ function FadeUp({
 const newsItems = [
   {
     date: "March 2023",
-    title: "iRxReminder Receives $871,153 NIH Grant for AI Telehealth Research",
+    title: "iRxReminder Receives $871K NIH Grant for AI-Powered Behavioral Health Monitoring",
     excerpt:
-      "NIMH-funded grant to advance medication monitoring technology and AI-powered Tardive Dyskinesia detection for behavioral health applications. This federal funding validates iRxReminder\u2019s clinical approach and research methodology.",
+      "NIMH-funded grant supports TDtect\u2122 study for Tardive Dyskinesia detection and medication monitoring. Federal backing validates clinical approach and positions iRxReminder at the forefront of behavioral health technology.",
     featured: true,
   },
   {
     date: "August 2023",
-    title: "First Patients Enrolled in NIMH-funded TDtect\u2122 Diagnostic Study",
+    title: "TDtect\u2122 Study Enrolls First Patients, Advancing AI Diagnostics in Behavioral Health",
     excerpt:
-      "Groundbreaking study for Tardive Dyskinesia detection and monitoring begins enrollment. TDtect\u2122 represents iRxReminder\u2019s expansion into AI-powered diagnostic tools for behavioral health.",
+      "Groundbreaking NIMH-funded study begins enrollment for Tardive Dyskinesia detection and remote monitoring. Marks iRxReminder\u2019s expansion into AI-powered diagnostics.",
   },
   {
     date: "September 2022",
-    title: "Owen Muir M.D. Joins as Chief Medical Officer",
+    title: "Owen Muir M.D. Joins as CMO, Strengthening Clinical Leadership",
     excerpt:
-      "Board-certified Psychiatrist and Mayo Clinic faculty member brings expertise in behavioral health and telehealth to leadership team.",
+      "Board-certified Psychiatrist and Mayo Clinic faculty member brings behavioral health and telehealth expertise to guide clinical validation and product development.",
   },
   {
     date: "October 2022",
-    title: "William Yuan Appointed Chief Strategy Officer",
+    title: "William Yuan Appointed CSO to Drive Strategic Growth",
     excerpt:
-      "Former CEO of nGloballink joins leadership team. Led previous company from inception to $310M public company with successful IPO and acquisitions delivering 100x ROI.",
+      "Former CEO of nGloballink\u2009\u2014\u2009led company from inception to $310M public entity with 100x ROI exits\u2009\u2014\u2009joins to accelerate market expansion.",
   },
   {
     date: "2022",
-    title: "NewChip Accelerator Graduation",
+    title: "iRxReminder Graduates NewChip Accelerator, Continues Investor Relations Push",
     excerpt:
-      "iRxReminder successfully completes NewChip Accelerator program, one of the nation\u2019s leading startup accelerators.",
+      "Completed one of the nation\u2019s leading startup accelerators, building commercial momentum and strategic partnerships.",
   },
   {
     date: "2021",
-    title: "OCEAN Accelerator Graduation",
+    title: "OCEAN Accelerator Graduation Backed by 11 Tribes Venture Fund",
     excerpt:
-      "Completed OCEAN Accelerator program backed by 11 Tribes venture fund, focused on healthcare innovation.",
+      "Healthcare-focused accelerator program completed, adding institutional support to iRxReminder\u2019s growth trajectory.",
   },
   {
     date: "2021",
-    title: "Whatif! Venture Fellowship Cohort 4",
+    title: "Selected for Whatif! Venture Fellowship Cohort 4",
     excerpt:
-      "Selected for prestigious Whatif! Fellowship program supporting high-growth healthcare startups.",
+      "Competitive fellowship program supporting high-growth healthcare startups selects iRxReminder.",
   },
   {
     date: "2021",
-    title: "BIA Finals Selection",
+    title: "iRxReminder Advances to BIA Finals",
     excerpt:
-      "Advanced to BIA Finals, recognizing innovation in healthcare technology and business model.",
+      "Business innovation recognized at national level, validating healthcare technology model and market opportunity.",
   },
   {
     date: "2019",
-    title: "Winner: AMIA PitchIT 2019 \u2014 $12,500 Prize",
+    title: "AMIA PitchIT Grand Prize: $12,500 for Medication Adherence Innovation",
     excerpt:
-      "iRxReminder wins American Medical Informatics Association\u2019s national PitchIT competition, receiving $12,500 grand prize. This prestigious award recognizes iRxReminder\u2019s potential to transform medication adherence through technology innovation.",
+      "American Medical Informatics Association\u2019s national competition awards iRxReminder the grand prize, recognizing its potential to transform how medication adherence is measured and managed.",
     featured: true,
   },
   {
     date: "2019",
-    title: "Named Best Tech Startup in Cleveland 2020",
+    title: "Named Best Tech Startup in Cleveland",
     excerpt:
-      "Recognized as the leading technology startup in Cleveland, validating market traction and innovation.",
+      "Regional recognition validates market traction and technology innovation in the Cleveland healthcare ecosystem.",
   },
   {
     date: "2017",
-    title: "AARP/MedCity News Names Anthony Sterns '50+ Innovation Leader'",
+    title: "Anthony Sterns Named AARP/MedCity \u201850+ Innovation Leader\u2019",
     excerpt:
-      "Founder and CEO Dr. Anthony Sterns recognized nationally for leadership in aging and technology innovation.",
+      "National recognition for leadership in aging and technology innovation, highlighting iRxReminder\u2019s impact on older adult populations.",
   },
   {
     date: "2013",
-    title: "Dr. Sterns Keynotes GSA and CHPA National Summit",
+    title: "Dr. Sterns Delivers Keynotes at GSA and CHPA National Summits",
     excerpt:
-      "Invited as keynote speaker to Gerontological Society of America and Consumer Healthcare Products Association national conferences.",
+      "Invited keynote presentations at Gerontological Society of America and Consumer Healthcare Products Association. 100+ international presentations on medication adherence technology.",
   },
 ];
 
@@ -121,7 +122,7 @@ export function News() {
               News &amp; Milestones
             </h1>
             <p className="text-xl text-blue-100/80">
-              Key achievements, awards, and announcements from iRxReminder
+              Grants, studies, partnerships, and recognition
             </p>
           </motion.div>
         </div>
@@ -165,17 +166,20 @@ export function News() {
         <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <FadeUp>
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 tracking-tight">
-              Ready to See iRxReminder in Action?
+              See What Real-Time Monitoring Looks Like
             </h2>
             <p className="text-xl text-blue-100/80 mb-10">
-              Learn how our clinically validated platform can transform medication adherence for your organization
+              Schedule a pilot configured for your specific use case
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button asChild size="lg" className="bg-[#0891b2] hover:bg-[#0e7490] text-white shadow-[0_1px_3px_rgba(8,145,178,0.3),0_6px_20px_rgba(8,145,178,0.25)] transition-[background-color,box-shadow]">
-                <Link to="/platform">Explore the Platform</Link>
+                <Link to="/schedule-pilot">
+                  Schedule a Pilot
+                  <ArrowRight className="w-4 h-4 ml-2" />
+                </Link>
               </Button>
               <Button asChild size="lg" variant="outline" className="border-white/60 hover:border-white/80 text-white hover:bg-white/10 transition-colors">
-                <Link to="/contact">Contact Us</Link>
+                <Link to="/platform">Explore the Platform</Link>
               </Button>
             </div>
           </FadeUp>
