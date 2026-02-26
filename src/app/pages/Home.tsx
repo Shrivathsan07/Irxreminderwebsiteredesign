@@ -13,49 +13,16 @@ import {
 } from "lucide-react";
 import { Button } from "../components/ui/button";
 import { motion } from "motion/react";
-
-function Section({
-  children,
-  className = "",
-  ...props
-}: React.HTMLAttributes<HTMLElement> & { children: React.ReactNode }) {
-  return (
-    <motion.section
-      initial={{ opacity: 0 }}
-      whileInView={{ opacity: 1 }}
-      viewport={{ once: true, margin: "-80px" }}
-      transition={{ duration: 0.6 }}
-      className={className}
-      {...props}
-    >
-      {children}
-    </motion.section>
-  );
-}
-
-function FadeUp({
-  children,
-  delay = 0,
-  className = "",
-}: {
-  children: React.ReactNode;
-  delay?: number;
-  className?: string;
-}) {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 24 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-60px" }}
-      transition={{ duration: 0.5, delay, type: "spring", stiffness: 300, damping: 30 }}
-      className={className}
-    >
-      {children}
-    </motion.div>
-  );
-}
+import { FadeUp, Section } from "@/app/components/animations";
+import { LogoTicker } from "@/app/components/LogoTicker";
+import { useReducedMotion } from "@/app/hooks/useReducedMotion";
 
 export function Home() {
+  const prefersReducedMotion = useReducedMotion();
+  const heroAnimation = prefersReducedMotion ? {} : { initial: { opacity: 0, y: 30 }, animate: { opacity: 1, y: 0 }, transition: { duration: 0.7, type: "spring", stiffness: 300, damping: 30 } };
+  const heroDelayed = prefersReducedMotion ? {} : { initial: { opacity: 0, y: 20 }, animate: { opacity: 1, y: 0 }, transition: { duration: 0.5, delay: 0.3 } };
+  const heroFadeIn = prefersReducedMotion ? {} : { initial: { opacity: 0 }, animate: { opacity: 1 }, transition: { duration: 0.6, delay: 0.6 } };
+
   return (
     <div className="bg-white overflow-hidden">
       {/* ======= SECTION 1: HERO — What the hero gets ======= */}
@@ -67,11 +34,7 @@ export function Home() {
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-32">
           <div className="max-w-3xl">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, type: "spring", stiffness: 300, damping: 30 }}
-            >
+            <motion.div {...heroAnimation}>
               <p className="text-[#0891b2] font-semibold text-sm tracking-widest uppercase mb-6">
                 Real-Time Medication Monitoring
               </p>
@@ -90,9 +53,7 @@ export function Home() {
             </motion.div>
 
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.3 }}
+              {...heroDelayed}
               className="flex flex-col sm:flex-row gap-4"
             >
               <Button
@@ -117,9 +78,7 @@ export function Home() {
 
             {/* Trust mini-bar */}
             <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.6, delay: 0.6 }}
+              {...heroFadeIn}
               className="mt-16 flex flex-wrap items-center gap-6 text-sm text-blue-200/70"
             >
               <span className="flex items-center gap-2">
@@ -206,20 +165,7 @@ export function Home() {
               <p className="text-gray-400 text-sm uppercase tracking-widest mb-6">
                 Research &amp; Institutional Partners
               </p>
-              <div className="flex flex-wrap justify-center items-center gap-x-8 gap-y-4 text-gray-500 font-medium">
-                {[
-                  "University of Michigan",
-                  "Harvard University",
-                  "Brown University",
-                  "Kent State University",
-                  "MetroHealth",
-                  "NIH / NIA / NIMH",
-                ].map((name) => (
-                  <span key={name} className="text-sm whitespace-nowrap">
-                    {name}
-                  </span>
-                ))}
-              </div>
+              <LogoTicker variant="light" />
             </div>
           </FadeUp>
         </div>
@@ -404,20 +350,7 @@ export function Home() {
               <p className="text-blue-200/60 text-sm uppercase tracking-widest mb-6">
                 Research Partners
               </p>
-              <div className="flex flex-wrap justify-center items-center gap-x-8 gap-y-4 text-blue-200/80 font-medium">
-                {[
-                  "Harvard University",
-                  "MetroHealth",
-                  "University of Michigan",
-                  "Kent State",
-                  "Brown University",
-                  "Butler Hospital",
-                ].map((name) => (
-                  <span key={name} className="text-sm whitespace-nowrap">
-                    {name}
-                  </span>
-                ))}
-              </div>
+              <LogoTicker variant="dark" />
               <Link
                 to="/evidence"
                 className="inline-flex items-center gap-2 text-[#0891b2] font-semibold text-sm mt-8 hover:gap-3 transition-[gap]"

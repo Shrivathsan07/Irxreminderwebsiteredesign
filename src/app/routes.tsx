@@ -6,6 +6,7 @@ import { Solutions } from "./pages/Solutions";
 import { Evidence } from "./pages/Evidence";
 import { About } from "./pages/About";
 import { News } from "./pages/News";
+import { NewsArticle } from "./pages/NewsArticle";
 import { Contact } from "./pages/Contact";
 import { SchedulePilot } from "./pages/SchedulePilot";
 import { RootLayout } from "./components/RootLayout";
@@ -24,6 +25,7 @@ export const router = createBrowserRouter([
       { path: "roi-calculator", Component: ROICalculator },
       { path: "schedule-pilot", Component: SchedulePilot },
       { path: "news", Component: News },
+      { path: "news/:slug", Component: NewsArticle },
       // Redirect old routes to new consolidated pages
       { path: "research", element: <Navigate to="/evidence" replace /> },
       { path: "research/*", element: <Navigate to="/evidence" replace /> },

@@ -14,33 +14,20 @@ import {
   Beaker,
   Clock,
   Building2,
+  Heart,
+  BarChart3,
 } from "lucide-react";
 import { Button } from "../components/ui/button";
+import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "../components/ui/accordion";
 import { motion } from "motion/react";
-
-function FadeUp({
-  children,
-  delay = 0,
-  className = "",
-}: {
-  children: React.ReactNode;
-  delay?: number;
-  className?: string;
-}) {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 24 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-60px" }}
-      transition={{ duration: 0.5, delay, type: "spring", stiffness: 300, damping: 30 }}
-      className={className}
-    >
-      {children}
-    </motion.div>
-  );
-}
+import { FadeUp } from "@/app/components/animations";
+import { useReducedMotion } from "@/app/hooks/useReducedMotion";
 
 export function Solutions() {
+  const prefersReducedMotion = useReducedMotion();
+  const heroAnimation = prefersReducedMotion ? {} : { initial: { opacity: 0, y: 30 }, animate: { opacity: 1, y: 0 }, transition: { duration: 0.7, type: "spring", stiffness: 300, damping: 30 } };
+  const heroDelayed = prefersReducedMotion ? {} : { initial: { opacity: 0, y: 20 }, animate: { opacity: 1, y: 0 }, transition: { duration: 0.5, delay: 0.3 } };
+
   return (
     <div className="bg-white overflow-hidden">
       {/* ======= HERO ======= */}
@@ -49,11 +36,7 @@ export function Solutions() {
         <div className="absolute top-1/4 right-0 w-[700px] h-[700px] bg-[#0891b2]/20 rounded-full blur-[120px]" />
 
         <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-32 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, type: "spring", stiffness: 300, damping: 30 }}
-          >
+          <motion.div {...heroAnimation}>
             <p className="text-[#0891b2] font-semibold text-sm tracking-widest uppercase mb-6">
               Solutions
             </p>
@@ -70,9 +53,7 @@ export function Solutions() {
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.3 }}
+            {...heroDelayed}
             className="flex flex-col sm:flex-row gap-4 justify-center"
           >
             <Button
@@ -161,6 +142,39 @@ export function Solutions() {
                     HOPA-funded oncology study at University of Michigan Cancer Center:
                     25% reduction in trial dropouts using iRxReminder.
                   </p>
+                </div>
+              </FadeUp>
+
+              <FadeUp delay={0.2}>
+                <div className="bg-white p-7 rounded-2xl border border-gray-100 shadow-[0_1px_3px_rgba(8,145,178,0.04),0_4px_12px_rgba(8,145,178,0.06)]">
+                  <Accordion type="multiple">
+                    <AccordionItem value="research-protocol">
+                      <AccordionTrigger>Protocol Integration Details</AccordionTrigger>
+                      <AccordionContent>
+                        <ul className="space-y-2 list-disc pl-4">
+                          <li>Study Mode auto-configures from protocol ID &mdash; no manual setup per participant</li>
+                          <li>Supports complex multi-drug regimens with different dosing schedules</li>
+                          <li>ESmCapture ecological momentary assessments triggered by dose events or time intervals</li>
+                          <li>Exportable compliance data in formats compatible with major CTMS platforms</li>
+                          <li>Real-time protocol deviation alerts for study coordinators</li>
+                        </ul>
+                      </AccordionContent>
+                    </AccordionItem>
+                    <AccordionItem value="research-roi">
+                      <AccordionTrigger>Financial Impact for Sponsors</AccordionTrigger>
+                      <AccordionContent>
+                        <ul className="space-y-2 list-disc pl-4">
+                          <li>Each dropout costs $20K&ndash;$40K in sunk recruitment costs</li>
+                          <li>25% dropout reduction at 100 participants = $500K&ndash;$1M saved per trial</li>
+                          <li>Cleaner adherence data reduces need for per-protocol analysis adjustments</li>
+                          <li>Faster enrollment-to-completion timelines through better retention</li>
+                        </ul>
+                        <Link to="/roi-calculator" className="inline-flex items-center gap-2 text-[#0891b2] font-semibold text-sm mt-4 hover:gap-3 transition-[gap]">
+                          Calculate your ROI <ArrowRight className="w-3.5 h-3.5" />
+                        </Link>
+                      </AccordionContent>
+                    </AccordionItem>
+                  </Accordion>
                 </div>
               </FadeUp>
             </div>
@@ -368,7 +382,187 @@ export function Solutions() {
         </div>
       </section>
 
-      {/* ======= SECTION 4: BUYER PERSONAS ======= */}
+      {/* ======= SECTION 4: SENIOR LIVING & HOME HEALTH ======= */}
+      <section id="senior-living" className="py-24 md:py-32 bg-white scroll-mt-32">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
+            <FadeUp>
+              <div>
+                <div className="w-14 h-14 rounded-xl flex items-center justify-center mb-6 bg-[#0891b2]/10">
+                  <Heart className="w-7 h-7 text-[#0891b2]" />
+                </div>
+                <h2 className="text-3xl md:text-4xl font-bold text-[#1e3a8a] mb-6 tracking-tight">
+                  Keep Residents Safe. Reduce Med Errors. Protect Your License.
+                </h2>
+                <p className="text-xl text-gray-600 leading-relaxed mb-6">
+                  Assisted living and home health agencies manage dozens of medication regimens daily.
+                  Manual administration tracking leads to errors, omissions, and liability.
+                  iRxReminder automates the hard part.
+                </p>
+                <div className="text-5xl md:text-6xl font-extrabold text-[#0891b2] tracking-tight">
+                  2&times;
+                </div>
+                <p className="text-gray-500 font-medium mt-1">
+                  Older adult population growth by 2030
+                </p>
+              </div>
+            </FadeUp>
+
+            <div className="space-y-5">
+              <FadeUp delay={0.1}>
+                <div className="bg-white p-7 rounded-2xl border border-gray-100 shadow-[0_1px_3px_rgba(8,145,178,0.04),0_4px_12px_rgba(8,145,178,0.06),0_16px_40px_rgba(30,58,138,0.06)]">
+                  <h4 className="font-bold text-gray-900 mb-4">How iRxReminder Helps</h4>
+                  <ul className="text-gray-600 space-y-2.5 leading-relaxed">
+                    <li className="flex items-start gap-2">
+                      <CheckCircle2 className="w-4 h-4 text-[#0891b2] flex-shrink-0 mt-1" />
+                      <span>Pharmacist-filled pods eliminate staff sorting errors and med pass complexity.</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <CheckCircle2 className="w-4 h-4 text-[#0891b2] flex-shrink-0 mt-1" />
+                      <span>Real-time records replace paper MAR sheets with verified digital documentation.</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <CheckCircle2 className="w-4 h-4 text-[#0891b2] flex-shrink-0 mt-1" />
+                      <span>Remote monitoring for home health patients between visits.</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <CheckCircle2 className="w-4 h-4 text-[#0891b2] flex-shrink-0 mt-1" />
+                      <span>Family member visibility reduces anxiety and support calls.</span>
+                    </li>
+                  </ul>
+                </div>
+              </FadeUp>
+
+              <FadeUp delay={0.15}>
+                <div className="bg-white p-7 rounded-2xl border border-gray-100 shadow-[0_1px_3px_rgba(8,145,178,0.04),0_4px_12px_rgba(8,145,178,0.06)]">
+                  <Accordion type="multiple">
+                    <AccordionItem value="senior-regulatory">
+                      <AccordionTrigger>Regulatory &amp; Compliance Benefits</AccordionTrigger>
+                      <AccordionContent>
+                        <ul className="space-y-2 list-disc pl-4">
+                          <li>Digital MAR documentation for state survey readiness</li>
+                          <li>Automated incident reporting for missed medications</li>
+                          <li>Reduces medication error liability exposure</li>
+                          <li>Supports Quality Measures reporting for CMS Star Ratings</li>
+                        </ul>
+                      </AccordionContent>
+                    </AccordionItem>
+                    <AccordionItem value="senior-staffing">
+                      <AccordionTrigger>Staffing &amp; Operational Impact</AccordionTrigger>
+                      <AccordionContent>
+                        <ul className="space-y-2 list-disc pl-4">
+                          <li>Reduces med pass time by eliminating manual sorting and counting</li>
+                          <li>Frees nursing staff for higher-value clinical tasks</li>
+                          <li>Supports independent living goals &mdash; residents self-administer with safety guardrails</li>
+                          <li>RPM/RTM billing generates revenue to offset platform costs</li>
+                        </ul>
+                        <Link to="/schedule-pilot" className="inline-flex items-center gap-2 text-[#0891b2] font-semibold text-sm mt-4 hover:gap-3 transition-[gap]">
+                          Schedule a pilot <ArrowRight className="w-3.5 h-3.5" />
+                        </Link>
+                      </AccordionContent>
+                    </AccordionItem>
+                  </Accordion>
+                </div>
+              </FadeUp>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Divider */}
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="border-t border-gray-100" />
+      </div>
+
+      {/* ======= SECTION 5: HEALTHCARE UNDERWRITERS ======= */}
+      <section id="underwriters" className="py-24 md:py-32 bg-white scroll-mt-32">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
+            <div className="order-2 lg:order-1 space-y-5">
+              <FadeUp delay={0.1}>
+                <div className="bg-white p-7 rounded-2xl border border-gray-100 shadow-[0_1px_3px_rgba(8,145,178,0.04),0_4px_12px_rgba(8,145,178,0.06),0_16px_40px_rgba(30,58,138,0.06)]">
+                  <h4 className="font-bold text-gray-900 mb-4">How iRxReminder Helps</h4>
+                  <ul className="text-gray-600 space-y-2.5 leading-relaxed">
+                    <li className="flex items-start gap-2">
+                      <CheckCircle2 className="w-4 h-4 text-[#0891b2] flex-shrink-0 mt-1" />
+                      <span>Verified adherence data replaces self-reported compliance claims.</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <CheckCircle2 className="w-4 h-4 text-[#0891b2] flex-shrink-0 mt-1" />
+                      <span>Risk stratification based on real-time medication behavior patterns.</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <CheckCircle2 className="w-4 h-4 text-[#0891b2] flex-shrink-0 mt-1" />
+                      <span>Early intervention prevents costly hospitalizations and ER visits.</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <CheckCircle2 className="w-4 h-4 text-[#0891b2] flex-shrink-0 mt-1" />
+                      <span>Population health analytics for covered lives.</span>
+                    </li>
+                  </ul>
+                </div>
+              </FadeUp>
+
+              <FadeUp delay={0.15}>
+                <div className="bg-white p-7 rounded-2xl border border-gray-100 shadow-[0_1px_3px_rgba(8,145,178,0.04),0_4px_12px_rgba(8,145,178,0.06)]">
+                  <Accordion type="multiple">
+                    <AccordionItem value="underwriter-data">
+                      <AccordionTrigger>Data &amp; Analytics Capabilities</AccordionTrigger>
+                      <AccordionContent>
+                        <ul className="space-y-2 list-disc pl-4">
+                          <li>Aggregate adherence rates across covered populations</li>
+                          <li>Identify high-risk members before adverse events occur</li>
+                          <li>Track intervention effectiveness with before/after adherence metrics</li>
+                          <li>Integration with claims data for total cost-of-care analysis</li>
+                        </ul>
+                      </AccordionContent>
+                    </AccordionItem>
+                    <AccordionItem value="underwriter-roi">
+                      <AccordionTrigger>Financial Impact for Payers</AccordionTrigger>
+                      <AccordionContent>
+                        <ul className="space-y-2 list-disc pl-4">
+                          <li>$300B+ annual cost of non-adherence &mdash; even small improvements drive significant savings</li>
+                          <li>Reduced hospitalization and ER utilization for adherent members</li>
+                          <li>Supports value-based care contract performance metrics</li>
+                          <li>Member satisfaction improvements from proactive medication support</li>
+                        </ul>
+                        <Link to="/roi-calculator" className="inline-flex items-center gap-2 text-[#0891b2] font-semibold text-sm mt-4 hover:gap-3 transition-[gap]">
+                          Calculate your ROI <ArrowRight className="w-3.5 h-3.5" />
+                        </Link>
+                      </AccordionContent>
+                    </AccordionItem>
+                  </Accordion>
+                </div>
+              </FadeUp>
+            </div>
+
+            <div className="order-1 lg:order-2">
+              <FadeUp>
+                <div className="w-14 h-14 rounded-xl flex items-center justify-center mb-6 bg-[#1e3a8a]/10">
+                  <BarChart3 className="w-7 h-7 text-[#1e3a8a]" />
+                </div>
+                <h2 className="text-3xl md:text-4xl font-bold text-[#1e3a8a] mb-6 tracking-tight">
+                  Better Data. Better Risk Models. Lower Claims.
+                </h2>
+                <p className="text-xl text-gray-600 leading-relaxed mb-6">
+                  Payers and underwriters rely on self-reported adherence data that is
+                  notoriously unreliable. iRxReminder provides verified, dose-level
+                  medication behavior data that transforms risk assessment and
+                  population health management.
+                </p>
+                <div className="text-5xl md:text-6xl font-extrabold text-[#1e3a8a] tracking-tight">
+                  $300B+
+                </div>
+                <p className="text-gray-500 font-medium mt-1">
+                  Annual cost of medication non-adherence in the U.S.
+                </p>
+              </FadeUp>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ======= SECTION 6: BUYER PERSONAS ======= */}
       <section className="py-24 md:py-32 bg-white">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <FadeUp>

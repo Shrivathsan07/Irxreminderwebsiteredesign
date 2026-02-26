@@ -1,53 +1,11 @@
 import { Link } from "react-router";
-import { ArrowRight, Shield, Wifi, DollarSign, Mail, GraduationCap, Factory, Code2 } from "lucide-react";
+import { useState } from "react";
+import { ArrowRight, Shield, Wifi, DollarSign, Mail, GraduationCap, Factory, Code2, ChevronDown, TrendingUp, Users, Award, Trophy } from "lucide-react";
 import { Button } from "../components/ui/button";
 import { ImageWithFallback } from "../components/figma/ImageWithFallback";
 import { motion } from "motion/react";
-
-function FadeUp({
-  children,
-  delay = 0,
-  className = "",
-}: {
-  children: React.ReactNode;
-  delay?: number;
-  className?: string;
-}) {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 24 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-60px" }}
-      transition={{ duration: 0.5, delay, type: "spring", stiffness: 300, damping: 30 }}
-      className={className}
-    >
-      {children}
-    </motion.div>
-  );
-}
-
-function Section({
-  children,
-  className = "",
-  id,
-}: {
-  children: React.ReactNode;
-  className?: string;
-  id?: string;
-}) {
-  return (
-    <motion.section
-      id={id}
-      initial={{ opacity: 0 }}
-      whileInView={{ opacity: 1 }}
-      viewport={{ once: true, margin: "-80px" }}
-      transition={{ duration: 0.6 }}
-      className={className}
-    >
-      {children}
-    </motion.section>
-  );
-}
+import { FadeUp, Section, CountUp } from "@/app/components/animations";
+import { useReducedMotion } from "@/app/hooks/useReducedMotion";
 
 const leaders = [
   {
@@ -102,7 +60,87 @@ const universityPartners = [
   "George Mason University",
 ];
 
+function LeaderCards() {
+  const [expandedBios, setExpandedBios] = useState<Record<string, boolean>>({});
+
+  const toggleBio = (name: string) => {
+    setExpandedBios((prev) => ({ ...prev, [name]: !prev[name] }));
+  };
+
+  return (
+    <div className="space-y-10">
+      {leaders.map((leader, index) => {
+        const isExpanded = expandedBios[leader.name] ?? false;
+        const firstSentence = leader.bio.split(". ")[0] + ".";
+        const hasMore = leader.bio.length > firstSentence.length + 5;
+
+        return (
+          <FadeUp key={leader.name} delay={0.05 + index * 0.05}>
+            <div
+              className={`flex flex-col ${
+                index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
+              } gap-8 items-center bg-white p-6 md:p-10 rounded-2xl border border-gray-100 shadow-[0_1px_3px_rgba(30,58,138,0.04),0_4px_12px_rgba(30,58,138,0.06),0_16px_40px_rgba(30,58,138,0.06)]`}
+            >
+              <div className="md:w-1/3 flex-shrink-0">
+                <div className="relative overflow-hidden rounded-2xl shadow-[0_4px_16px_rgba(30,58,138,0.1),0_12px_32px_rgba(30,58,138,0.08)]">
+                  {leader.image ? (
+                    <ImageWithFallback
+                      src={leader.image}
+                      alt={leader.name}
+                      className="w-full aspect-square object-cover"
+                    />
+                  ) : (
+                    <div className="w-full aspect-square bg-gradient-to-br from-[#1e3a8a] to-[#2d4fa6] flex items-center justify-center">
+                      <span className="text-6xl md:text-7xl font-bold text-white/90 tracking-tight select-none">
+                        {leader.name.split(" ").map((n) => n[0]).filter((_, i, a) => i === 0 || i === a.length - 1).join("")}
+                      </span>
+                    </div>
+                  )}
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#1e3a8a]/20 to-transparent" />
+                </div>
+              </div>
+              <div className="md:w-2/3">
+                <h3 className="text-2xl md:text-3xl font-bold text-[#1e3a8a] mb-2 tracking-tight">
+                  {leader.name}
+                </h3>
+                <div className="text-[#0891b2] font-semibold text-lg mb-5">{leader.title}</div>
+                <p className="text-gray-600 leading-relaxed mb-3">
+                  {isExpanded || !hasMore ? leader.bio : firstSentence}
+                </p>
+                {hasMore && (
+                  <button
+                    onClick={() => toggleBio(leader.name)}
+                    className="inline-flex items-center gap-1.5 text-[#0891b2] hover:text-[#0e7490] font-semibold text-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0891b2]/40 focus-visible:ring-offset-2 rounded-sm mb-4"
+                  >
+                    {isExpanded ? "Show less" : "Read full bio"}
+                    <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${isExpanded ? "rotate-180" : ""}`} />
+                  </button>
+                )}
+                {leader.email && (
+                  <div>
+                    <a
+                      href={`mailto:${leader.email}`}
+                      className="inline-flex items-center gap-2 text-[#0891b2] hover:text-[#0e7490] font-medium transition-colors"
+                    >
+                      <Mail className="w-4 h-4" />
+                      {leader.email}
+                    </a>
+                  </div>
+                )}
+              </div>
+            </div>
+          </FadeUp>
+        );
+      })}
+    </div>
+  );
+}
+
 export function About() {
+  const prefersReducedMotion = useReducedMotion();
+  const heroAnimation = prefersReducedMotion ? {} : { initial: { opacity: 0, y: 30 }, animate: { opacity: 1, y: 0 }, transition: { duration: 0.7, type: "spring", stiffness: 300, damping: 30 } };
+  const heroFadeIn = prefersReducedMotion ? {} : { initial: { opacity: 0 }, animate: { opacity: 1 }, transition: { duration: 0.6, delay: 0.5 } };
+
   return (
     <div className="bg-white overflow-hidden">
       {/* ======= HERO ======= */}
@@ -112,11 +150,7 @@ export function About() {
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-32">
           <div className="max-w-3xl">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, type: "spring", stiffness: 300, damping: 30 }}
-            >
+            <motion.div {...heroAnimation}>
               <p className="text-[#0891b2] font-semibold text-sm tracking-widest uppercase mb-6">
                 Our Story
               </p>
@@ -133,9 +167,7 @@ export function About() {
             </motion.div>
 
             <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.6, delay: 0.5 }}
+              {...heroFadeIn}
               className="mt-12 flex flex-wrap items-center gap-6 text-sm text-blue-200/70"
             >
               <span className="flex items-center gap-2">
@@ -298,52 +330,7 @@ export function About() {
             </p>
           </FadeUp>
 
-          <div className="space-y-10">
-            {leaders.map((leader, index) => (
-              <FadeUp key={leader.name} delay={0.05 + index * 0.05}>
-                <div
-                  className={`flex flex-col ${
-                    index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
-                  } gap-8 items-center bg-white p-6 md:p-10 rounded-2xl border border-gray-100 shadow-[0_1px_3px_rgba(30,58,138,0.04),0_4px_12px_rgba(30,58,138,0.06),0_16px_40px_rgba(30,58,138,0.06)]`}
-                >
-                  <div className="md:w-1/3 flex-shrink-0">
-                    <div className="relative overflow-hidden rounded-2xl shadow-[0_4px_16px_rgba(30,58,138,0.1),0_12px_32px_rgba(30,58,138,0.08)]">
-                      {leader.image ? (
-                        <ImageWithFallback
-                          src={leader.image}
-                          alt={leader.name}
-                          className="w-full aspect-square object-cover"
-                        />
-                      ) : (
-                        <div className="w-full aspect-square bg-gradient-to-br from-[#1e3a8a] to-[#2d4fa6] flex items-center justify-center">
-                          <span className="text-6xl md:text-7xl font-bold text-white/90 tracking-tight select-none">
-                            {leader.name.split(" ").map((n) => n[0]).filter((_, i, a) => i === 0 || i === a.length - 1).join("")}
-                          </span>
-                        </div>
-                      )}
-                      <div className="absolute inset-0 bg-gradient-to-t from-[#1e3a8a]/20 to-transparent" />
-                    </div>
-                  </div>
-                  <div className="md:w-2/3">
-                    <h3 className="text-2xl md:text-3xl font-bold text-[#1e3a8a] mb-2 tracking-tight">
-                      {leader.name}
-                    </h3>
-                    <div className="text-[#0891b2] font-semibold text-lg mb-5">{leader.title}</div>
-                    <p className="text-gray-600 leading-relaxed mb-5">{leader.bio}</p>
-                    {leader.email && (
-                      <a
-                        href={`mailto:${leader.email}`}
-                        className="inline-flex items-center gap-2 text-[#0891b2] hover:text-[#0e7490] font-medium transition-colors"
-                      >
-                        <Mail className="w-4 h-4" />
-                        {leader.email}
-                      </a>
-                    )}
-                  </div>
-                </div>
-              </FadeUp>
-            ))}
-          </div>
+          <LeaderCards />
         </div>
       </Section>
 
@@ -440,6 +427,89 @@ export function About() {
               </div>
             </div>
           </FadeUp>
+        </div>
+      </Section>
+
+      {/* ======= MARKET OPPORTUNITY ======= */}
+      <Section className="py-24 md:py-32 bg-[#f8fafc]">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <FadeUp>
+            <p className="text-[#0891b2] font-semibold text-sm tracking-widest uppercase mb-4 text-center">
+              Market Opportunity
+            </p>
+            <h2 className="text-4xl md:text-5xl font-bold text-[#1e3a8a] text-center mb-16 tracking-tight">
+              The Numbers Behind the Opportunity
+            </h2>
+          </FadeUp>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {[
+              { end: 15, prefix: "$", suffix: "B", label: "Market Size", desc: "Global medication adherence market by 2030", color: "#0891b2" },
+              { end: 10, suffix: "M+", label: "Patients", desc: "Americans with complex multi-drug regimens requiring monitoring", color: "#1e3a8a" },
+              { end: 2, suffix: "\u00d7", label: "Population Growth", desc: "Older adult population doubling by 2030", color: "#0891b2" },
+            ].map((stat, i) => (
+              <FadeUp key={stat.label} delay={0.1 + i * 0.1}>
+                <div className="text-center p-8 md:p-10 rounded-2xl bg-white border border-gray-100 shadow-[0_1px_3px_rgba(8,145,178,0.04),0_4px_12px_rgba(8,145,178,0.06),0_16px_40px_rgba(30,58,138,0.06)]">
+                  <div className="text-5xl md:text-6xl font-extrabold mb-2 tracking-tight" style={{ color: stat.color }}>
+                    <CountUp end={stat.end} prefix={stat.prefix} suffix={stat.suffix} />
+                  </div>
+                  <div className="text-sm font-semibold text-gray-400 uppercase tracking-widest mb-3">
+                    {stat.label}
+                  </div>
+                  <p className="text-gray-600 leading-relaxed text-sm">
+                    {stat.desc}
+                  </p>
+                </div>
+              </FadeUp>
+            ))}
+          </div>
+        </div>
+      </Section>
+
+      {/* ======= COMPANY TIMELINE ======= */}
+      <Section className="py-24 md:py-32 bg-white">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <FadeUp>
+            <p className="text-[#0891b2] font-semibold text-sm tracking-widest uppercase mb-4 text-center">
+              Our Journey
+            </p>
+            <h2 className="text-4xl md:text-5xl font-bold text-[#1e3a8a] text-center mb-16 tracking-tight">
+              From Research to Platform
+            </h2>
+          </FadeUp>
+
+          <div className="relative">
+            <div className="absolute left-[23px] top-0 bottom-0 w-px bg-gradient-to-b from-[#0891b2]/40 via-[#1e3a8a]/20 to-transparent hidden md:block" />
+
+            <div className="space-y-8">
+              {[
+                { year: "2010\u20132015", title: "NIH-Funded Research", description: "Dr. Sterns conducts decade-long research into medication adherence for aging populations. Memory Magic program impacts 500K+ older adults.", icon: GraduationCap, color: "#1e3a8a" },
+                { year: "2015\u20132017", title: "Platform Development", description: "First iLidRx pod prototypes developed. 12 US patents filed and granted. Hold, Place, and Tilt\u2122 dispensing mechanism invented.", icon: Factory, color: "#0891b2" },
+                { year: "2017\u20132019", title: "Industry Recognition", description: "AMIA PitchIT Grand Prize. Best Tech Startup in Cleveland. AARP/MedCity 50+ Innovation Leader.", icon: Trophy, color: "#1e3a8a" },
+                { year: "2019\u20132021", title: "Clinical Validation", description: "NIH adherence study across 350+ participants: 48% \u2192 80%+ improvement. University of Michigan Cancer Center trial: 25% fewer dropouts.", icon: TrendingUp, color: "#0891b2" },
+                { year: "2021\u20132022", title: "Accelerator Growth", description: "NewChip, OCEAN, and Whatif! fellowship programs. C-suite expansion with CMO and CSO appointments.", icon: Users, color: "#1e3a8a" },
+                { year: "2023\u2013Present", title: "AI & Diagnostics Expansion", description: "$871K NIMH grant for TDtect\u2122 study. First patients enrolled. FDA Class II clearance pathway underway.", icon: Award, color: "#0891b2" },
+              ].map((milestone, i) => (
+                <FadeUp key={milestone.year} delay={i * 0.08}>
+                  <div className="flex items-start gap-5 md:gap-6">
+                    <div className="flex-shrink-0 relative z-10">
+                      <div
+                        className="w-12 h-12 rounded-xl flex items-center justify-center"
+                        style={{ backgroundColor: `${milestone.color}10` }}
+                      >
+                        <milestone.icon className="w-5 h-5" style={{ color: milestone.color }} />
+                      </div>
+                    </div>
+                    <div className="flex-1 pt-1">
+                      <div className="text-xs font-semibold uppercase tracking-wider text-gray-400 mb-1">{milestone.year}</div>
+                      <h3 className="font-bold text-gray-900 text-lg mb-1.5">{milestone.title}</h3>
+                      <p className="text-sm text-gray-500 leading-relaxed">{milestone.description}</p>
+                    </div>
+                  </div>
+                </FadeUp>
+              ))}
+            </div>
+          </div>
         </div>
       </Section>
 

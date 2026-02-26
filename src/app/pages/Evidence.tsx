@@ -4,6 +4,7 @@ import {
   Award,
   CheckCircle2,
   FileText,
+  Clock,
   GraduationCap,
   Quote,
   ShieldCheck,
@@ -13,30 +14,17 @@ import {
 } from "lucide-react";
 import { Button } from "../components/ui/button";
 import { motion } from "motion/react";
+import { FadeUp, CountUp } from "@/app/components/animations";
+import { useReducedMotion } from "@/app/hooks/useReducedMotion";
+import { useSectionObserver } from "@/app/hooks/useSectionObserver";
 
-function FadeUp({
-  children,
-  delay = 0,
-  className = "",
-}: {
-  children: React.ReactNode;
-  delay?: number;
-  className?: string;
-}) {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 24 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-60px" }}
-      transition={{ duration: 0.5, delay, type: "spring", stiffness: 300, damping: 30 }}
-      className={className}
-    >
-      {children}
-    </motion.div>
-  );
-}
+const evidenceSections = ["problem", "trials", "timeline", "grants", "partners", "publications", "awards"];
 
 export function Evidence() {
+  const prefersReducedMotion = useReducedMotion();
+  const activeSection = useSectionObserver(evidenceSections);
+  const heroAnimation = prefersReducedMotion ? {} : { initial: { opacity: 0, y: 30 }, animate: { opacity: 1, y: 0 }, transition: { duration: 0.6 } };
+
   return (
     <div className="bg-white">
       {/* ======= HERO ======= */}
@@ -44,11 +32,7 @@ export function Evidence() {
         <div className="absolute inset-0 bg-gradient-to-br from-[#0f1d3d] via-[#152c6e] to-[#1e3a8a]" />
         <div className="absolute top-1/3 right-0 w-[600px] h-[600px] bg-[#0891b2]/15 rounded-full blur-[100px]" />
         <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-32 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
+          <motion.div {...heroAnimation}>
             <p className="text-[#0891b2] font-semibold text-sm tracking-widest uppercase mb-4">
               Clinical Evidence
             </p>
@@ -71,17 +55,22 @@ export function Evidence() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex overflow-x-auto py-3 gap-6 text-sm font-medium scrollbar-hide">
             {[
-              { href: "#problem", label: "The Crisis" },
-              { href: "#trials", label: "Clinical Trials" },
-              { href: "#grants", label: "NIH Grants" },
-              { href: "#partners", label: "Partners" },
-              { href: "#publications", label: "Publications" },
-              { href: "#awards", label: "Awards" },
+              { href: "#problem", id: "problem", label: "The Crisis" },
+              { href: "#trials", id: "trials", label: "Clinical Trials" },
+              { href: "#timeline", id: "timeline", label: "Timeline" },
+              { href: "#grants", id: "grants", label: "NIH Grants" },
+              { href: "#partners", id: "partners", label: "Partners" },
+              { href: "#publications", id: "publications", label: "Publications" },
+              { href: "#awards", id: "awards", label: "Awards" },
             ].map((item) => (
               <a
                 key={item.href}
                 href={item.href}
-                className="text-gray-500 hover:text-[#0891b2] whitespace-nowrap transition-colors"
+                className={`whitespace-nowrap transition-colors pb-2 border-b-2 ${
+                  activeSection === item.id
+                    ? "text-[#0891b2] border-[#0891b2] font-semibold"
+                    : "text-gray-500 hover:text-[#0891b2] border-transparent"
+                }`}
               >
                 {item.label}
               </a>
@@ -131,16 +120,20 @@ export function Evidence() {
           {/* Crisis Stats */}
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
             {[
-              { stat: "700K", label: "ER visits per year", color: "#1e3a8a" },
-              { stat: "341K", label: "Hospitalizations per year", color: "#0891b2" },
-              { stat: "125K", label: "Deaths per year", color: "#1e3a8a" },
-              { stat: "$300B+", label: "In avoidable costs", color: "#0891b2" },
+              { end: 700, suffix: "K", label: "ER visits per year", color: "#1e3a8a" },
+              { end: 341, suffix: "K", label: "Hospitalizations per year", color: "#0891b2" },
+              { end: 125, suffix: "K", label: "Deaths per year", color: "#1e3a8a" },
+              { end: 300, prefix: "$", suffix: "B+", label: "In avoidable costs", color: "#0891b2" },
             ].map((item, i) => (
-              <FadeUp key={item.stat} delay={i * 0.08}>
+              <FadeUp key={item.label} delay={i * 0.08}>
                 <div className="bg-white p-8 rounded-2xl border border-gray-100 shadow-[0_1px_3px_rgba(8,145,178,0.04),0_4px_12px_rgba(8,145,178,0.06),0_16px_40px_rgba(30,58,138,0.06)] text-center">
-                  <div className="text-4xl md:text-5xl font-extrabold mb-2 tracking-tight" style={{ color: item.color }}>
-                    {item.stat}
-                  </div>
+                  <CountUp
+                    end={item.end}
+                    prefix={item.prefix}
+                    suffix={item.suffix}
+                    className="text-4xl md:text-5xl font-extrabold mb-2 tracking-tight"
+                    style={{ color: item.color }}
+                  />
                   <div className="text-gray-500 font-medium">{item.label}</div>
                 </div>
               </FadeUp>
@@ -328,7 +321,7 @@ export function Evidence() {
               <div className="relative bg-gradient-to-br from-[#0f1d3d] via-[#152c6e] to-[#1e3a8a] p-8 md:p-10 rounded-2xl overflow-hidden">
                 <div className="absolute top-0 right-0 w-[300px] h-[300px] bg-[#0891b2]/15 rounded-full blur-[80px]" />
                 <div className="relative flex flex-col md:flex-row items-center gap-6">
-                  <div className="text-6xl md:text-7xl font-extrabold text-[#0891b2] tracking-tight">83%</div>
+                  <CountUp end={83} suffix="%" className="text-6xl md:text-7xl font-extrabold text-[#0891b2] tracking-tight" />
                   <div>
                     <h3 className="text-xl font-bold text-white mb-2">Consistent Adherence Rate</h3>
                     <p className="text-blue-100/80 max-w-xl">
@@ -344,8 +337,94 @@ export function Evidence() {
         </div>
       </section>
 
+      {/* ======= RESEARCH TIMELINE ======= */}
+      <section id="timeline" className="py-24 md:py-32 bg-[#f8fafc] scroll-mt-32">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <FadeUp>
+            <p className="text-[#0891b2] font-semibold text-sm tracking-widest uppercase mb-4">
+              Research Journey
+            </p>
+            <h2 className="text-4xl md:text-5xl font-bold text-[#1e3a8a] mb-4 tracking-tight">
+              15 Years of Clinical Validation
+            </h2>
+            <p className="text-xl text-gray-600 mb-16 max-w-2xl">
+              From NIH pilot grants to multi-site clinical trials&nbsp;&mdash; a systematic path to evidence-based innovation
+            </p>
+          </FadeUp>
+
+          <div className="relative">
+            <div className="absolute left-[23px] top-0 bottom-0 w-px bg-gradient-to-b from-[#0891b2]/40 via-[#1e3a8a]/20 to-transparent hidden md:block" />
+
+            <div className="space-y-8">
+              {[
+                {
+                  year: "2010",
+                  title: "NIH Pilot Grant Awarded",
+                  description: "Grant No. 1R43AG033500 — First federal funding validates iRxReminder concept for stroke recovery and aging populations.",
+                  color: "#1e3a8a",
+                },
+                {
+                  year: "2013",
+                  title: "FDA 510(k) Clearance",
+                  description: "iRxReminder receives FDA clearance as a Class II medical device — one of the first IoT medication management systems to achieve this milestone.",
+                  color: "#0891b2",
+                },
+                {
+                  year: "2015–2018",
+                  title: "University Research Partnerships",
+                  description: "Clinical collaborations established with Harvard, University of Michigan, Kent State, Brown, MetroHealth, and Butler Hospital.",
+                  color: "#1e3a8a",
+                },
+                {
+                  year: "2018–2020",
+                  title: "Multi-Site Adherence Trials",
+                  description: "NIH-funded study across behavioral health networks enrolls 350+ participants. Outcome: adherence improves from 48% to 80%+.",
+                  color: "#0891b2",
+                },
+                {
+                  year: "2022",
+                  title: "Oncology Trial at U of Michigan",
+                  description: "HOPA-funded study at the University of Michigan Cancer Center demonstrates 25% reduction in clinical trial dropouts.",
+                  color: "#1e3a8a",
+                },
+                {
+                  year: "2023",
+                  title: "NIMH AI Telehealth Grant",
+                  description: "$871,153 awarded for TDtect\u2122 study — AI-powered Tardive Dyskinesia detection and medication monitoring in behavioral health.",
+                  color: "#0891b2",
+                },
+                {
+                  year: "Present",
+                  title: "TDtect\u2122 Study Enrolling",
+                  description: "First patients enrolled. Active NIMH-funded diagnostic study combining AI telehealth with real-time medication monitoring.",
+                  color: "#1e3a8a",
+                },
+              ].map((milestone, i) => (
+                <FadeUp key={milestone.year} delay={i * 0.06}>
+                  <div className="flex items-start gap-5 md:gap-6">
+                    <div className="flex-shrink-0 relative z-10">
+                      <div
+                        className="w-12 h-12 rounded-xl flex items-center justify-center"
+                        style={{ backgroundColor: `${milestone.color}10` }}
+                      >
+                        <Clock className="w-5 h-5" style={{ color: milestone.color }} />
+                      </div>
+                    </div>
+                    <div className="flex-1 pt-1">
+                      <div className="text-xs font-semibold uppercase tracking-wider text-gray-400 mb-1">{milestone.year}</div>
+                      <h3 className="text-lg font-bold text-gray-900 mb-1.5">{milestone.title}</h3>
+                      <p className="text-sm text-gray-500 leading-relaxed">{milestone.description}</p>
+                    </div>
+                  </div>
+                </FadeUp>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* ======= NIH & FEDERAL GRANTS ======= */}
-      <section id="grants" className="py-24 md:py-32 bg-[#f8fafc] scroll-mt-32">
+      <section id="grants" className="py-24 md:py-32 bg-white scroll-mt-32">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <FadeUp>
             <p className="text-[#0891b2] font-semibold text-sm tracking-widest uppercase mb-4">
@@ -429,21 +508,22 @@ export function Evidence() {
             </p>
           </FadeUp>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-6 mb-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
             {[
-              { name: "Harvard University", color: "#1e3a8a" },
-              { name: "MetroHealth", color: "#0891b2" },
-              { name: "University of Michigan", color: "#1e3a8a" },
-              { name: "Kent State University", color: "#0891b2" },
-              { name: "Brown University", color: "#1e3a8a" },
-              { name: "Butler Hospital", color: "#0891b2" },
+              { name: "Harvard University", description: "Gerontechnology research collaboration — aging population medication management and cognitive impairment studies.", color: "#1e3a8a" },
+              { name: "MetroHealth", description: "Cleveland's safety-net health system — real-world deployment and adherence monitoring in underserved populations.", color: "#0891b2" },
+              { name: "University of Michigan", description: "Cancer Center oncology adherence study — HOPA-funded trial demonstrating 25% reduction in clinical trial dropouts.", color: "#1e3a8a" },
+              { name: "Kent State University", description: "College of Nursing research partnership — behavioral health population studies and nursing workflow integration.", color: "#0891b2" },
+              { name: "Brown University", description: "Psychiatry and Human Behavior department — behavioral health medication adherence research and protocol design.", color: "#1e3a8a" },
+              { name: "Butler Hospital", description: "Brown-affiliated psychiatric hospital — clinical site for behavioral health adherence trials with 350+ participants.", color: "#0891b2" },
             ].map((partner, i) => (
               <FadeUp key={partner.name} delay={i * 0.06}>
-                <div className="bg-white p-6 md:p-8 rounded-2xl border border-gray-100 shadow-[0_1px_3px_rgba(8,145,178,0.04),0_4px_12px_rgba(8,145,178,0.06),0_16px_40px_rgba(30,58,138,0.06)] text-center hover:shadow-[0_1px_3px_rgba(8,145,178,0.06),0_8px_20px_rgba(8,145,178,0.1),0_24px_48px_rgba(30,58,138,0.1)] transition-[box-shadow,transform] duration-300 hover:-translate-y-1">
+                <div className="bg-white p-6 md:p-8 rounded-2xl border border-gray-100 shadow-[0_1px_3px_rgba(8,145,178,0.04),0_4px_12px_rgba(8,145,178,0.06),0_16px_40px_rgba(30,58,138,0.06)] hover:shadow-[0_1px_3px_rgba(8,145,178,0.06),0_8px_20px_rgba(8,145,178,0.1),0_24px_48px_rgba(30,58,138,0.1)] transition-[box-shadow,transform] duration-300 hover:-translate-y-1 h-full flex flex-col">
                   <div className="w-12 h-12 rounded-xl flex items-center justify-center mx-auto mb-4" style={{ backgroundColor: `${partner.color}10` }}>
                     <GraduationCap className="w-6 h-6" style={{ color: partner.color }} />
                   </div>
-                  <div className="font-bold text-gray-900">{partner.name}</div>
+                  <div className="font-bold text-gray-900 text-center mb-2">{partner.name}</div>
+                  <p className="text-xs text-gray-500 text-center leading-relaxed">{partner.description}</p>
                 </div>
               </FadeUp>
             ))}
@@ -513,14 +593,17 @@ export function Evidence() {
               <h4 className="font-bold text-gray-900 mb-6">Research Impact</h4>
               <div className="grid md:grid-cols-3 gap-6 text-center">
                 {[
-                  { stat: "33", label: "Publications", color: "#1e3a8a" },
-                  { stat: "100+", label: "International presentations", color: "#0891b2" },
-                  { stat: "12", label: "U.S. patents", color: "#1e3a8a" },
+                  { end: 33, suffix: "", label: "Publications", color: "#1e3a8a" },
+                  { end: 100, suffix: "+", label: "International presentations", color: "#0891b2" },
+                  { end: 12, suffix: "", label: "U.S. patents", color: "#1e3a8a" },
                 ].map((item) => (
                   <div key={item.label}>
-                    <div className="text-3xl font-extrabold mb-1 tracking-tight" style={{ color: item.color }}>
-                      {item.stat}
-                    </div>
+                    <CountUp
+                      end={item.end}
+                      suffix={item.suffix}
+                      className="text-3xl font-extrabold mb-1 tracking-tight"
+                      style={{ color: item.color }}
+                    />
                     <div className="text-sm text-gray-500">{item.label}</div>
                   </div>
                 ))}

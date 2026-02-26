@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useForm, Controller } from "react-hook-form";
 import { Link } from "react-router";
 import { Button } from "../components/ui/button";
 import { Input } from "../components/ui/input";
@@ -13,49 +13,28 @@ import {
 } from "../components/ui/select";
 import { Phone, Mail, MapPin, ArrowRight, Shield, TrendingUp } from "lucide-react";
 import { motion } from "motion/react";
+import { FadeUp } from "@/app/components/animations";
 
-function FadeUp({
-  children,
-  delay = 0,
-  className = "",
-}: {
-  children: React.ReactNode;
-  delay?: number;
-  className?: string;
-}) {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 24 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-60px" }}
-      transition={{
-        duration: 0.5,
-        delay,
-        type: "spring",
-        stiffness: 300,
-        damping: 30,
-      }}
-      className={className}
-    >
-      {children}
-    </motion.div>
-  );
+interface ContactFormData {
+  name: string;
+  email: string;
+  organization: string;
+  title: string;
+  phone: string;
+  inquiryType: string;
+  message: string;
 }
 
 export function Contact() {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    organization: "",
-    title: "",
-    phone: "",
-    inquiryType: "",
-    message: "",
-  });
+  const {
+    register,
+    handleSubmit,
+    control,
+    formState: { errors },
+  } = useForm<ContactFormData>();
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log("Form submitted:", formData);
+  const onSubmit = (data: ContactFormData) => {
+    console.log("Form submitted:", data);
     alert("Thank you for your inquiry. We will contact you soon!");
   };
 
@@ -93,32 +72,38 @@ export function Contact() {
             {/* Contact Form */}
             <div className="md:col-span-2">
               <FadeUp>
-                <form onSubmit={handleSubmit} className="space-y-6">
+                <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
                   <div className="grid md:grid-cols-2 gap-6">
                     <div>
                       <Label htmlFor="name">Name *</Label>
                       <Input
                         id="name"
-                        required
-                        value={formData.name}
-                        onChange={(e) =>
-                          setFormData({ ...formData, name: e.target.value })
-                        }
+                        {...register("name", { required: "Name is required" })}
+                        aria-describedby={errors.name ? "name-error" : undefined}
                         className="mt-1.5"
                       />
+                      {errors.name && (
+                        <p id="name-error" className="text-sm text-red-500 mt-1">{errors.name.message}</p>
+                      )}
                     </div>
                     <div>
                       <Label htmlFor="email">Email *</Label>
                       <Input
                         id="email"
                         type="email"
-                        required
-                        value={formData.email}
-                        onChange={(e) =>
-                          setFormData({ ...formData, email: e.target.value })
-                        }
+                        {...register("email", {
+                          required: "Email is required",
+                          pattern: {
+                            value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                            message: "Enter a valid email address",
+                          },
+                        })}
+                        aria-describedby={errors.email ? "email-error" : undefined}
                         className="mt-1.5"
                       />
+                      {errors.email && (
+                        <p id="email-error" className="text-sm text-red-500 mt-1">{errors.email.message}</p>
+                      )}
                     </div>
                   </div>
 
@@ -129,25 +114,19 @@ export function Contact() {
                       </Label>
                       <Input
                         id="organization"
-                        required
-                        value={formData.organization}
-                        onChange={(e) =>
-                          setFormData({
-                            ...formData,
-                            organization: e.target.value,
-                          })
-                        }
+                        {...register("organization", { required: "Organization is required" })}
+                        aria-describedby={errors.organization ? "organization-error" : undefined}
                         className="mt-1.5"
                       />
+                      {errors.organization && (
+                        <p id="organization-error" className="text-sm text-red-500 mt-1">{errors.organization.message}</p>
+                      )}
                     </div>
                     <div>
                       <Label htmlFor="title">Role / Title</Label>
                       <Input
                         id="title"
-                        value={formData.title}
-                        onChange={(e) =>
-                          setFormData({ ...formData, title: e.target.value })
-                        }
+                        {...register("title")}
                         className="mt-1.5"
                       />
                     </div>
@@ -159,40 +138,34 @@ export function Contact() {
                       <Input
                         id="phone"
                         type="tel"
-                        value={formData.phone}
-                        onChange={(e) =>
-                          setFormData({ ...formData, phone: e.target.value })
-                        }
+                        {...register("phone")}
                         className="mt-1.5"
                       />
                     </div>
                     <div>
                       <Label htmlFor="inquiry-type">Inquiry Type *</Label>
-                      <Select
-                        value={formData.inquiryType}
-                        onValueChange={(value) =>
-                          setFormData({ ...formData, inquiryType: value })
-                        }
-                      >
-                        <SelectTrigger className="mt-1.5">
-                          <SelectValue placeholder="Select inquiry type" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="pilot">
-                            Schedule a Pilot
-                          </SelectItem>
-                          <SelectItem value="demo">Request a Demo</SelectItem>
-                          <SelectItem value="partnership">
-                            Partnership Inquiry
-                          </SelectItem>
-                          <SelectItem value="research">
-                            Research Collaboration
-                          </SelectItem>
-                          <SelectItem value="general">
-                            General Question
-                          </SelectItem>
-                        </SelectContent>
-                      </Select>
+                      <Controller
+                        name="inquiryType"
+                        control={control}
+                        rules={{ required: "Please select an inquiry type" }}
+                        render={({ field }) => (
+                          <Select value={field.value} onValueChange={field.onChange}>
+                            <SelectTrigger className="mt-1.5" aria-describedby={errors.inquiryType ? "inquiry-error" : undefined}>
+                              <SelectValue placeholder="Select inquiry type" />
+                            </SelectTrigger>
+                            <SelectContent>
+                              <SelectItem value="pilot">Schedule a Pilot</SelectItem>
+                              <SelectItem value="demo">Request a Demo</SelectItem>
+                              <SelectItem value="partnership">Partnership Inquiry</SelectItem>
+                              <SelectItem value="research">Research Collaboration</SelectItem>
+                              <SelectItem value="general">General Question</SelectItem>
+                            </SelectContent>
+                          </Select>
+                        )}
+                      />
+                      {errors.inquiryType && (
+                        <p id="inquiry-error" className="text-sm text-red-500 mt-1">{errors.inquiryType.message}</p>
+                      )}
                     </div>
                   </div>
 
@@ -200,14 +173,14 @@ export function Contact() {
                     <Label htmlFor="message">Message *</Label>
                     <Textarea
                       id="message"
-                      required
                       rows={6}
-                      value={formData.message}
-                      onChange={(e) =>
-                        setFormData({ ...formData, message: e.target.value })
-                      }
+                      {...register("message", { required: "Message is required" })}
+                      aria-describedby={errors.message ? "message-error" : undefined}
                       className="mt-1.5"
                     />
+                    {errors.message && (
+                      <p id="message-error" className="text-sm text-red-500 mt-1">{errors.message.message}</p>
+                    )}
                   </div>
 
                   <Button

@@ -4,31 +4,19 @@ import {
   ArrowRight,
 } from "lucide-react";
 import { Button } from "../components/ui/button";
+import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "../components/ui/accordion";
 import { motion } from "motion/react";
+import { FadeUp } from "@/app/components/animations";
+import { useReducedMotion } from "@/app/hooks/useReducedMotion";
+import { useSectionObserver } from "@/app/hooks/useSectionObserver";
 
-function FadeUp({
-  children,
-  delay = 0,
-  className = "",
-}: {
-  children: React.ReactNode;
-  delay?: number;
-  className?: string;
-}) {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 24 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-60px" }}
-      transition={{ duration: 0.5, delay, type: "spring", stiffness: 300, damping: 30 }}
-      className={className}
-    >
-      {children}
-    </motion.div>
-  );
-}
+const platformSections = ["pod", "app", "dashboard", "integration"];
 
 export function Platform() {
+  const prefersReducedMotion = useReducedMotion();
+  const activeSection = useSectionObserver(platformSections);
+  const heroAnimation = prefersReducedMotion ? {} : { initial: { opacity: 0, y: 30 }, animate: { opacity: 1, y: 0 }, transition: { duration: 0.6 } };
+
   return (
     <div className="bg-white">
       {/* Hero */}
@@ -36,11 +24,7 @@ export function Platform() {
         <div className="absolute inset-0 bg-gradient-to-br from-[#0f1d3d] via-[#152c6e] to-[#1e3a8a]" />
         <div className="absolute top-1/3 right-0 w-[600px] h-[600px] bg-[#0891b2]/15 rounded-full blur-[100px]" />
         <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-32 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
+          <motion.div {...heroAnimation}>
             <p className="text-[#0891b2] font-semibold text-sm tracking-widest uppercase mb-4">
               Platform
             </p>
@@ -62,15 +46,19 @@ export function Platform() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex overflow-x-auto py-3 gap-6 text-sm font-medium scrollbar-hide">
             {[
-              { href: "#pod", label: "iLidRx Pod" },
-              { href: "#app", label: "iRxCapture App" },
-              { href: "#dashboard", label: "iRxControl Center" },
-              { href: "#integration", label: "EHR Integration" },
+              { href: "#pod", id: "pod", label: "iLidRx Pod" },
+              { href: "#app", id: "app", label: "iRxCapture App" },
+              { href: "#dashboard", id: "dashboard", label: "iRxControl Center" },
+              { href: "#integration", id: "integration", label: "EHR Integration" },
             ].map((item) => (
               <a
                 key={item.href}
                 href={item.href}
-                className="text-gray-500 hover:text-[#0891b2] whitespace-nowrap transition-colors"
+                className={`whitespace-nowrap transition-colors pb-2 border-b-2 ${
+                  activeSection === item.id
+                    ? "text-[#0891b2] border-[#0891b2] font-semibold"
+                    : "text-gray-500 hover:text-[#0891b2] border-transparent"
+                }`}
               >
                 {item.label}
               </a>
@@ -143,6 +131,52 @@ export function Platform() {
               </div>
             </FadeUp>
           </div>
+
+          {/* Technical Specs */}
+          <FadeUp delay={0.3}>
+            <div className="mt-12 bg-white p-6 md:p-8 rounded-2xl border border-gray-100 shadow-[0_1px_3px_rgba(30,58,138,0.04),0_4px_12px_rgba(30,58,138,0.06)]">
+              <h3 className="text-lg font-bold text-gray-900 mb-4">Technical Specifications</h3>
+              <Accordion type="multiple">
+                <AccordionItem value="pod-physical">
+                  <AccordionTrigger>Physical Design</AccordionTrigger>
+                  <AccordionContent>
+                    <ul className="space-y-2 list-disc pl-4">
+                      <li>Compact form factor designed for nightstand or countertop use</li>
+                      <li>Medical-grade, BPA-free polymer construction</li>
+                      <li>Holds up to 90-day medication supply per pod</li>
+                      <li>Multi-color LED indicator system (green, yellow, red) for dosing windows</li>
+                      <li>Inductive (wireless) charging via charging stand</li>
+                      <li>Portable during the day, charges overnight</li>
+                    </ul>
+                  </AccordionContent>
+                </AccordionItem>
+                <AccordionItem value="pod-dispensing">
+                  <AccordionTrigger>Dispensing Mechanism</AccordionTrigger>
+                  <AccordionContent>
+                    <ul className="space-y-2 list-disc pl-4">
+                      <li>Patented Hold, Place, and Tilt&trade; gesture-based activation</li>
+                      <li>One dose dispensed per activation &mdash; prevents double-dosing</li>
+                      <li>Configurable dosing windows with LED color progression</li>
+                      <li>Tamper-resistant design prevents unauthorized access</li>
+                      <li>Lockout after dosing window closes to prevent catch-up dosing</li>
+                    </ul>
+                  </AccordionContent>
+                </AccordionItem>
+                <AccordionItem value="pod-connectivity">
+                  <AccordionTrigger>Connectivity &amp; Data</AccordionTrigger>
+                  <AccordionContent>
+                    <ul className="space-y-2 list-disc pl-4">
+                      <li>Bluetooth Low Energy (BLE) connection to iRxCapture app</li>
+                      <li>Real-time dose event recording with timestamp</li>
+                      <li>Automatic data sync to iRxControl Center cloud dashboard</li>
+                      <li>Offline capability with data sync on reconnection</li>
+                      <li>End-to-end encrypted data transmission</li>
+                    </ul>
+                  </AccordionContent>
+                </AccordionItem>
+              </Accordion>
+            </div>
+          </FadeUp>
         </div>
       </section>
 
@@ -186,6 +220,49 @@ export function Platform() {
             <p className="mt-10 text-[#1e3a8a] font-semibold text-center">
               Adherence through support, not nagging.
             </p>
+          </FadeUp>
+
+          {/* App Specs */}
+          <FadeUp delay={0.3}>
+            <div className="mt-12 bg-[#f8fafc] p-6 md:p-8 rounded-2xl border border-gray-100 shadow-[0_1px_3px_rgba(30,58,138,0.04),0_4px_12px_rgba(30,58,138,0.06)]">
+              <h3 className="text-lg font-bold text-gray-900 mb-4">App Details</h3>
+              <Accordion type="multiple">
+                <AccordionItem value="app-platforms">
+                  <AccordionTrigger>Supported Platforms</AccordionTrigger>
+                  <AccordionContent>
+                    <ul className="space-y-2 list-disc pl-4">
+                      <li>iOS 14+ (iPhone 8 and later)</li>
+                      <li>Android 10+ (most devices from 2019 onward)</li>
+                      <li>Optimized for older adult users &mdash; large touch targets, high contrast text, simplified navigation</li>
+                      <li>Accessibility features: VoiceOver / TalkBack compatible, Dynamic Type support</li>
+                    </ul>
+                  </AccordionContent>
+                </AccordionItem>
+                <AccordionItem value="app-clinical">
+                  <AccordionTrigger>Clinical Features</AccordionTrigger>
+                  <AccordionContent>
+                    <ul className="space-y-2 list-disc pl-4">
+                      <li>Study Mode for clinical trial enrollment &mdash; scan study ID to auto-configure</li>
+                      <li>ESmCapture ecological momentary assessments (EMA) &mdash; customizable questionnaires triggered by time or dose events</li>
+                      <li>Symptom tracking with structured data capture</li>
+                      <li>Medication-specific education materials loaded per regimen</li>
+                      <li>Personal adherence dashboard visible to patients &mdash; autonomy-oriented design</li>
+                    </ul>
+                  </AccordionContent>
+                </AccordionItem>
+                <AccordionItem value="app-notifications">
+                  <AccordionTrigger>Smart Notification System</AccordionTrigger>
+                  <AccordionContent>
+                    <ul className="space-y-2 list-disc pl-4">
+                      <li>Context-aware &mdash; only sends alerts when a dose is genuinely missed</li>
+                      <li>Configurable escalation: push notification &rarr; SMS &rarr; caregiver alert</li>
+                      <li>No alert fatigue &mdash; proven to maintain engagement beyond 90 days</li>
+                      <li>Quiet hours respect patient sleep schedules</li>
+                    </ul>
+                  </AccordionContent>
+                </AccordionItem>
+              </Accordion>
+            </div>
           </FadeUp>
         </div>
       </section>
@@ -231,6 +308,50 @@ export function Platform() {
             <p className="mt-10 text-[#1e3a8a] font-semibold text-center">
               Intervene early. Not after the ER visit.
             </p>
+          </FadeUp>
+
+          {/* Dashboard Specs */}
+          <FadeUp delay={0.3}>
+            <div className="mt-12 bg-white p-6 md:p-8 rounded-2xl border border-gray-100 shadow-[0_1px_3px_rgba(30,58,138,0.04),0_4px_12px_rgba(30,58,138,0.06)]">
+              <h3 className="text-lg font-bold text-gray-900 mb-4">Dashboard Capabilities</h3>
+              <Accordion type="multiple">
+                <AccordionItem value="dash-views">
+                  <AccordionTrigger>Data Views &amp; Analytics</AccordionTrigger>
+                  <AccordionContent>
+                    <ul className="space-y-2 list-disc pl-4">
+                      <li>Population-level adherence summary &mdash; filterable by cohort, medication, time period</li>
+                      <li>Individual patient drill-down with calendar heatmap (doses taken/missed by day and time)</li>
+                      <li>Trend analysis &mdash; spot declining adherence patterns before they become crises</li>
+                      <li>Exportable reports for regulatory submissions and clinical documentation</li>
+                      <li>Real-time dashboards update within seconds of dose events</li>
+                    </ul>
+                  </AccordionContent>
+                </AccordionItem>
+                <AccordionItem value="dash-alerts">
+                  <AccordionTrigger>Alerts &amp; Interventions</AccordionTrigger>
+                  <AccordionContent>
+                    <ul className="space-y-2 list-disc pl-4">
+                      <li>Configurable missed-dose alerts sent to assigned care team members</li>
+                      <li>Escalation rules: missed dose &rarr; team notification &rarr; caregiver contact</li>
+                      <li>Intervention logging &mdash; document outreach attempts and outcomes</li>
+                      <li>Priority queue &mdash; patients most at risk surfaced first</li>
+                    </ul>
+                  </AccordionContent>
+                </AccordionItem>
+                <AccordionItem value="dash-admin">
+                  <AccordionTrigger>Administration &amp; Security</AccordionTrigger>
+                  <AccordionContent>
+                    <ul className="space-y-2 list-disc pl-4">
+                      <li>Role-based access control (RBAC) &mdash; researcher, clinician, coordinator, admin</li>
+                      <li>Remote regimen deployment and modification &mdash; no patient visit required</li>
+                      <li>Audit trail for all configuration changes</li>
+                      <li>Multi-site support for health system deployments</li>
+                      <li>SSO integration (SAML 2.0 / OAuth 2.0)</li>
+                    </ul>
+                  </AccordionContent>
+                </AccordionItem>
+              </Accordion>
+            </div>
           </FadeUp>
         </div>
       </section>

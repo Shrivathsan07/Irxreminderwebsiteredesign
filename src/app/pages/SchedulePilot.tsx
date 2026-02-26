@@ -1,44 +1,28 @@
-import { useState } from "react";
+import { useForm } from "react-hook-form";
 import { Button } from "../components/ui/button";
 import { Input } from "../components/ui/input";
 import { Label } from "../components/ui/label";
 import { Shield, TrendingUp, Award } from "lucide-react";
 import { motion } from "motion/react";
+import { FadeUp } from "@/app/components/animations";
 
-function FadeUp({
-  children,
-  delay = 0,
-  className = "",
-}: {
-  children: React.ReactNode;
-  delay?: number;
-  className?: string;
-}) {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 24 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-60px" }}
-      transition={{ duration: 0.5, delay, type: "spring", stiffness: 300, damping: 30 }}
-      className={className}
-    >
-      {children}
-    </motion.div>
-  );
+interface PilotFormData {
+  name: string;
+  title: string;
+  organization: string;
+  email: string;
+  phone: string;
 }
 
 export function SchedulePilot() {
-  const [formData, setFormData] = useState({
-    name: "",
-    title: "",
-    organization: "",
-    email: "",
-    phone: "",
-  });
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<PilotFormData>();
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log("Pilot request submitted:", formData);
+  const onSubmit = (data: PilotFormData) => {
+    console.log("Pilot request submitted:", data);
     alert(
       "Thank you! We will contact you within 24 hours to discuss your pilot program."
     );
@@ -78,7 +62,7 @@ export function SchedulePilot() {
             <div className="lg:col-span-2">
               <FadeUp>
                 <form
-                  onSubmit={handleSubmit}
+                  onSubmit={handleSubmit(onSubmit)}
                   className="bg-white border border-gray-100 rounded-2xl p-8 shadow-[0_1px_3px_rgba(30,58,138,0.04),0_8px_24px_rgba(30,58,138,0.06)]"
                 >
                   <h2 className="text-2xl font-bold text-[#1e3a8a] mb-6 tracking-tight">
@@ -91,25 +75,25 @@ export function SchedulePilot() {
                         <Label htmlFor="name">Name *</Label>
                         <Input
                           id="name"
-                          required
-                          value={formData.name}
-                          onChange={(e) =>
-                            setFormData({ ...formData, name: e.target.value })
-                          }
+                          {...register("name", { required: "Name is required" })}
+                          aria-describedby={errors.name ? "name-error" : undefined}
                           className="mt-1.5"
                         />
+                        {errors.name && (
+                          <p id="name-error" className="text-sm text-red-500 mt-1">{errors.name.message}</p>
+                        )}
                       </div>
                       <div>
                         <Label htmlFor="title">Title *</Label>
                         <Input
                           id="title"
-                          required
-                          value={formData.title}
-                          onChange={(e) =>
-                            setFormData({ ...formData, title: e.target.value })
-                          }
+                          {...register("title", { required: "Title is required" })}
+                          aria-describedby={errors.title ? "title-error" : undefined}
                           className="mt-1.5"
                         />
+                        {errors.title && (
+                          <p id="title-error" className="text-sm text-red-500 mt-1">{errors.title.message}</p>
+                        )}
                       </div>
                     </div>
 
@@ -117,16 +101,13 @@ export function SchedulePilot() {
                       <Label htmlFor="organization">Organization *</Label>
                       <Input
                         id="organization"
-                        required
-                        value={formData.organization}
-                        onChange={(e) =>
-                          setFormData({
-                            ...formData,
-                            organization: e.target.value,
-                          })
-                        }
+                        {...register("organization", { required: "Organization is required" })}
+                        aria-describedby={errors.organization ? "organization-error" : undefined}
                         className="mt-1.5"
                       />
+                      {errors.organization && (
+                        <p id="organization-error" className="text-sm text-red-500 mt-1">{errors.organization.message}</p>
+                      )}
                     </div>
 
                     <div className="grid md:grid-cols-2 gap-6">
@@ -135,26 +116,32 @@ export function SchedulePilot() {
                         <Input
                           id="email"
                           type="email"
-                          required
-                          value={formData.email}
-                          onChange={(e) =>
-                            setFormData({ ...formData, email: e.target.value })
-                          }
+                          {...register("email", {
+                            required: "Email is required",
+                            pattern: {
+                              value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                              message: "Enter a valid email address",
+                            },
+                          })}
+                          aria-describedby={errors.email ? "email-error" : undefined}
                           className="mt-1.5"
                         />
+                        {errors.email && (
+                          <p id="email-error" className="text-sm text-red-500 mt-1">{errors.email.message}</p>
+                        )}
                       </div>
                       <div>
                         <Label htmlFor="phone">Phone *</Label>
                         <Input
                           id="phone"
                           type="tel"
-                          required
-                          value={formData.phone}
-                          onChange={(e) =>
-                            setFormData({ ...formData, phone: e.target.value })
-                          }
+                          {...register("phone", { required: "Phone is required" })}
+                          aria-describedby={errors.phone ? "phone-error" : undefined}
                           className="mt-1.5"
                         />
+                        {errors.phone && (
+                          <p id="phone-error" className="text-sm text-red-500 mt-1">{errors.phone.message}</p>
+                        )}
                       </div>
                     </div>
 
