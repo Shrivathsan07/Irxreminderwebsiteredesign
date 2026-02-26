@@ -11,6 +11,8 @@ import { Contact } from "./pages/Contact";
 import { SchedulePilot } from "./pages/SchedulePilot";
 import { RootLayout } from "./components/RootLayout";
 
+const basename = import.meta.env.BASE_URL.replace(/\/$/, "");
+
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -39,4 +41,4 @@ export const router = createBrowserRouter([
       { path: "*", element: <Navigate to="/" replace /> },
     ],
   },
-]);
+], { basename });
