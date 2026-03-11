@@ -1,11 +1,35 @@
 import { Link } from "react-router";
 import { useState } from "react";
-import { ArrowRight, Shield, Wifi, DollarSign, Mail, GraduationCap, Factory, Code2, ChevronDown, TrendingUp, Users, Award, Trophy } from "lucide-react";
+import {
+  ArrowRight,
+  Shield,
+  Wifi,
+  DollarSign,
+  Mail,
+  GraduationCap,
+  Factory,
+  Code2,
+  ChevronDown,
+  TrendingUp,
+  Users,
+  Award,
+  Trophy,
+  FileCheck,
+  FlaskConical,
+  Lock,
+  CheckCircle2,
+} from "lucide-react";
 import { Button } from "../components/ui/button";
 import { ImageWithFallback } from "../components/figma/ImageWithFallback";
 import { motion } from "motion/react";
-import { FadeUp, Section, CountUp } from "@/app/components/animations";
+import { FadeUp, Section } from "@/app/components/animations";
+import { GrainTexture } from "@/app/components/GrainTexture";
 import { useReducedMotion } from "@/app/hooks/useReducedMotion";
+import { SectionDivider } from "@/app/components/SectionDivider";
+import { BentoGrid } from "@/app/components/BentoGrid";
+import { TimelineTrack } from "@/app/components/TimelineTrack";
+import { FloatingBadgeGroup } from "@/app/components/FloatingBadge";
+import { StatCard } from "@/app/components/StatCard";
 
 const leaders = [
   {
@@ -61,7 +85,9 @@ const universityPartners = [
 ];
 
 function LeaderCards() {
-  const [expandedBios, setExpandedBios] = useState<Record<string, boolean>>({});
+  const [expandedBios, setExpandedBios] = useState<Record<string, boolean>>(
+    {}
+  );
 
   const toggleBio = (name: string) => {
     setExpandedBios((prev) => ({ ...prev, [name]: !prev[name] }));
@@ -79,10 +105,20 @@ function LeaderCards() {
             <div
               className={`flex flex-col ${
                 index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
-              } gap-8 items-center bg-white p-6 md:p-10 rounded-2xl border border-gray-100 shadow-[0_1px_3px_rgba(30,58,138,0.04),0_4px_12px_rgba(30,58,138,0.06),0_16px_40px_rgba(30,58,138,0.06)]`}
+              } gap-8 items-center bg-white p-6 md:p-10 rounded-2xl border border-gray-100`}
+              style={{
+                boxShadow:
+                  "0 1px 3px rgba(30,58,138,0.04), 0 4px 12px rgba(30,58,138,0.06), 0 16px 40px rgba(30,58,138,0.06)",
+              }}
             >
               <div className="md:w-1/3 flex-shrink-0">
-                <div className="relative overflow-hidden rounded-2xl shadow-[0_4px_16px_rgba(30,58,138,0.1),0_12px_32px_rgba(30,58,138,0.08)]">
+                <div
+                  className="relative overflow-hidden rounded-2xl"
+                  style={{
+                    boxShadow:
+                      "0 4px 16px rgba(30,58,138,0.1), 0 12px 32px rgba(30,58,138,0.08)",
+                  }}
+                >
                   {leader.image ? (
                     <ImageWithFallback
                       src={leader.image}
@@ -92,7 +128,11 @@ function LeaderCards() {
                   ) : (
                     <div className="w-full aspect-square bg-gradient-to-br from-[#1e3a8a] to-[#2d4fa6] flex items-center justify-center">
                       <span className="text-6xl md:text-7xl font-bold text-white/90 tracking-tight select-none">
-                        {leader.name.split(" ").map((n) => n[0]).filter((_, i, a) => i === 0 || i === a.length - 1).join("")}
+                        {leader.name
+                          .split(" ")
+                          .map((n) => n[0])
+                          .filter((_, i, a) => i === 0 || i === a.length - 1)
+                          .join("")}
                       </span>
                     </div>
                   )}
@@ -100,10 +140,15 @@ function LeaderCards() {
                 </div>
               </div>
               <div className="md:w-2/3">
-                <h3 className="text-2xl md:text-3xl font-bold text-[#1e3a8a] mb-2 tracking-tight">
+                <h3
+                  className="text-2xl md:text-3xl font-bold text-[#1e3a8a] mb-2 tracking-tight"
+                  style={{ fontFamily: "var(--font-display)" }}
+                >
                   {leader.name}
                 </h3>
-                <div className="text-[#0891b2] font-semibold text-lg mb-5">{leader.title}</div>
+                <div className="text-[#0891b2] font-semibold text-lg mb-5">
+                  {leader.title}
+                </div>
                 <p className="text-gray-600 leading-relaxed mb-3">
                   {isExpanded || !hasMore ? leader.bio : firstSentence}
                 </p>
@@ -113,7 +158,9 @@ function LeaderCards() {
                     className="inline-flex items-center gap-1.5 text-[#0891b2] hover:text-[#0e7490] font-semibold text-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0891b2]/40 focus-visible:ring-offset-2 rounded-sm mb-4"
                   >
                     {isExpanded ? "Show less" : "Read full bio"}
-                    <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${isExpanded ? "rotate-180" : ""}`} />
+                    <ChevronDown
+                      className={`w-3.5 h-3.5 transition-transform duration-200 ${isExpanded ? "rotate-180" : ""}`}
+                    />
                   </button>
                 )}
                 {leader.email && (
@@ -138,15 +185,36 @@ function LeaderCards() {
 
 export function About() {
   const prefersReducedMotion = useReducedMotion();
-  const heroAnimation = prefersReducedMotion ? {} : { initial: { opacity: 0, y: 30 }, animate: { opacity: 1, y: 0 }, transition: { duration: 0.7, type: "spring", stiffness: 300, damping: 30 } };
-  const heroFadeIn = prefersReducedMotion ? {} : { initial: { opacity: 0 }, animate: { opacity: 1 }, transition: { duration: 0.6, delay: 0.5 } };
+  const heroAnimation = prefersReducedMotion
+    ? {}
+    : {
+        initial: { opacity: 0, y: 30 },
+        animate: { opacity: 1, y: 0 },
+        transition: {
+          duration: 0.7,
+          type: "spring",
+          stiffness: 300,
+          damping: 30,
+        },
+      };
+  const heroFadeIn = prefersReducedMotion
+    ? {}
+    : {
+        initial: { opacity: 0 },
+        animate: { opacity: 1 },
+        transition: { duration: 0.6, delay: 0.5 },
+      };
 
   return (
     <div className="bg-white overflow-hidden">
-      {/* ======= HERO ======= */}
+      {/* ═══ HERO ═══ */}
       <section className="relative min-h-[60vh] flex items-center overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-[#0f1d3d] via-[#152c6e] to-[#1e3a8a]" />
         <div className="absolute top-1/3 right-0 w-[700px] h-[700px] bg-[#0891b2]/20 rounded-full blur-[120px]" />
+        {/* Decorative geometric accents */}
+        <div className="absolute top-[20%] left-[8%] w-32 h-32 border border-white/[0.04] rounded-full" />
+        <div className="absolute bottom-[15%] left-[12%] w-20 h-20 border border-white/[0.06] rounded-full" />
+        <GrainTexture opacity={0.04} />
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-32">
           <div className="max-w-3xl">
@@ -154,32 +222,35 @@ export function About() {
               <p className="text-[#0891b2] font-semibold text-sm tracking-widest uppercase mb-6">
                 Our Story
               </p>
-              <h1 className="text-5xl sm:text-6xl lg:text-7xl font-extrabold text-white tracking-tight leading-[1.05] mb-6">
+              <h1
+                className="text-5xl sm:text-6xl lg:text-7xl font-extrabold text-white tracking-tight leading-[1.05] mb-6"
+                style={{ fontFamily: "var(--font-display)" }}
+              >
                 Built from a
                 <br />
                 <span className="text-[#0891b2]">decade of research.</span>
               </h1>
-              <p className="text-xl md:text-2xl text-blue-100/90 leading-relaxed max-w-2xl">
+              <p className="text-xl md:text-2xl text-blue-200 leading-relaxed max-w-2xl">
                 Dr. Anthony Sterns spent ten years studying why people with
-                dementia lose their independence. The answer kept coming back
-                to one thing: medication. That&rsquo;s why he built iRxReminder.
+                dementia lose their independence. The answer kept coming back to
+                one thing: medication. That&rsquo;s why he built iRxReminder.
               </p>
             </motion.div>
 
             <motion.div
               {...heroFadeIn}
-              className="mt-12 flex flex-wrap items-center gap-6 text-sm text-blue-200/70"
+              className="mt-12 flex flex-wrap items-center gap-6 text-sm text-blue-200"
             >
               <span className="flex items-center gap-2">
-                <Shield className="w-4 h-4 text-[#0891b2]" />
+                <FlaskConical className="w-4 h-4 text-[#0891b2]" />
                 10+ Years R&amp;D
               </span>
               <span className="flex items-center gap-2">
-                <Shield className="w-4 h-4 text-[#0891b2]" />
+                <FileCheck className="w-4 h-4 text-[#0891b2]" />
                 12 US Patents
               </span>
               <span className="flex items-center gap-2">
-                <Shield className="w-4 h-4 text-[#0891b2]" />
+                <Award className="w-4 h-4 text-[#0891b2]" />
                 NIH-Funded
               </span>
             </motion.div>
@@ -187,16 +258,20 @@ export function About() {
         </div>
       </section>
 
-      {/* ======= MISSION ======= */}
+      {/* ═══ MISSION ═══ */}
       <Section className="py-24 md:py-32 bg-white">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <FadeUp>
             <p className="text-[#0891b2] font-semibold text-sm tracking-widest uppercase mb-4 text-center">
               Our Mission
             </p>
-            <h2 className="text-4xl md:text-5xl font-bold text-[#1e3a8a] text-center mb-8 tracking-tight">
+            <h2
+              className="text-4xl md:text-5xl font-bold text-[#1e3a8a] text-center mb-8 tracking-tight"
+              style={{ fontFamily: "var(--font-display)" }}
+            >
               Give Patients and Their Healthcare Teams
-              <br className="hidden md:block" /> the Tools to Manage Medications Together
+              <br className="hidden md:block" /> the Tools to Manage Medications
+              Together
             </h2>
             <p className="text-xl text-gray-600 text-center max-w-3xl mx-auto leading-relaxed">
               We have effective medications for nearly every chronic condition.
@@ -205,41 +280,64 @@ export function About() {
             </p>
           </FadeUp>
 
-          {/* Impact numbers */}
+          {/* Impact numbers — using StatCards */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-16">
-            {[
-              { value: "500K+", label: "Older adults impacted" },
-              { value: "2,400+", label: "Facilities worldwide" },
-              { value: "7", label: "Countries reached" },
-              { value: "83%", label: "Adherence rate achieved" },
-            ].map((stat, i) => (
-              <FadeUp key={stat.value} delay={0.1 + i * 0.08}>
-                <div className="text-center p-6 md:p-8 rounded-xl bg-[#f8fafc] border border-gray-100 shadow-[0_1px_3px_rgba(30,58,138,0.04),0_4px_12px_rgba(30,58,138,0.06)]">
-                  <div className="text-3xl md:text-4xl font-extrabold text-[#1e3a8a] mb-2 tracking-tight">
-                    {stat.value}
-                  </div>
-                  <div className="text-sm text-gray-500 leading-snug">{stat.label}</div>
-                </div>
-              </FadeUp>
-            ))}
+            <StatCard
+              end={500}
+              suffix="K+"
+              label="Older Adults Impacted"
+              variant="elevated"
+              color="#1e3a8a"
+            />
+            <StatCard
+              end={2400}
+              suffix="+"
+              label="Facilities Worldwide"
+              variant="elevated"
+              color="#0891b2"
+            />
+            <StatCard
+              end={7}
+              label="Countries Reached"
+              variant="elevated"
+              color="#1e3a8a"
+            />
+            <StatCard
+              end={83}
+              suffix="%"
+              label="Adherence Rate"
+              variant="elevated"
+              color="#0891b2"
+            />
           </div>
         </div>
       </Section>
 
-      {/* ======= ORIGIN STORY ======= */}
+      <SectionDivider fromColor="#ffffff" toColor="#f8fafc" direction="right" />
+
+      {/* ═══ ORIGIN STORY ═══ */}
       <Section className="py-24 md:py-32 bg-[#f8fafc]">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <FadeUp>
             <p className="text-[#0891b2] font-semibold text-sm tracking-widest uppercase mb-4 text-center">
               Why We Exist
             </p>
-            <h2 className="text-4xl md:text-5xl font-bold text-[#1e3a8a] text-center mb-16 tracking-tight">
+            <h2
+              className="text-4xl md:text-5xl font-bold text-[#1e3a8a] text-center mb-16 tracking-tight"
+              style={{ fontFamily: "var(--font-display)" }}
+            >
               The Problem Was Never the Medication
             </h2>
           </FadeUp>
 
           <FadeUp delay={0.1}>
-            <div className="relative bg-white p-8 md:p-12 rounded-2xl border border-[#1e3a8a]/10 shadow-[0_1px_3px_rgba(30,58,138,0.04),0_4px_12px_rgba(30,58,138,0.06),0_16px_40px_rgba(30,58,138,0.06)]">
+            <div
+              className="relative bg-white p-8 md:p-12 rounded-2xl border border-[#1e3a8a]/10"
+              style={{
+                boxShadow:
+                  "0 1px 3px rgba(30,58,138,0.04), 0 4px 12px rgba(30,58,138,0.06), 0 16px 40px rgba(30,58,138,0.06)",
+              }}
+            >
               <div className="absolute top-6 left-8 text-[#1e3a8a]/10 text-8xl font-serif leading-none">
                 &ldquo;
               </div>
@@ -252,9 +350,11 @@ export function About() {
                 </p>
                 <p className="text-lg md:text-xl text-gray-700 leading-relaxed">
                   Medication non-adherence costs the U.S. healthcare system{" "}
-                  <strong className="text-[#1e3a8a]">$300 billion+ annually</strong>{" "}
-                  and takes 125,000 lives each year. Existing tools were part
-                  of the problem&nbsp;&mdash; pill organizers cause sorting errors,
+                  <strong className="text-[#1e3a8a]">
+                    $300 billion+ annually
+                  </strong>{" "}
+                  and takes 125,000 lives each year. Existing tools were part of
+                  the problem&nbsp;&mdash; pill organizers cause sorting errors,
                   text reminders get ignored, bottle caps count openings without
                   knowing if the right dose was taken. Every existing approach
                   added burden instead of removing it.
@@ -265,68 +365,72 @@ export function About() {
         </div>
       </Section>
 
-      {/* ======= SAFE. CONNECTED. REIMBURSABLE. ======= */}
+      <SectionDivider fromColor="#f8fafc" toColor="#ffffff" direction="left" />
+
+      {/* ═══ WHAT WE BUILT — BentoGrid ═══ */}
       <Section className="py-24 md:py-32 bg-white">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <FadeUp>
             <p className="text-[#0891b2] font-semibold text-sm tracking-widest uppercase mb-4 text-center">
               What We Built
             </p>
-            <h2 className="text-4xl md:text-5xl font-bold text-[#1e3a8a] text-center mb-16 tracking-tight">
+            <h2
+              className="text-4xl md:text-5xl font-bold text-[#1e3a8a] text-center mb-16 tracking-tight"
+              style={{ fontFamily: "var(--font-display)" }}
+            >
               Safe. Connected. Reimbursable.
             </h2>
           </FadeUp>
 
-          <div className="grid md:grid-cols-3 gap-8">
-            {[
+          <BentoGrid
+            items={[
               {
                 icon: Shield,
                 title: "Safe",
+                description:
+                  "Pharmacist-filled pods. Gesture-based dispensing. 83% adherence in clinical trials. No sorting errors. No double-dosing.",
                 color: "#1e3a8a",
-                desc: "Pharmacist-filled pods. Gesture-based dispensing. 83% adherence in clinical trials. No sorting errors. No double-dosing.",
+                stat: "83%",
+                span: "large",
               },
               {
                 icon: Wifi,
                 title: "Connected",
+                description:
+                  "Real-time data from patient to care team. Intervene when needed. Not after the ER visit.",
                 color: "#0891b2",
-                desc: "Real-time data from patient to care team. Intervene when needed. Not after the ER visit.",
               },
               {
                 icon: DollarSign,
                 title: "Reimbursable",
+                description:
+                  "RPM/RTM billing codes generate 3x cost recovery. Financially sustainable for health systems.",
                 color: "#1e3a8a",
-                desc: "RPM/RTM billing codes generate 3x cost recovery. Financially sustainable for health systems.",
+                stat: "3\u00d7",
               },
-            ].map((pillar, i) => (
-              <FadeUp key={pillar.title} delay={0.1 + i * 0.1}>
-                <div className="group relative bg-[#f8fafc] p-8 md:p-10 rounded-2xl border border-gray-100 shadow-[0_1px_3px_rgba(8,145,178,0.04),0_4px_12px_rgba(8,145,178,0.06),0_16px_40px_rgba(30,58,138,0.06)] hover:shadow-[0_1px_3px_rgba(8,145,178,0.06),0_8px_20px_rgba(8,145,178,0.1),0_24px_48px_rgba(30,58,138,0.1)] transition-[box-shadow,transform] duration-300 hover:-translate-y-1 h-full">
-                  <div
-                    className="w-12 h-12 rounded-xl flex items-center justify-center mb-6"
-                    style={{ backgroundColor: `${pillar.color}10` }}
-                  >
-                    <pillar.icon className="w-6 h-6" style={{ color: pillar.color }} />
-                  </div>
-                  <h3 className="text-2xl font-bold text-gray-900 mb-4">{pillar.title}</h3>
-                  <p className="text-gray-600 leading-relaxed">{pillar.desc}</p>
-                </div>
-              </FadeUp>
-            ))}
-          </div>
+            ]}
+          />
         </div>
       </Section>
 
-      {/* ======= LEADERSHIP TEAM ======= */}
+      <SectionDivider fromColor="#ffffff" toColor="#f8fafc" direction="right" />
+
+      {/* ═══ LEADERSHIP TEAM ═══ */}
       <Section className="py-24 md:py-32 bg-[#f8fafc]">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <FadeUp>
             <p className="text-[#0891b2] font-semibold text-sm tracking-widest uppercase mb-4 text-center">
               Leadership
             </p>
-            <h2 className="text-4xl md:text-5xl font-bold text-[#1e3a8a] text-center mb-4 tracking-tight">
+            <h2
+              className="text-4xl md:text-5xl font-bold text-[#1e3a8a] text-center mb-4 tracking-tight"
+              style={{ fontFamily: "var(--font-display)" }}
+            >
               The Team
             </h2>
             <p className="text-xl text-gray-600 text-center mb-16 max-w-3xl mx-auto leading-relaxed">
-              Healthcare, clinical medicine, regulatory affairs, and enterprise software.
+              Healthcare, clinical medicine, regulatory affairs, and enterprise
+              software.
             </p>
           </FadeUp>
 
@@ -334,40 +438,64 @@ export function About() {
         </div>
       </Section>
 
-      {/* ======= STRATEGIC PARTNERS ======= */}
+      <SectionDivider fromColor="#f8fafc" toColor="#ffffff" direction="left" />
+
+      {/* ═══ STRATEGIC PARTNERS ═══ */}
       <Section className="py-24 md:py-32 bg-white">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <FadeUp>
             <p className="text-[#0891b2] font-semibold text-sm tracking-widest uppercase mb-4 text-center">
               Our Ecosystem
             </p>
-            <h2 className="text-4xl md:text-5xl font-bold text-[#1e3a8a] text-center mb-16 tracking-tight">
+            <h2
+              className="text-4xl md:text-5xl font-bold text-[#1e3a8a] text-center mb-16 tracking-tight"
+              style={{ fontFamily: "var(--font-display)" }}
+            >
               Partners &amp; Collaborators
             </h2>
           </FadeUp>
 
           <div className="grid md:grid-cols-2 gap-8 mb-12">
             <FadeUp delay={0.1}>
-              <div className="bg-[#f8fafc] p-8 md:p-10 rounded-2xl border border-gray-100 shadow-[0_1px_3px_rgba(30,58,138,0.04),0_4px_12px_rgba(30,58,138,0.06),0_16px_40px_rgba(30,58,138,0.06)] h-full">
+              <div
+                className="bg-[#f8fafc] p-8 md:p-10 rounded-2xl border border-gray-100 h-full"
+                style={{
+                  boxShadow:
+                    "0 1px 3px rgba(30,58,138,0.04), 0 4px 12px rgba(30,58,138,0.06), 0 16px 40px rgba(30,58,138,0.06)",
+                }}
+              >
                 <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-6 bg-[#1e3a8a]/10">
                   <Factory className="w-6 h-6 text-[#1e3a8a]" />
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-6">Manufacturing</h3>
+                <h3
+                  className="text-xl font-bold text-gray-900 mb-6"
+                  style={{ fontFamily: "var(--font-display)" }}
+                >
+                  Manufacturing
+                </h3>
                 <ul className="space-y-4">
                   <li className="flex items-start gap-3">
                     <div className="w-1.5 h-1.5 rounded-full bg-[#1e3a8a] mt-2.5 flex-shrink-0" />
                     <div>
-                      <span className="font-semibold text-gray-900">Parallel Design Inc.</span>
+                      <span className="font-semibold text-gray-900">
+                        Parallel Design Inc.
+                      </span>
                       <span className="text-gray-500"> (Wooster, OH)</span>
-                      <p className="text-gray-500 text-sm mt-1">Pod manufacturing and industrial design</p>
+                      <p className="text-gray-500 text-sm mt-1">
+                        Pod manufacturing and industrial design
+                      </p>
                     </div>
                   </li>
                   <li className="flex items-start gap-3">
                     <div className="w-1.5 h-1.5 rounded-full bg-[#1e3a8a] mt-2.5 flex-shrink-0" />
                     <div>
-                      <span className="font-semibold text-gray-900">LogiSync</span>
+                      <span className="font-semibold text-gray-900">
+                        LogiSync
+                      </span>
                       <span className="text-gray-500"> (Avon Lake, OH)</span>
-                      <p className="text-gray-500 text-sm mt-1">Electronics manufacturing and assembly</p>
+                      <p className="text-gray-500 text-sm mt-1">
+                        Electronics manufacturing and assembly
+                      </p>
                     </div>
                   </li>
                 </ul>
@@ -375,30 +503,51 @@ export function About() {
             </FadeUp>
 
             <FadeUp delay={0.2}>
-              <div className="bg-[#f8fafc] p-8 md:p-10 rounded-2xl border border-gray-100 shadow-[0_1px_3px_rgba(30,58,138,0.04),0_4px_12px_rgba(30,58,138,0.06),0_16px_40px_rgba(30,58,138,0.06)] h-full">
+              <div
+                className="bg-[#f8fafc] p-8 md:p-10 rounded-2xl border border-gray-100 h-full"
+                style={{
+                  boxShadow:
+                    "0 1px 3px rgba(30,58,138,0.04), 0 4px 12px rgba(30,58,138,0.06), 0 16px 40px rgba(30,58,138,0.06)",
+                }}
+              >
                 <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-6 bg-[#0891b2]/10">
                   <Code2 className="w-6 h-6 text-[#0891b2]" />
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-6">Development &amp; Support</h3>
+                <h3
+                  className="text-xl font-bold text-gray-900 mb-6"
+                  style={{ fontFamily: "var(--font-display)" }}
+                >
+                  Development &amp; Support
+                </h3>
                 <ul className="space-y-4">
                   <li className="flex items-start gap-3">
                     <div className="w-1.5 h-1.5 rounded-full bg-[#0891b2] mt-2.5 flex-shrink-0" />
                     <div>
-                      <span className="font-semibold text-gray-900">InterSystems</span>
-                      <p className="text-gray-500 text-sm mt-1">Development partner</p>
+                      <span className="font-semibold text-gray-900">
+                        InterSystems
+                      </span>
+                      <p className="text-gray-500 text-sm mt-1">
+                        Development partner
+                      </p>
                     </div>
                   </li>
                   <li className="flex items-start gap-3">
                     <div className="w-1.5 h-1.5 rounded-full bg-[#0891b2] mt-2.5 flex-shrink-0" />
                     <div>
-                      <span className="font-semibold text-gray-900">BioEnterprise</span>
-                      <p className="text-gray-500 text-sm mt-1">Portfolio company</p>
+                      <span className="font-semibold text-gray-900">
+                        BioEnterprise
+                      </span>
+                      <p className="text-gray-500 text-sm mt-1">
+                        Portfolio company
+                      </p>
                     </div>
                   </li>
                   <li className="flex items-start gap-3">
                     <div className="w-1.5 h-1.5 rounded-full bg-[#0891b2] mt-2.5 flex-shrink-0" />
                     <div>
-                      <span className="font-semibold text-gray-900">MAGNET Incubator</span>
+                      <span className="font-semibold text-gray-900">
+                        MAGNET Incubator
+                      </span>
                       <span className="text-gray-500"> (Cleveland, OH)</span>
                     </div>
                   </li>
@@ -414,12 +563,22 @@ export function About() {
                 <div className="w-10 h-10 rounded-lg flex items-center justify-center bg-[#1e3a8a]/10">
                   <GraduationCap className="w-5 h-5 text-[#1e3a8a]" />
                 </div>
-                <h3 className="text-xl font-bold text-gray-900">University &amp; Research Collaborators</h3>
+                <h3
+                  className="text-xl font-bold text-gray-900"
+                  style={{ fontFamily: "var(--font-display)" }}
+                >
+                  University &amp; Research Collaborators
+                </h3>
               </div>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                 {universityPartners.map((partner, i) => (
                   <FadeUp key={partner} delay={0.3 + i * 0.04}>
-                    <div className="bg-white px-4 py-3 rounded-xl text-center text-gray-700 font-medium text-sm border border-gray-100 shadow-[0_1px_3px_rgba(30,58,138,0.04)]">
+                    <div
+                      className="bg-white px-4 py-3 rounded-xl text-center text-gray-700 font-medium text-sm border border-gray-100"
+                      style={{
+                        boxShadow: "0 1px 3px rgba(30,58,138,0.04)",
+                      }}
+                    >
                       {partner}
                     </div>
                   </FadeUp>
@@ -430,103 +589,155 @@ export function About() {
         </div>
       </Section>
 
-      {/* ======= MARKET OPPORTUNITY ======= */}
-      <Section className="py-24 md:py-32 bg-[#f8fafc]">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* ═══ MARKET OPPORTUNITY — Dark Band ═══ */}
+      <section className="relative py-24 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-[#0a1628] via-[#152c6e] to-[#1e3a8a]" />
+        <div className="absolute top-1/3 left-1/4 w-[600px] h-[600px] bg-[#0891b2]/10 rounded-full blur-[120px]" />
+        <GrainTexture opacity={0.04} />
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <FadeUp>
-            <p className="text-[#0891b2] font-semibold text-sm tracking-widest uppercase mb-4 text-center">
+            <p className="text-center text-sm font-semibold uppercase tracking-widest text-[#0891b2] mb-4">
               Market Opportunity
             </p>
-            <h2 className="text-4xl md:text-5xl font-bold text-[#1e3a8a] text-center mb-16 tracking-tight">
+            <h2
+              className="text-3xl md:text-4xl font-bold text-white text-center mb-14 tracking-tight"
+              style={{ fontFamily: "var(--font-display)" }}
+            >
               The Numbers Behind the Opportunity
             </h2>
           </FadeUp>
 
-          <div className="grid md:grid-cols-3 gap-8">
-            {[
-              { end: 15, prefix: "$", suffix: "B", label: "Market Size", desc: "Global medication adherence market by 2030", color: "#0891b2" },
-              { end: 10, suffix: "M+", label: "Patients", desc: "Americans with complex multi-drug regimens requiring monitoring", color: "#1e3a8a" },
-              { end: 2, suffix: "\u00d7", label: "Population Growth", desc: "Older adult population doubling by 2030", color: "#0891b2" },
-            ].map((stat, i) => (
-              <FadeUp key={stat.label} delay={0.1 + i * 0.1}>
-                <div className="text-center p-8 md:p-10 rounded-2xl bg-white border border-gray-100 shadow-[0_1px_3px_rgba(8,145,178,0.04),0_4px_12px_rgba(8,145,178,0.06),0_16px_40px_rgba(30,58,138,0.06)]">
-                  <div className="text-5xl md:text-6xl font-extrabold mb-2 tracking-tight" style={{ color: stat.color }}>
-                    <CountUp end={stat.end} prefix={stat.prefix} suffix={stat.suffix} />
-                  </div>
-                  <div className="text-sm font-semibold text-gray-400 uppercase tracking-widest mb-3">
-                    {stat.label}
-                  </div>
-                  <p className="text-gray-600 leading-relaxed text-sm">
-                    {stat.desc}
-                  </p>
-                </div>
-              </FadeUp>
-            ))}
+          <div className="grid md:grid-cols-3 gap-6">
+            <StatCard
+              end={15}
+              prefix="$"
+              suffix="B"
+              label="Market Size"
+              description="Global medication adherence market by 2030"
+              variant="glass"
+              color="#0891b2"
+            />
+            <StatCard
+              end={10}
+              suffix="M+"
+              label="Patients"
+              description="Americans with complex multi-drug regimens requiring monitoring"
+              variant="glass"
+              color="#06a7ce"
+            />
+            <StatCard
+              end={2}
+              suffix="\u00d7"
+              label="Population Growth"
+              description="Older adult population doubling by 2030"
+              variant="glass"
+              color="#0891b2"
+            />
           </div>
         </div>
-      </Section>
+      </section>
 
-      {/* ======= COMPANY TIMELINE ======= */}
+      <SectionDivider fromColor="#1e3a8a" toColor="#ffffff" direction="right" />
+
+      {/* ═══ COMPANY TIMELINE — using TimelineTrack ═══ */}
       <Section className="py-24 md:py-32 bg-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <FadeUp>
             <p className="text-[#0891b2] font-semibold text-sm tracking-widest uppercase mb-4 text-center">
               Our Journey
             </p>
-            <h2 className="text-4xl md:text-5xl font-bold text-[#1e3a8a] text-center mb-16 tracking-tight">
+            <h2
+              className="text-4xl md:text-5xl font-bold text-[#1e3a8a] text-center mb-16 tracking-tight"
+              style={{ fontFamily: "var(--font-display)" }}
+            >
               From Research to Platform
             </h2>
           </FadeUp>
 
-          <div className="relative">
-            <div className="absolute left-[23px] top-0 bottom-0 w-px bg-gradient-to-b from-[#0891b2]/40 via-[#1e3a8a]/20 to-transparent hidden md:block" />
-
-            <div className="space-y-8">
-              {[
-                { year: "2010\u20132015", title: "NIH-Funded Research", description: "Dr. Sterns conducts decade-long research into medication adherence for aging populations. Memory Magic program impacts 500K+ older adults.", icon: GraduationCap, color: "#1e3a8a" },
-                { year: "2015\u20132017", title: "Platform Development", description: "First iLidRx pod prototypes developed. 12 US patents filed and granted. Hold, Place, and Tilt\u2122 dispensing mechanism invented.", icon: Factory, color: "#0891b2" },
-                { year: "2017\u20132019", title: "Industry Recognition", description: "AMIA PitchIT Grand Prize. Best Tech Startup in Cleveland. AARP/MedCity 50+ Innovation Leader.", icon: Trophy, color: "#1e3a8a" },
-                { year: "2019\u20132021", title: "Clinical Validation", description: "NIH adherence study across 350+ participants: 48% \u2192 80%+ improvement. University of Michigan Cancer Center trial: 25% fewer dropouts.", icon: TrendingUp, color: "#0891b2" },
-                { year: "2021\u20132022", title: "Accelerator Growth", description: "NewChip, OCEAN, and Whatif! fellowship programs. C-suite expansion with CMO and CSO appointments.", icon: Users, color: "#1e3a8a" },
-                { year: "2023\u2013Present", title: "AI & Diagnostics Expansion", description: "$871K NIMH grant for TDtect\u2122 study. First patients enrolled. FDA Class II clearance pathway underway.", icon: Award, color: "#0891b2" },
-              ].map((milestone, i) => (
-                <FadeUp key={milestone.year} delay={i * 0.08}>
-                  <div className="flex items-start gap-5 md:gap-6">
-                    <div className="flex-shrink-0 relative z-10">
-                      <div
-                        className="w-12 h-12 rounded-xl flex items-center justify-center"
-                        style={{ backgroundColor: `${milestone.color}10` }}
-                      >
-                        <milestone.icon className="w-5 h-5" style={{ color: milestone.color }} />
-                      </div>
-                    </div>
-                    <div className="flex-1 pt-1">
-                      <div className="text-xs font-semibold uppercase tracking-wider text-gray-400 mb-1">{milestone.year}</div>
-                      <h3 className="font-bold text-gray-900 text-lg mb-1.5">{milestone.title}</h3>
-                      <p className="text-sm text-gray-500 leading-relaxed">{milestone.description}</p>
-                    </div>
-                  </div>
-                </FadeUp>
-              ))}
-            </div>
-          </div>
+          <TimelineTrack
+            orientation="vertical"
+            items={[
+              {
+                label: "2010\u20132015",
+                title: "NIH-Funded Research",
+                description:
+                  "Dr. Sterns conducts decade-long research into medication adherence for aging populations. Memory Magic program impacts 500K+ older adults.",
+                icon: GraduationCap,
+                color: "#1e3a8a",
+              },
+              {
+                label: "2015\u20132017",
+                title: "Platform Development",
+                description:
+                  "First iLidRx pod prototypes developed. 12 US patents filed and granted. Hold, Place, and Tilt\u2122 dispensing mechanism invented.",
+                icon: Factory,
+                color: "#0891b2",
+              },
+              {
+                label: "2017\u20132019",
+                title: "Industry Recognition",
+                description:
+                  "AMIA PitchIT Grand Prize. Best Tech Startup in Cleveland. AARP/MedCity 50+ Innovation Leader.",
+                icon: Trophy,
+                color: "#1e3a8a",
+              },
+              {
+                label: "2019\u20132021",
+                title: "Clinical Validation",
+                description:
+                  "NIH adherence study across 350+ participants: 48% \u2192 80%+ improvement. University of Michigan Cancer Center trial: 25% fewer dropouts.",
+                icon: TrendingUp,
+                color: "#0891b2",
+              },
+              {
+                label: "2021\u20132022",
+                title: "Accelerator Growth",
+                description:
+                  "NewChip, OCEAN, and Whatif! fellowship programs. C-suite expansion with CMO and CSO appointments.",
+                icon: Users,
+                color: "#1e3a8a",
+              },
+              {
+                label: "2023\u2013Present",
+                title: "AI & Diagnostics Expansion",
+                description:
+                  "$871K NIMH grant for TDtect\u2122 study. First patients enrolled. FDA Class II clearance pathway underway.",
+                icon: Award,
+                color: "#0891b2",
+              },
+            ]}
+          />
         </div>
       </Section>
 
-      {/* ======= CTA ======= */}
+      {/* ═══ CTA ═══ */}
       <Section className="relative py-24 md:py-32 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-[#0f1d3d] via-[#152c6e] to-[#1e3a8a]" />
+        <div className="absolute bottom-0 left-1/3 w-[600px] h-[600px] bg-[#0891b2]/15 rounded-full blur-[100px]" />
+        <GrainTexture opacity={0.04} />
 
         <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <FadeUp>
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 tracking-tight leading-tight">
+            <h2
+              className="text-4xl md:text-5xl font-bold text-white mb-6 tracking-tight leading-tight"
+              style={{ fontFamily: "var(--font-display)" }}
+            >
               See What iRxReminder
               <br />
               Can Do for <span className="text-[#0891b2]">Your Team</span>
             </h2>
-            <p className="text-xl text-blue-100/80 mb-12 max-w-2xl mx-auto leading-relaxed">
+            <p className="text-xl text-blue-200 mb-8 max-w-2xl mx-auto leading-relaxed">
               Schedule a pilot configured for your use case
             </p>
+            <FloatingBadgeGroup
+              variant="glass"
+              className="justify-center mb-10"
+              badges={[
+                { icon: Shield, text: "FDA Cleared" },
+                { icon: Lock, text: "HIPAA Compliant" },
+                { icon: CheckCircle2, text: "NIH-Funded" },
+              ]}
+            />
           </FadeUp>
 
           <FadeUp delay={0.2}>
@@ -545,7 +756,7 @@ export function About() {
                 asChild
                 size="lg"
                 variant="outline"
-                className="border-white/60 hover:border-white/80 text-white hover:bg-white/10 text-lg px-8 py-6 transition-colors"
+                className="border-white/80 bg-white/5 hover:border-white hover:bg-white/15 text-white text-lg px-8 py-6 transition-colors"
               >
                 <Link to="/contact">Contact Us</Link>
               </Button>

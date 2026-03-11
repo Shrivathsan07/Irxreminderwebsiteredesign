@@ -23,14 +23,14 @@ export function Footer() {
             <div className="flex flex-col sm:flex-row gap-3">
               <Link
                 to="/schedule-pilot"
-                className="inline-flex items-center gap-2 px-6 py-3 bg-[#0891b2] hover:bg-[#0e7490] text-white font-medium rounded-lg shadow-[0_1px_3px_rgba(8,145,178,0.3),0_4px_12px_rgba(8,145,178,0.15)] hover:shadow-[0_1px_3px_rgba(8,145,178,0.4),0_6px_16px_rgba(8,145,178,0.2)] transition-[background-color,box-shadow]"
+                className="inline-flex items-center gap-2 px-6 py-3 bg-[#0891b2] hover:bg-[#0e7490] text-white font-medium rounded-lg shadow-[0_1px_3px_rgba(8,145,178,0.3),0_4px_12px_rgba(8,145,178,0.15)] hover:shadow-[0_1px_3px_rgba(8,145,178,0.4),0_6px_16px_rgba(8,145,178,0.2)] transition-[background-color,box-shadow] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#152c6e]"
               >
                 Schedule a Pilot
                 <ArrowRight className="w-4 h-4" />
               </Link>
               <Link
                 to="/roi-calculator"
-                className="inline-flex items-center gap-2 px-6 py-3 bg-white/10 hover:bg-white/15 text-white font-medium rounded-lg border border-white/60 hover:border-white/80 transition-colors"
+                className="inline-flex items-center gap-2 px-6 py-3 bg-white/10 hover:bg-white/15 text-white font-medium rounded-lg border border-white/80 hover:border-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#152c6e]"
               >
                 Calculate Your ROI
               </Link>
@@ -81,7 +81,7 @@ export function Footer() {
                 <li key={link.to}>
                   <Link
                     to={link.to}
-                    className="text-blue-200 hover:text-white transition-colors"
+                    className="text-blue-200 hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0891b2]/40 focus-visible:ring-offset-1 focus-visible:ring-offset-[#152c6e] rounded-sm"
                   >
                     {link.label}
                   </Link>
@@ -102,7 +102,7 @@ export function Footer() {
               <li>
                 <Link
                   to="/roi-calculator"
-                  className="text-blue-200 hover:text-white transition-colors"
+                  className="text-blue-200 hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0891b2]/40 focus-visible:ring-offset-1 focus-visible:ring-offset-[#152c6e] rounded-sm"
                 >
                   ROI Calculator
                 </Link>
@@ -110,7 +110,7 @@ export function Footer() {
               <li>
                 <Link
                   to="/schedule-pilot"
-                  className="text-blue-200 hover:text-white transition-colors"
+                  className="text-blue-200 hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0891b2]/40 focus-visible:ring-offset-1 focus-visible:ring-offset-[#152c6e] rounded-sm"
                 >
                   Schedule a Pilot
                 </Link>
@@ -130,7 +130,7 @@ export function Footer() {
               <li>
                 <a
                   href="tel:3308068675"
-                  className="flex items-center gap-2 text-blue-200 hover:text-white transition-colors"
+                  className="flex items-center gap-2 text-blue-200 hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0891b2]/40 focus-visible:ring-offset-1 focus-visible:ring-offset-[#152c6e] rounded-sm"
                 >
                   <Phone className="w-4 h-4" />
                   <span>330.806.8675</span>
@@ -139,7 +139,7 @@ export function Footer() {
               <li>
                 <a
                   href="mailto:info@irxreminder.com"
-                  className="flex items-center gap-2 text-blue-200 hover:text-white transition-colors"
+                  className="flex items-center gap-2 text-blue-200 hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0891b2]/40 focus-visible:ring-offset-1 focus-visible:ring-offset-[#152c6e] rounded-sm"
                 >
                   <Mail className="w-4 h-4" />
                   <span>info@irxreminder.com</span>
@@ -150,7 +150,7 @@ export function Footer() {
                   href="https://www.linkedin.com/company/irxreminder-llc"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 text-blue-200 hover:text-white transition-colors"
+                  className="flex items-center gap-2 text-blue-200 hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0891b2]/40 focus-visible:ring-offset-1 focus-visible:ring-offset-[#152c6e] rounded-sm"
                 >
                   <Linkedin className="w-4 h-4" />
                   <span>LinkedIn</span>
@@ -170,10 +170,10 @@ export function Footer() {
               <span className="text-blue-300/80 text-xs">HIPAA Compliant &middot; SOC 2 Type II</span>
             </div>
             <div className="flex gap-6">
-              <Link to="/contact" className="hover:text-white transition-colors">
+              <Link to="/contact" className="hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0891b2]/40 focus-visible:ring-offset-1 focus-visible:ring-offset-[#152c6e] rounded-sm">
                 Privacy Policy
               </Link>
-              <Link to="/contact" className="hover:text-white transition-colors">
+              <Link to="/contact" className="hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0891b2]/40 focus-visible:ring-offset-1 focus-visible:ring-offset-[#152c6e] rounded-sm">
                 Terms of Use
               </Link>
             </div>

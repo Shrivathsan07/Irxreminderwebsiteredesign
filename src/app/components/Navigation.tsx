@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router";
 import { Phone, Menu, X } from "lucide-react";
 import { Button } from "./ui/button";
+import { AnimatePresence, motion } from "motion/react";
+import { useReducedMotion } from "@/app/hooks/useReducedMotion";
 
 const navLinks = [
   { to: "/platform", label: "Platform" },
@@ -16,6 +18,7 @@ export function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
+  const prefersReducedMotion = useReducedMotion();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -100,9 +103,10 @@ export function Navigation() {
 
           {/* Mobile Menu Button */}
           <button
-            className="lg:hidden p-2 text-gray-600 hover:text-[#1e3a8a] rounded-lg hover:bg-gray-50 transition-colors"
+            className="lg:hidden p-2 text-gray-600 hover:text-[#1e3a8a] rounded-lg hover:bg-gray-50 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0891b2]/40 focus-visible:ring-offset-2"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
+            aria-expanded={isMobileMenuOpen}
           >
             {isMobileMenuOpen ? (
               <X className="w-6 h-6" />
@@ -113,47 +117,55 @@ export function Navigation() {
         </div>
 
         {/* Mobile Menu */}
-        {isMobileMenuOpen && (
-          <div className="lg:hidden pb-6 border-t border-gray-100">
-            <div className="pt-4 space-y-1">
-              {navLinks.map((link) => (
-                <Link
-                  key={link.to}
-                  to={link.to}
-                  className={`block px-4 py-3 rounded-lg text-base font-medium transition-colors ${
-                    isActive(link.to)
-                      ? "text-[#0891b2] bg-cyan-50"
-                      : "text-gray-700 hover:text-[#1e3a8a] hover:bg-gray-50"
-                  }`}
+        <AnimatePresence>
+          {isMobileMenuOpen && (
+            <motion.div
+              className="lg:hidden pb-6 border-t border-gray-100 overflow-hidden"
+              initial={prefersReducedMotion ? { opacity: 1 } : { opacity: 0, height: 0 }}
+              animate={prefersReducedMotion ? { opacity: 1 } : { opacity: 1, height: "auto" }}
+              exit={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, height: 0 }}
+              transition={{ duration: 0.2, ease: "easeInOut" }}
+            >
+              <div className="pt-4 space-y-1">
+                {navLinks.map((link) => (
+                  <Link
+                    key={link.to}
+                    to={link.to}
+                    className={`block px-4 py-3 rounded-lg text-base font-medium transition-colors ${
+                      isActive(link.to)
+                        ? "text-[#0891b2] bg-cyan-50"
+                        : "text-gray-700 hover:text-[#1e3a8a] hover:bg-gray-50"
+                    }`}
+                  >
+                    {link.label}
+                  </Link>
+                ))}
+              </div>
+              <div className="mt-4 pt-4 border-t border-gray-100 space-y-3 px-4">
+                <a
+                  href="tel:3308068675"
+                  className="flex items-center gap-2 text-gray-600 text-sm"
                 >
-                  {link.label}
-                </Link>
-              ))}
-            </div>
-            <div className="mt-4 pt-4 border-t border-gray-100 space-y-3 px-4">
-              <a
-                href="tel:3308068675"
-                className="flex items-center gap-2 text-gray-600 text-sm"
-              >
-                <Phone className="w-4 h-4" />
-                <span className="font-medium">330.806.8675</span>
-              </a>
-              <Button
-                asChild
-                variant="outline"
-                className="w-full border-[#1e3a8a]/20 text-[#1e3a8a]"
-              >
-                <Link to="/roi-calculator">ROI Calculator</Link>
-              </Button>
-              <Button
-                asChild
-                className="w-full bg-[#0891b2] hover:bg-[#0e7490]"
-              >
-                <Link to="/schedule-pilot">Schedule a Pilot</Link>
-              </Button>
-            </div>
-          </div>
-        )}
+                  <Phone className="w-4 h-4" />
+                  <span className="font-medium">330.806.8675</span>
+                </a>
+                <Button
+                  asChild
+                  variant="outline"
+                  className="w-full border-[#1e3a8a]/20 text-[#1e3a8a]"
+                >
+                  <Link to="/roi-calculator">ROI Calculator</Link>
+                </Button>
+                <Button
+                  asChild
+                  className="w-full bg-[#0891b2] hover:bg-[#0e7490]"
+                >
+                  <Link to="/schedule-pilot">Schedule a Pilot</Link>
+                </Button>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </nav>
   );

@@ -2,9 +2,12 @@ import { useForm } from "react-hook-form";
 import { Button } from "../components/ui/button";
 import { Input } from "../components/ui/input";
 import { Label } from "../components/ui/label";
-import { Shield, TrendingUp, Award } from "lucide-react";
+import { Shield, TrendingUp, Award, Lock, CheckCircle2 } from "lucide-react";
 import { motion } from "motion/react";
 import { FadeUp } from "@/app/components/animations";
+import { GrainTexture } from "@/app/components/GrainTexture";
+import { useReducedMotion } from "@/app/hooks/useReducedMotion";
+import { FloatingBadgeGroup } from "@/app/components/FloatingBadge";
 
 interface PilotFormData {
   name: string;
@@ -15,6 +18,8 @@ interface PilotFormData {
 }
 
 export function SchedulePilot() {
+  const prefersReducedMotion = useReducedMotion();
+  const heroAnimation = prefersReducedMotion ? {} : { initial: { opacity: 0, y: 30 }, animate: { opacity: 1, y: 0 }, transition: { duration: 0.6 } };
   const {
     register,
     handleSubmit,
@@ -34,19 +39,16 @@ export function SchedulePilot() {
       <section className="relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-[#0f1d3d] via-[#152c6e] to-[#1e3a8a]" />
         <div className="absolute top-1/3 right-0 w-[500px] h-[500px] bg-[#0891b2]/15 rounded-full blur-[100px]" />
+        <GrainTexture opacity={0.04} />
         <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-24 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
+          <motion.div {...heroAnimation}>
             <p className="text-[#0891b2] font-semibold text-sm tracking-widest uppercase mb-4">
               Get Started
             </p>
-            <h1 className="text-4xl md:text-5xl font-extrabold text-white mb-6 tracking-tight">
+            <h1 className="text-4xl md:text-5xl font-extrabold text-white mb-6 tracking-tight" style={{ fontFamily: "var(--font-display)" }}>
               Schedule a <span className="text-[#0891b2]">Pilot Program</span>
             </h1>
-            <p className="text-xl text-blue-100/80 max-w-2xl mx-auto">
+            <p className="text-xl text-blue-200 max-w-2xl mx-auto">
               See firsthand how iRxReminder improves medication adherence,
               reduces readmissions, and generates reimbursable revenue
             </p>
@@ -152,6 +154,15 @@ export function SchedulePilot() {
                     >
                       Submit Pilot Request
                     </Button>
+                    <div className="mt-4">
+                      <FloatingBadgeGroup
+                        badges={[
+                          { icon: Shield, text: "FDA Cleared" },
+                          { icon: Lock, text: "HIPAA Compliant" },
+                          { icon: CheckCircle2, text: "SOC 2 Type II" },
+                        ]}
+                      />
+                    </div>
                   </div>
                 </form>
               </FadeUp>
@@ -160,7 +171,7 @@ export function SchedulePilot() {
             {/* Sidebar */}
             <div className="space-y-6">
               <FadeUp delay={0.1}>
-                <div className="bg-[#f8fafc] p-6 rounded-2xl border border-gray-100">
+                <div className="bg-[#f8fafc] p-6 rounded-2xl border border-gray-100" style={{ boxShadow: "0 1px 3px rgba(30,58,138,0.04), 0 4px 12px rgba(30,58,138,0.06)" }}>
                   <h3 className="font-bold text-gray-900 mb-4">
                     Why Pilot with iRxReminder?
                   </h3>
@@ -187,7 +198,7 @@ export function SchedulePilot() {
               </FadeUp>
 
               <FadeUp delay={0.15}>
-                <div className="bg-[#f8fafc] p-6 rounded-2xl border border-gray-100">
+                <div className="bg-[#f8fafc] p-6 rounded-2xl border border-gray-100" style={{ boxShadow: "0 1px 3px rgba(30,58,138,0.04), 0 4px 12px rgba(30,58,138,0.06)" }}>
                   <h3 className="font-bold text-gray-900 mb-3">Trusted By</h3>
                   <div className="space-y-1.5 text-sm text-gray-500">
                     {[
@@ -205,7 +216,7 @@ export function SchedulePilot() {
               </FadeUp>
 
               <FadeUp delay={0.2}>
-                <div className="bg-[#f8fafc] p-6 rounded-2xl border border-gray-100">
+                <div className="bg-[#f8fafc] p-6 rounded-2xl border border-gray-100" style={{ boxShadow: "0 1px 3px rgba(30,58,138,0.04), 0 4px 12px rgba(30,58,138,0.06)" }}>
                   <h3 className="font-bold text-gray-900 mb-2">Questions?</h3>
                   <p className="text-sm text-gray-500 mb-3">
                     Our team is here to help

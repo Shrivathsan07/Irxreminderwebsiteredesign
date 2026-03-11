@@ -6,6 +6,7 @@ export function CountUp({
   end,
   prefix = "",
   suffix = "",
+  decimals = 0,
   duration = 2,
   className = "",
   style,
@@ -13,6 +14,8 @@ export function CountUp({
   end: number;
   prefix?: string;
   suffix?: string;
+  /** Number of decimal places to display */
+  decimals?: number;
   duration?: number;
   className?: string;
   style?: React.CSSProperties;
@@ -34,13 +37,14 @@ export function CountUp({
 
     const startTime = performance.now();
     const durationMs = duration * 1000;
+    const factor = Math.pow(10, decimals);
 
     function animate(currentTime: number) {
       const elapsed = currentTime - startTime;
       const progress = Math.min(elapsed / durationMs, 1);
       // Ease out cubic for smooth deceleration
       const eased = 1 - Math.pow(1 - progress, 3);
-      setDisplayValue(Math.round(eased * end));
+      setDisplayValue(Math.round(eased * end * factor) / factor);
 
       if (progress < 1) {
         requestAnimationFrame(animate);
@@ -48,11 +52,13 @@ export function CountUp({
     }
 
     requestAnimationFrame(animate);
-  }, [isInView, end, duration, prefersReducedMotion]);
+  }, [isInView, end, duration, decimals, prefersReducedMotion]);
 
-  const formatted = end >= 1000 && !suffix
-    ? displayValue.toLocaleString()
-    : displayValue.toString();
+  const formatted = decimals > 0
+    ? displayValue.toFixed(decimals)
+    : end >= 1000 && !suffix
+      ? displayValue.toLocaleString()
+      : displayValue.toString();
 
   return (
     <span ref={ref} className={className} style={style}>

@@ -94,7 +94,7 @@ export function NewsArticle() {
                     className="group block bg-white p-6 rounded-xl border border-gray-100 shadow-[0_1px_3px_rgba(30,58,138,0.04),0_4px_12px_rgba(30,58,138,0.04)] hover:shadow-[0_1px_3px_rgba(30,58,138,0.06),0_8px_20px_rgba(30,58,138,0.08)] transition-[box-shadow] duration-300"
                   >
                     <div className="flex items-center gap-3 mb-2">
-                      <span className="text-xs text-gray-400 uppercase tracking-wider">
+                      <span className="text-xs text-gray-500 uppercase tracking-wider">
                         {item.date}
                       </span>
                       <span className="text-xs text-[#0891b2] font-medium">
@@ -124,7 +124,7 @@ export function NewsArticle() {
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 tracking-tight">
               See What Real-Time Monitoring Looks Like
             </h2>
-            <p className="text-xl text-blue-100/80 mb-10">
+            <p className="text-xl text-blue-200 mb-10">
               Schedule a pilot configured for your specific use case
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -134,7 +134,7 @@ export function NewsArticle() {
                   <ArrowRight className="w-4 h-4 ml-2" />
                 </Link>
               </Button>
-              <Button asChild size="lg" variant="outline" className="border-white/60 hover:border-white/80 text-white hover:bg-white/10 transition-colors">
+              <Button asChild size="lg" variant="outline" className="border-white/80 bg-white/5 hover:border-white hover:bg-white/15 text-white transition-colors">
                 <Link to="/platform">Explore the Platform</Link>
               </Button>
             </div>
