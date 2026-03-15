@@ -98,6 +98,54 @@ export function Evidence() {
         </div>
       </div>
 
+      {/* ======= LEAD STAT — NIH Funding ======= */}
+      <section className="py-12 md:py-16 bg-white">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <FadeUp>
+            <div className="text-center">
+              <CountUp
+                end={2.8}
+                prefix="$"
+                suffix="M"
+                className="text-6xl md:text-8xl font-extrabold tracking-tighter leading-none"
+                style={{ color: "#0891b2", fontFamily: "var(--font-display)" }}
+              />
+              <p className="text-xl md:text-2xl text-[#1e3a8a] font-bold mt-4 mb-2">
+                Total NIH Phase I &amp; II Grant Awards
+              </p>
+              <p className="text-gray-500">Phase IIB pending</p>
+            </div>
+          </FadeUp>
+        </div>
+      </section>
+
+      {/* ======= TRACTION METRICS STRIP ======= */}
+      <section className="py-10 bg-[#f8fafc] border-y border-gray-100">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6 text-center">
+            {[
+              { end: 20, label: "Projects" },
+              { end: 350, suffix: "+", label: "Clinical Subjects" },
+              { end: 200, suffix: "+", label: "AI-Enabled Evaluations" },
+              { end: 16, label: "Letters of Intent" },
+              { end: 5, label: "Communities Awaiting Delivery" },
+            ].map((item, i) => (
+              <FadeUp key={item.label} delay={i * 0.06}>
+                <div>
+                  <CountUp
+                    end={item.end}
+                    suffix={item.suffix}
+                    className="text-3xl md:text-4xl font-extrabold tracking-tight"
+                    style={{ color: "#1e3a8a", fontFamily: "var(--font-display)" }}
+                  />
+                  <p className="text-sm text-gray-500 mt-1">{item.label}</p>
+                </div>
+              </FadeUp>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* ======= CENTRAL STAT BAND ======= */}
       <section className="py-16 md:py-20 bg-white">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -392,7 +440,8 @@ export function Evidence() {
             orientation="vertical"
             items={[
               { label: "2010", title: "NIH Pilot Grant Awarded", description: "Grant No. 1R43AG033500 — First federal funding validates iRxReminder concept for stroke recovery and aging populations.", color: "#1e3a8a" },
-              { label: "2013", title: "FDA 510(k) Clearance", description: "iRxReminder receives FDA clearance as a Class II medical device — one of the first IoT medication management systems to achieve this milestone.", color: "#0891b2" },
+              // TODO: Update to "FDA 510(k) Cleared" once Class II clearance is granted
+              { label: "2013", title: "FDA Registration & Class I Listing", description: "iRxReminder achieves FDA registration as a Class I medical device — one of the first IoT medication management systems to reach this regulatory milestone. FDA 510(k) Class II clearance currently in progress.", color: "#0891b2" },
               { label: "2015–2018", title: "University Research Partnerships", description: "Clinical collaborations established with Harvard, University of Michigan, Kent State, Brown, MetroHealth, and Butler Hospital.", color: "#1e3a8a" },
               { label: "2018–2020", title: "Multi-Site Adherence Trials", description: "NIH-funded study across behavioral health networks enrolls 350+ participants. Outcome: adherence improves from 48% to 80%+.", color: "#0891b2" },
               { label: "2022", title: "Oncology Trial at U of Michigan", description: "HOPA-funded study at the University of Michigan Cancer Center demonstrates 25% reduction in clinical trial dropouts.", color: "#1e3a8a" },
@@ -411,23 +460,26 @@ export function Evidence() {
         <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <FadeUp>
             <div className="bg-white/[0.06] backdrop-blur-sm border border-white/10 rounded-2xl p-10 md:p-14">
+              {/* TODO: Update badges and copy once FDA 510(k) Class II clearance is granted */}
               <div className="flex justify-center mb-6">
                 <FloatingBadgeGroup
                   variant="glass"
                   badges={[
-                    { icon: ShieldCheck, text: "FDA 510(k) Cleared" },
+                    { icon: ShieldCheck, text: "FDA 510(k) Pathway" },
                     { icon: Shield, text: "HIPAA Compliant" },
-                    { icon: Award, text: "Class II Medical Device" },
+                    { icon: Award, text: "Class II Clearance In Progress" },
                   ]}
                 />
               </div>
               <h3 className="text-3xl md:text-4xl font-bold text-white mb-4 tracking-tight" style={{ fontFamily: "var(--font-display)" }}>
-                FDA-Cleared Medical Device
+                FDA Regulatory Pathway
               </h3>
               <p className="text-lg text-blue-200 max-w-2xl mx-auto leading-relaxed">
-                iRxReminder is one of the first IoT medication management systems
-                to receive FDA 510(k) clearance as a Class II medical device.
-                This isn&rsquo;t a wellness app. It&rsquo;s a regulated medical platform.
+                iRxReminder is an FDA-registered medical device pursuing 510(k)
+                Class II clearance. Led by Dr. Fred Ma, MD PhD&nbsp;&mdash;
+                1,200+ clinical trials and 200+ drugs/devices through FDA
+                validation. This isn&rsquo;t a wellness app. It&rsquo;s a
+                regulated medical platform.
               </p>
             </div>
           </FadeUp>
@@ -651,8 +703,50 @@ export function Evidence() {
         </div>
       </section>
 
+      {/* ======= ACCELERATORS & RECOGNITION ======= */}
+      <section className="py-24 md:py-32 bg-white">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <FadeUp>
+            <p className="text-[#0891b2] font-semibold text-sm tracking-widest uppercase mb-4 text-center">
+              Accelerators &amp; Recognition
+            </p>
+            <h2 className="text-4xl md:text-5xl font-bold text-[#1e3a8a] text-center mb-16 tracking-tight" style={{ fontFamily: "var(--font-display)" }}>
+              Backed by Leading Programs
+            </h2>
+          </FadeUp>
+
+          <FadeUp delay={0.1}>
+            <div className="flex flex-wrap justify-center gap-4">
+              {[
+                "AMIA",
+                "I-Corps at NIH",
+                "OCEAN",
+                "Whatif Ventures",
+                "OHTec",
+                "Village Capital",
+                "MedStartr",
+                "TiE",
+                "Conscious Venture Lab",
+                "NewChip",
+                "BioEnterprise",
+              ].map((name) => (
+                <div
+                  key={name}
+                  className="bg-[#f8fafc] px-5 py-3 rounded-xl text-sm font-medium text-gray-700 border border-gray-100 hover:-translate-y-0.5 transition-[box-shadow,transform] duration-300"
+                  style={{
+                    boxShadow: "0 1px 3px rgba(30,58,138,0.04)",
+                  }}
+                >
+                  {name}
+                </div>
+              ))}
+            </div>
+          </FadeUp>
+        </div>
+      </section>
+
       {/* ======= CTA ======= */}
-      <SectionDivider fromColor="#f8fafc" toColor="#0f1d3d" direction="left" height={60} />
+      <SectionDivider fromColor="#ffffff" toColor="#0f1d3d" direction="left" height={60} />
       <section className="relative py-24 md:py-32 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-[#0a1628] via-[#152c6e] to-[#1e3a8a]" />
         <div className="absolute bottom-0 right-1/4 w-[400px] h-[400px] bg-[#0891b2]/12 rounded-full blur-[100px]" />
@@ -671,7 +765,8 @@ export function Evidence() {
               <FloatingBadgeGroup
                 variant="glass"
                 badges={[
-                  { icon: Shield, text: "FDA-Cleared" },
+                  // TODO: Update to "FDA 510(k) Cleared" once clearance is granted
+                  { icon: Shield, text: "FDA 510(k) Pathway" },
                   { icon: Award, text: "NIH-Funded" },
                 ]}
               />

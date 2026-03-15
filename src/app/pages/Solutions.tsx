@@ -131,7 +131,8 @@ export function Solutions() {
         primaryCta={{ label: "Schedule a Pilot", to: "/schedule-pilot" }}
         secondaryCta={{ label: "See the Evidence", to: "/evidence" }}
         trustItems={[
-          { icon: Shield, text: "FDA Cleared" },
+          // TODO: Update to "FDA 510(k) Cleared" once clearance is granted
+          { icon: Shield, text: "FDA 510(k) Pathway" },
           { icon: Lock, text: "HIPAA Compliant" },
           { icon: Activity, text: "Real-Time Data" },
         ]}
@@ -174,9 +175,9 @@ export function Solutions() {
               },
               {
                 icon: Activity,
-                title: "Behavioral Health",
+                title: "Behavioral Health & Relapse Prevention",
                 description:
-                  "See non-adherence the day it starts. Intervene before crisis. Achieve 83% adherence for psychiatric medications.",
+                  "See non-adherence the day it starts. Intervene before crisis. Achieve 83% adherence for psychiatric medications including OUD and SMI populations.",
                 stat: "83%",
                 color: "#0891b2",
                 href: "#mental-health",
@@ -466,12 +467,17 @@ export function Solutions() {
                   className="text-3xl md:text-4xl font-bold text-[#1e3a8a] mb-6 tracking-tight"
                   style={{ fontFamily: "var(--font-display)" }}
                 >
-                  Keep Clients Stable. Reduce Crisis. Lower Staff Burnout.
+                  Behavioral Health &amp; Relapse Prevention
                 </h2>
-                <p className="text-xl text-gray-600 leading-relaxed mb-6">
+                <p className="text-xl text-gray-600 leading-relaxed mb-4">
                   Non-compliant patients are more likely to require
                   hospitalization, incarceration, or crisis support. Your staff
                   burns out managing emergencies that could have been prevented.
+                </p>
+                <p className="text-gray-600 leading-relaxed mb-6">
+                  Critical for OUD (opioid use disorder) and SMI (serious mental illness) populations where medication
+                  adherence is the difference between stability and relapse. A $9.1B market
+                  spanning 2,500+ behavioral health agencies and 14,000+ treatment centers.
                 </p>
                 <div
                   className="text-5xl md:text-6xl font-extrabold text-[#0891b2] tracking-tight"
@@ -662,11 +668,14 @@ export function Solutions() {
                 >
                   Keep Residents Safe. Reduce Med Errors. Protect Your License.
                 </h2>
-                <p className="text-xl text-gray-600 leading-relaxed mb-6">
+                <p className="text-xl text-gray-600 leading-relaxed mb-4">
                   Assisted living and home health agencies manage dozens of
                   medication regimens daily. Manual administration tracking
                   leads to errors, omissions, and liability. iRxReminder
                   automates the hard part.
+                </p>
+                <p className="text-gray-600 leading-relaxed mb-6">
+                  Serving 15,000+ aging communities and a 62M US aging population that is doubling by 2030.
                 </p>
                 <div
                   className="text-5xl md:text-6xl font-extrabold text-[#0891b2] tracking-tight"
@@ -1034,7 +1043,8 @@ export function Solutions() {
               variant="glass"
               className="justify-center mb-10"
               badges={[
-                { icon: Shield, text: "FDA Cleared" },
+                // TODO: Update to "FDA 510(k) Cleared" once clearance is granted
+                { icon: Shield, text: "FDA 510(k) Pathway" },
                 { icon: Lock, text: "HIPAA Compliant" },
                 { icon: CheckCircle2, text: "SOC 2 Type II" },
               ]}

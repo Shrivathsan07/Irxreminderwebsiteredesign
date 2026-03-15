@@ -408,7 +408,8 @@ export function ROICalculator() {
               variant="glass"
               className="justify-center mb-10"
               badges={[
-                { icon: Shield, text: "FDA Cleared" },
+                // TODO: Update to "FDA 510(k) Cleared" once clearance is granted
+                { icon: Shield, text: "FDA 510(k) Pathway" },
                 { icon: Lock, text: "HIPAA Compliant" },
               ]}
             />
@@ -429,7 +430,7 @@ export function ROICalculator() {
                 variant="outline"
                 className="border-white/80 bg-white/5 hover:border-white hover:bg-white/15 text-white transition-colors"
               >
-                <Link to="/contact">Contact Us</Link>
+                <Link to="/schedule-pilot">Schedule a Pilot</Link>
               </Button>
             </div>
             <p className="mt-6 text-blue-200 text-sm">

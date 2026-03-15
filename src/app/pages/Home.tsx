@@ -15,6 +15,13 @@ import {
   Settings,
   Radio,
   Quote,
+  DollarSign,
+  Users,
+  BarChart3,
+  Receipt,
+  CheckCircle2,
+  XCircle,
+  Minus,
 } from "lucide-react";
 import { Button } from "../components/ui/button";
 import { motion } from "motion/react";
@@ -114,7 +121,7 @@ export function Home() {
     <div className="bg-white overflow-hidden">
       {/* ======= SECTION 1: HERO — SplitHero ======= */}
       <SplitHero
-        label="Real-Time Medication Monitoring"
+        label="AI Clinical Intelligence Platform"
         headline={
           <>
             Know when your patients
@@ -128,9 +135,9 @@ export function Home() {
         primaryCta={{ label: "Schedule a Pilot", to: "/schedule-pilot" }}
         secondaryCta={{ label: "See the Research", to: "/evidence" }}
         trustItems={[
-          { icon: Shield, text: "NIH-Funded Research" },
+          { icon: Shield, text: "$2.8M NIH Funded" },
           { icon: Award, text: "12 US Patents" },
-          { icon: FileCheck, text: "Clinically Validated" },
+          { icon: FileCheck, text: "350+ Clinical Subjects" },
         ]}
         visual={<DeviceMockup />}
       />
@@ -235,47 +242,73 @@ export function Home() {
 
       <SectionDivider fromColor="#ffffff" toColor="#f8fafc" direction="right" />
 
-      {/* ======= SECTION 3: THE GUIDE — Research credibility ======= */}
+      {/* ======= SECTION 3: THREE-STAKEHOLDER VALUE ======= */}
       <Section className="py-24 md:py-32 bg-[#f8fafc]">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <FadeUp>
             <p className="text-[#0891b2] font-semibold text-sm tracking-widest uppercase mb-4 text-center">
-              The Answer
+              The Solution
             </p>
             <h2
-              className="text-4xl md:text-5xl font-bold text-[#1e3a8a] text-center mb-6 tracking-tight"
+              className="text-4xl md:text-5xl font-bold text-[#1e3a8a] text-center mb-16 tracking-tight"
               style={{ fontFamily: "var(--font-display)" }}
             >
-              Built on a Decade of NIH-Funded Research
+              Three Stakeholders. One Platform.
             </h2>
-            <p className="text-xl text-gray-600 text-center mb-16 max-w-3xl mx-auto leading-relaxed">
-              iRxReminder is the only platform that controls dispensing,
-              monitors adherence, and connects the healthcare team&nbsp;&mdash;
-              all in real time.
-            </p>
           </FadeUp>
 
-          {/* Trust badges */}
-          <FadeUp delay={0.1}>
-            <div className="flex flex-wrap justify-center gap-3 mb-12">
-              <FloatingBadgeGroup
-                badges={[
-                  { icon: Shield, text: "NIH-Funded" },
-                  { icon: FileCheck, text: "Clinically Validated" },
-                  { icon: Award, text: "12 US Patents" },
-                ]}
-              />
-            </div>
-          </FadeUp>
-
-          <FadeUp delay={0.15}>
-            <div className="text-center">
-              <p className="text-gray-500 text-sm uppercase tracking-widest mb-6">
-                Research &amp; Institutional Partners
-              </p>
-              <LogoTicker variant="light" />
-            </div>
-          </FadeUp>
+          <div className="grid md:grid-cols-3 gap-6">
+            {[
+              {
+                label: "For Patients",
+                tagline: "Engaged",
+                icon: Pill,
+                color: "#0891b2",
+                copy: "Hold, Place, and Tilt\u2122 dispensing makes taking medication simple and intuitive. Adherence improved from 48% to over 80% in NIH-funded trials. No sorting. No nagging. Just support when it matters.",
+              },
+              {
+                label: "For Healthcare Providers",
+                tagline: "Connected",
+                icon: Activity,
+                color: "#1e3a8a",
+                copy: "Real-time dose data flows to your dashboard the moment a patient takes\u2009\u2014\u2009or misses\u2009\u2014\u2009a dose. Smart alerts let your team intervene early, not after the ER visit.",
+              },
+              {
+                label: "For Healthcare Organizations",
+                tagline: "Doing More Good",
+                icon: Building2,
+                color: "#0891b2",
+                copy: "RPM/RTM billing codes generate 3\u00d7 cost recovery. Reduce readmission penalties. Automate compliance documentation. Turn medication monitoring into a revenue-generating program.",
+              },
+            ].map((card, i) => (
+              <FadeUp key={card.label} delay={0.1 + i * 0.08}>
+                <div
+                  className="bg-white p-8 rounded-2xl border border-gray-100 h-full hover:-translate-y-1 transition-[box-shadow,transform] duration-300"
+                  style={{
+                    boxShadow:
+                      "0 1px 3px rgba(8,145,178,0.04), 0 4px 12px rgba(8,145,178,0.06), 0 16px 40px rgba(30,58,138,0.06)",
+                  }}
+                >
+                  <div
+                    className="w-11 h-11 rounded-xl flex items-center justify-center mb-5"
+                    style={{ backgroundColor: `${card.color}10` }}
+                  >
+                    <card.icon className="w-5 h-5" style={{ color: card.color }} />
+                  </div>
+                  <p className="text-xs font-bold uppercase tracking-widest mb-2" style={{ color: card.color }}>
+                    {card.label}
+                  </p>
+                  <h3
+                    className="text-2xl font-bold text-[#1e3a8a] mb-4 tracking-tight"
+                    style={{ fontFamily: "var(--font-display)" }}
+                  >
+                    {card.tagline}
+                  </h3>
+                  <p className="text-gray-600 leading-relaxed">{card.copy}</p>
+                </div>
+              </FadeUp>
+            ))}
+          </div>
         </div>
       </Section>
 
@@ -426,6 +459,141 @@ export function Home() {
         </div>
       </Section>
 
+      {/* ======= SECTION 5B: COMPETITIVE COMPARISON ======= */}
+      <Section className="py-24 md:py-32 bg-white">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <FadeUp>
+            <p className="text-[#0891b2] font-semibold text-sm tracking-widest uppercase mb-4 text-center">
+              Why iRxReminder
+            </p>
+            <h2
+              className="text-4xl md:text-5xl font-bold text-[#1e3a8a] text-center mb-6 tracking-tight"
+              style={{ fontFamily: "var(--font-display)" }}
+            >
+              Not All Adherence Tools Are Equal
+            </h2>
+            <p className="text-xl text-gray-600 text-center mb-16 max-w-3xl mx-auto leading-relaxed">
+              See how iRxReminder compares to the alternatives
+            </p>
+          </FadeUp>
+
+          <FadeUp delay={0.1}>
+            <div className="overflow-x-auto -mx-4 px-4">
+              <table className="w-full min-w-[700px] border-collapse">
+                <thead>
+                  <tr>
+                    <th className="text-left text-sm font-semibold text-gray-500 uppercase tracking-wider pb-4 pr-4 w-[200px]">
+                      Capability
+                    </th>
+                    <th className="text-center text-sm font-bold text-white uppercase tracking-wider pb-4 px-3 bg-[#0891b2] rounded-t-xl w-[120px]">
+                      iRxReminder
+                    </th>
+                    <th className="text-center text-sm font-semibold text-gray-500 uppercase tracking-wider pb-4 px-3 w-[100px]">
+                      Pill Packing
+                    </th>
+                    <th className="text-center text-sm font-semibold text-gray-500 uppercase tracking-wider pb-4 px-3 w-[100px]">
+                      Smart Caps
+                    </th>
+                    <th className="text-center text-sm font-semibold text-gray-500 uppercase tracking-wider pb-4 px-3 w-[100px]">
+                      Text Reminders
+                    </th>
+                    <th className="text-center text-sm font-semibold text-gray-500 uppercase tracking-wider pb-4 px-3 w-[100px]">
+                      Organizers
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {[
+                    { feature: "Controlled Dispensing", irx: true, pillPack: false, smartCaps: false, text: false, organizers: false },
+                    { feature: "Real-Time Monitoring", irx: true, pillPack: false, smartCaps: "partial", text: false, organizers: false },
+                    { feature: "Dose Verification", irx: true, pillPack: false, smartCaps: false, text: false, organizers: false },
+                    { feature: "Prevents Double-Dosing", irx: true, pillPack: false, smartCaps: false, text: false, organizers: false },
+                    { feature: "RPM/RTM Billable", irx: true, pillPack: false, smartCaps: "partial", text: false, organizers: false },
+                    { feature: "Provider Dashboard", irx: true, pillPack: false, smartCaps: "partial", text: false, organizers: false },
+                    { feature: "No Patient Sorting", irx: true, pillPack: true, smartCaps: true, text: true, organizers: false },
+                    { feature: "AI Clinical Intelligence", irx: true, pillPack: false, smartCaps: false, text: false, organizers: false },
+                  ].map((row, i) => (
+                    <tr key={row.feature} className={i % 2 === 0 ? "bg-[#f8fafc]" : "bg-white"}>
+                      <td className="text-sm font-medium text-gray-700 py-3.5 pr-4 pl-3 rounded-l-lg">{row.feature}</td>
+                      {[row.irx, row.pillPack, row.smartCaps, row.text, row.organizers].map((val, j) => (
+                        <td key={j} className={`text-center py-3.5 px-3 ${j === 0 ? "bg-[#0891b2]/5" : ""} ${j === 4 ? "rounded-r-lg" : ""}`}>
+                          {val === true ? (
+                            <CheckCircle2 className={`w-5 h-5 mx-auto ${j === 0 ? "text-[#0891b2]" : "text-green-500"}`} />
+                          ) : val === "partial" ? (
+                            <Minus className="w-5 h-5 mx-auto text-yellow-500" />
+                          ) : (
+                            <XCircle className="w-5 h-5 mx-auto text-gray-300" />
+                          )}
+                        </td>
+                      ))}
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </FadeUp>
+        </div>
+      </Section>
+
+      <SectionDivider fromColor="#ffffff" toColor="#0f1d3d" direction="left" height={60} />
+
+      {/* ======= SECTION 5C: BUSINESS CASE ======= */}
+      <Section className="relative py-24 md:py-32 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-[#0a1628] via-[#152c6e] to-[#1e3a8a]" />
+        <div className="absolute top-0 left-1/3 w-[500px] h-[500px] bg-[#0891b2]/10 rounded-full blur-[120px]" />
+        <div className="absolute bottom-0 right-1/4 w-[400px] h-[400px] bg-[#0891b2]/8 rounded-full blur-[100px]" />
+        <GrainTexture opacity={0.04} />
+
+        <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <FadeUp>
+            <p className="text-[#0891b2] font-semibold text-sm tracking-widest uppercase mb-4 text-center">
+              The Business Case
+            </p>
+            <h2
+              className="text-4xl md:text-5xl font-bold text-white text-center mb-16 tracking-tight"
+              style={{ fontFamily: "var(--font-display)" }}
+            >
+              Why Organizations Are Moving Now
+            </h2>
+          </FadeUp>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            {[
+              {
+                icon: DollarSign,
+                title: "Prevent 33% Revenue Loss",
+                copy: "Pharmacies lose one-third of potential revenue to non-adherence-related prescription abandonment. iRxReminder keeps patients on therapy.",
+              },
+              {
+                icon: Users,
+                title: "Reduce Staff Burden",
+                copy: "Automated dose tracking replaces manual follow-up calls and paper-based medication administration records.",
+              },
+              {
+                icon: BarChart3,
+                title: "Automate Workflows",
+                copy: "Real-time data flows into your existing EHR. No duplicate entry. No extra steps for your care team.",
+              },
+              {
+                icon: Receipt,
+                title: "Unlock RPM Revenue",
+                copy: "Remote Patient Monitoring and Remote Therapeutic Monitoring billing codes generate 3\u00d7 cost recovery on the platform.",
+              },
+            ].map((card, i) => (
+              <FadeUp key={card.title} delay={0.1 + i * 0.08}>
+                <div className="bg-white/[0.08] backdrop-blur-md border border-white/15 rounded-2xl p-7 h-full hover:-translate-y-1 transition-[box-shadow,transform] duration-300">
+                  <div className="w-11 h-11 rounded-xl flex items-center justify-center mb-5 bg-[#0891b2]/20">
+                    <card.icon className="w-5 h-5 text-[#0891b2]" />
+                  </div>
+                  <h3 className="text-lg font-bold text-white mb-3">{card.title}</h3>
+                  <p className="text-blue-200/80 text-sm leading-relaxed">{card.copy}</p>
+                </div>
+              </FadeUp>
+            ))}
+          </div>
+        </div>
+      </Section>
+
       {/* ======= SECTION 6: OUTCOMES — Dark stat band with StatCards ======= */}
       <Section className="relative py-24 md:py-32 overflow-hidden">
         {/* Dark gradient background */}
@@ -457,8 +625,8 @@ export function Home() {
               <FloatingBadgeGroup
                 variant="glass"
                 badges={[
-                  { icon: Shield, text: "NIH-Funded" },
-                  { icon: Award, text: "12 US Patents" },
+                  { icon: Shield, text: "$2.8M NIH Funded" },
+                  { icon: Award, text: "US Patented" },
                 ]}
               />
             </div>
@@ -467,10 +635,10 @@ export function Home() {
           {/* Stats grid with glass morphism */}
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-5 mb-16">
             {[
-              { end: 83, suffix: "%", label: "Adherence Rate", description: "In clinical trials", color: "#0891b2" },
-              { end: 25, suffix: "%", label: "Fewer Dropouts", description: "Clinical trial retention", color: "#ffffff" },
-              { end: 871, prefix: "$", suffix: "K", label: "NIH Grant", description: "SBIR funding", color: "#0891b2" },
-              { end: 12, label: "US Patents", description: "Protecting technology", color: "#ffffff" },
+              { end: 2.8, prefix: "$", suffix: "M", label: "NIH Grants", description: "Phase I & II awards", color: "#0891b2" },
+              { end: 350, suffix: "+", label: "Clinical Subjects", description: "Across multiple studies", color: "#ffffff" },
+              { end: 80, suffix: "%+", label: "Adherence", description: "Validated in NIH trials", color: "#0891b2" },
+              { end: 16, label: "Letters of Intent", description: "From institutional partners", color: "#ffffff" },
             ].map((item, i) => (
               <FadeUp key={item.label} delay={0.1 + i * 0.08}>
                 <StatCard {...item} variant="glass" />
@@ -481,13 +649,12 @@ export function Home() {
           {/* Research partners */}
           <FadeUp delay={0.3}>
             <div className="text-center">
-              <p className="text-blue-200 text-sm uppercase tracking-widest mb-6">
-                Research Partners
+              <p className="text-blue-200/60 text-sm mt-8">
+                Validated across 7+ university research partners including Harvard, Michigan, and Case Western Reserve
               </p>
-              <LogoTicker variant="dark" />
               <Link
                 to="/evidence"
-                className="inline-flex items-center gap-2 text-[#0891b2] font-semibold text-sm mt-8 hover:gap-3 transition-[gap] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0891b2]/40 focus-visible:ring-offset-2 focus-visible:ring-offset-[#152c6e] rounded-sm"
+                className="inline-flex items-center gap-2 text-[#0891b2] font-semibold text-sm mt-6 hover:gap-3 transition-[gap] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0891b2]/40 focus-visible:ring-offset-2 focus-visible:ring-offset-[#152c6e] rounded-sm"
               >
                 Read the evidence <ArrowRight className="w-4 h-4" />
               </Link>
@@ -624,9 +791,9 @@ export function Home() {
               <FloatingBadgeGroup
                 variant="glass"
                 badges={[
-                  { icon: Shield, text: "NIH-Funded" },
-                  { icon: FileCheck, text: "Clinically Validated" },
-                  { icon: Award, text: "12 US Patents" },
+                  { icon: Shield, text: "$2.8M NIH Funded" },
+                  { icon: FileCheck, text: "350+ Subjects Studied" },
+                  { icon: Award, text: "FDA 510(k) Pathway" },
                 ]}
               />
             </div>
