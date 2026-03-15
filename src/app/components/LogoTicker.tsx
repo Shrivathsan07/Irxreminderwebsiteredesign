@@ -3,10 +3,12 @@ import { useReducedMotion } from "@/app/hooks/useReducedMotion";
 const partners = [
   "University of Michigan",
   "Harvard University",
-  "Brown University",
+  "Case Western Reserve University",
   "Kent State University",
+  "Summa Health",
   "MetroHealth",
-  "Butler Hospital",
+  "University Hospitals",
+  "Brown University",
   "NIH / NIA / NIMH",
 ];
 

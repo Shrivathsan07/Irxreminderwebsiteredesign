@@ -42,14 +42,14 @@ const leaders = [
   {
     name: "Fred Ma, MD, PhD",
     title: "Chief Operating Officer",
-    bio: "1,200+ clinical trials. 200+ drugs and medical devices through FDA validation and clearance. Leading iRxReminder\u2019s FDA Class II clearance submission.",
+    bio: "Industry executive and FDA expert. 1,200+ clinical trials. 200+ drugs and medical devices through FDA validation and clearance. Leading iRxReminder\u2019s FDA Class II clearance submission.",
     email: "fma@irxreminder.com",
     image: "/images/team/fred-ma.jpeg",
   },
   {
     name: "Owen Muir, M.D.",
     title: "Chief Medical Officer",
-    bio: "Board-certified Psychiatrist. Mayo Clinic faculty. Specializes in behavioral health and telehealth. Principal investigator guiding clinical validation.",
+    bio: "Board-certified Psychiatrist. Formerly MindMed and Osmind. Specializes in behavioral health and telehealth. Principal investigator guiding clinical validation.",
     image: "/images/team/owen-muir.jpeg",
   },
   {
@@ -61,10 +61,11 @@ const leaders = [
   {
     name: "Larry Tusick",
     title: "Chief Business Officer / VP Sales",
-    bio: "25+ years healthcare experience. Former director at Baxter and Care USA. Leads partnership development and commercial growth.",
+    bio: "25+ years healthcare experience. Former director at Baxter, Care USA, and American HomePatient. Enterprise sales leader driving partnership development and commercial growth.",
     email: "ltusick@irxreminder.com",
     image: "/images/team/larry-tusick.jpg",
   },
+  // TODO: Confirm with leadership — Josh Smith not in current investor deck. Keep or remove?
   {
     name: "Josh Smith, MBA",
     title: "Chief Technology Officer",
@@ -80,8 +81,10 @@ const universityPartners = [
   "Kent State University",
   "MetroHealth",
   "Butler Hospital",
-  "Case Western Reserve",
+  "Case Western Reserve University",
   "George Mason University",
+  "Summa Health",
+  "University Hospitals",
 ];
 
 function LeaderCards() {
@@ -733,7 +736,8 @@ export function About() {
               variant="glass"
               className="justify-center mb-10"
               badges={[
-                { icon: Shield, text: "FDA Cleared" },
+                // TODO: Update to "FDA 510(k) Cleared" once clearance is granted
+                { icon: Shield, text: "FDA 510(k) Pathway" },
                 { icon: Lock, text: "HIPAA Compliant" },
                 { icon: CheckCircle2, text: "NIH-Funded" },
               ]}
@@ -758,7 +762,7 @@ export function About() {
                 variant="outline"
                 className="border-white/80 bg-white/5 hover:border-white hover:bg-white/15 text-white text-lg px-8 py-6 transition-colors"
               >
-                <Link to="/contact">Contact Us</Link>
+                <Link to="/schedule-pilot">Schedule a Pilot</Link>
               </Button>
             </div>
           </FadeUp>

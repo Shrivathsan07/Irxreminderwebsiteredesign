@@ -18,6 +18,11 @@ import {
   Radio,
   Lightbulb,
   Settings,
+  Brain,
+  GitBranch,
+  MessageCircle,
+  AlertTriangle,
+  BarChart3,
 } from "lucide-react";
 import { Button } from "../components/ui/button";
 import {
@@ -140,7 +145,8 @@ function PlatformVisual() {
       {/* Floating badge */}
       <div className="absolute -top-4 -right-4 bg-white/[0.1] backdrop-blur-sm border border-white/20 rounded-xl px-4 py-2.5 flex items-center gap-2">
         <Shield className="w-4 h-4 text-[#0891b2]" />
-        <span className="text-xs font-semibold text-white">FDA Cleared</span>
+        {/* TODO: Update to "FDA 510(k) Cleared" once clearance is granted */}
+        <span className="text-xs font-semibold text-white">FDA 510(k) Pathway</span>
       </div>
     </div>
   );
@@ -167,7 +173,8 @@ export function Platform() {
         primaryCta={{ label: "Schedule a Pilot", to: "/schedule-pilot" }}
         secondaryCta={{ label: "Calculate Your ROI", to: "/roi-calculator" }}
         trustItems={[
-          { icon: Shield, text: "FDA Cleared" },
+          // TODO: Update to "FDA 510(k) Cleared" once clearance is granted
+          { icon: Shield, text: "FDA 510(k) Pathway" },
           { icon: Lock, text: "HIPAA Compliant" },
           { icon: Activity, text: "Real-Time Data" },
         ]}
@@ -1145,6 +1152,95 @@ export function Platform() {
         </div>
       </section>
 
+      {/* ═══ AI Clinical Intelligence ═══ */}
+      <section className="py-24 md:py-32 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <FadeUp>
+            <p className="text-[#0891b2] font-semibold text-sm tracking-widest uppercase mb-4 text-center">
+              Clinical Intelligence
+            </p>
+            <h2
+              className="text-4xl md:text-5xl font-bold text-[#1e3a8a] text-center mb-4 tracking-tight"
+              style={{ fontFamily: "var(--font-display)" }}
+            >
+              Not a Commodity Dispenser.
+            </h2>
+            <p
+              className="text-2xl md:text-3xl font-bold text-[#0891b2] text-center mb-6 tracking-tight"
+              style={{ fontFamily: "var(--font-display)" }}
+            >
+              A Clinical Intelligence Platform.
+            </p>
+            <p className="text-xl text-gray-600 text-center mb-16 max-w-3xl mx-auto leading-relaxed">
+              {/* TODO: Confirm with leadership which AI features are live vs. in development before final launch */}
+              iRxReminder goes beyond dispensing and monitoring. Our AI layer transforms raw medication data into clinical insights that drive better outcomes.
+            </p>
+          </FadeUp>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+            {[
+              {
+                icon: Brain,
+                title: "Predictive Non-Adherence Alerts",
+                description: "AI models analyze dosing patterns to predict which patients are at risk of dropping off\u2009\u2014\u2009before it happens.",
+                color: "#0891b2",
+              },
+              {
+                icon: AlertTriangle,
+                title: "TDtect\u2122 Diagnostic AI",
+                description: "NIMH-funded AI system for remote detection and monitoring of Tardive Dyskinesia in behavioral health populations.",
+                color: "#1e3a8a",
+              },
+              {
+                icon: GitBranch,
+                title: "Adaptive Intervention Routing",
+                description: "Automatically routes missed-dose alerts to the right care team member based on severity, patient history, and escalation rules.",
+                color: "#0891b2",
+              },
+              {
+                icon: BarChart3,
+                title: "Population Health Analytics",
+                description: "Aggregate adherence data across cohorts, facilities, and regimens. Identify systemic patterns, not just individual behavior.",
+                color: "#1e3a8a",
+              },
+              {
+                icon: MessageCircle,
+                title: "Smart Patient Engagement",
+                description: "Context-aware messaging that only activates when a patient genuinely needs support. No alert fatigue. No nagging.",
+                color: "#0891b2",
+              },
+            ].map((feature, i) => (
+              <FadeUp key={feature.title} delay={0.1 + i * 0.06}>
+                <div
+                  className="bg-white p-7 rounded-2xl border border-gray-100 h-full hover:-translate-y-1 transition-[box-shadow,transform] duration-300"
+                  style={{
+                    boxShadow:
+                      "0 1px 3px rgba(8,145,178,0.04), 0 4px 12px rgba(8,145,178,0.06), 0 16px 40px rgba(30,58,138,0.06)",
+                  }}
+                >
+                  <div
+                    className="w-11 h-11 rounded-xl flex items-center justify-center mb-5"
+                    style={{ backgroundColor: `${feature.color}10` }}
+                  >
+                    <feature.icon className="w-5 h-5" style={{ color: feature.color }} />
+                  </div>
+                  <h3 className="text-lg font-bold text-gray-900 mb-3">{feature.title}</h3>
+                  <p className="text-gray-600 text-sm leading-relaxed">{feature.description}</p>
+                </div>
+              </FadeUp>
+            ))}
+          </div>
+
+          <FadeUp delay={0.4}>
+            <p className="text-center text-sm text-gray-500">
+              Protected by 12 US patents covering dispensing, monitoring, and clinical intelligence technologies.
+            </p>
+          </FadeUp>
+        </div>
+      </section>
+
+      <SectionDivider fromColor="#ffffff" toColor="#0f1d3d" direction="left" height={60} />
+
       {/* ═══ CTA ═══ */}
       <section className="relative py-24 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-[#0f1d3d] via-[#152c6e] to-[#1e3a8a]" />
@@ -1165,7 +1261,8 @@ export function Platform() {
               variant="glass"
               className="justify-center mb-10"
               badges={[
-                { icon: Shield, text: "FDA Cleared" },
+                // TODO: Update to "FDA 510(k) Cleared" once clearance is granted
+                { icon: Shield, text: "FDA 510(k) Pathway" },
                 { icon: Lock, text: "HIPAA Compliant" },
                 { icon: CheckCircle2, text: "SOC 2 Type II" },
               ]}
