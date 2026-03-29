@@ -609,46 +609,115 @@ export function Evidence() {
             </p>
           </FadeUp>
 
+          {/* TODO: Ask William/Dr. Sterns for the complete list of iRxReminder-specific publications.
+              Dr. Sterns has 33 total publications. There may be additional iRxReminder papers
+              not found through public search. The HOPA/Michigan study and TDtect study
+              may have conference presentations or preprints available.
+              Google Scholar profile: https://scholar.google.com/citations?hl=en&user=dkBa8G8AAAAJ */}
           <div className="space-y-5 mb-10">
             {[
               {
-                title: "Medication Adherence Technology for Behavioral Health Populations",
-                journal: "Journal of Medical Internet Research (JMIR)",
-                date: "2023",
-                description: "48% \u2192 80%+ adherence improvement in NIH-funded trial across behavioral health networks.",
+                title: "Randomized Controlled Feasibility Trial of Two Telemedicine Medication Reminder Systems for Older Adults with Heart Failure",
+                journal: "Journal of Telemedicine and Telecare",
+                date: "2014",
+                authors: "Goldstein, Gathright, Dolansky, Gunstad, Sterns, Redle, Josephson, Hughes",
+                description: "NIH-funded randomized controlled trial (N=60) across Kent State, Case Western Reserve, and Summa Health. Tested iRxReminder smartphone app vs. electronic pillbox for heart failure medication adherence. Demonstrated 78-80% adherence with telemedicine monitoring.",
                 color: "#1e3a8a",
+                url: "https://pubmed.ncbi.nlm.nih.gov/24958355/",
               },
               {
-                title: "Reducing Clinical Trial Dropouts Through IoT Medication Monitoring",
-                journal: "Journal of Clinical Oncology",
-                date: "2022",
-                description: "University of Michigan Cancer Center: 25% reduction in trial dropouts.",
+                title: "Adherence to Antidepressant Medications: A Randomized Controlled Trial of Medication Reminding in College Students",
+                journal: "Journal of American College Health",
+                date: "2015",
+                authors: "Hammonds, Rickert, Goldstein, Gathright, Gilmore, Derflinger, Bennett, Sterns, Drew, Hughes",
+                description: "RCT (N=57) demonstrating smartphone medication reminder apps show strong trend toward improving antidepressant adherence. Identified health beliefs and professional care type as key adherence factors.",
                 color: "#0891b2",
+                url: "https://pubmed.ncbi.nlm.nih.gov/25338175/",
               },
               {
-                title: "Gerontechnology and Medication Management for Aging Populations",
-                journal: "Multiple conference presentations",
-                date: "2015\u20132020",
-                description: "100+ international presentations including keynotes at GSA and CHPA.",
+                title: "Smart Home Technologies as Cognitive Prosthetics to Extend Older Adult Independence",
+                journal: "Gerontechnology — International Society for Gerontechnology Conference",
+                date: "2018",
+                authors: "Sterns, Smith, Hughes",
+                description: "Presented iRxReminder platform results: 83% medication adherence across clinical participants using IoT dispensing + smartphone app. Demonstrated value of real-time accurate data vs. unreliable patient self-reports.",
                 color: "#1e3a8a",
+                url: "https://irxreminder.com/news/article/isg-2018/236",
+              },
+              {
+                title: "HOPA-Funded Oral Chemotherapy Adherence Study — University of Michigan Cancer Center",
+                journal: "Hematology Oncology Pharmacy Association",
+                date: "2017",
+                authors: "Kraft, Sterns, Dorsch",
+                description: "First clinical deployment of iLidRx pod in oncology. Tested medication adherence for oral chemotherapy patients at U-M Cancer Center. Validated the complete 3-component platform in a real clinical setting.",
+                color: "#0891b2",
+                url: null as string | null,
+              },
+              {
+                title: "NIMH AI Telehealth Grant — TDtect\u2122 Tardive Dyskinesia Detection and Monitoring",
+                journal: "NIH / NIMH — $871,153 Grant Award",
+                date: "2023 — Ongoing",
+                authors: "Sterns et al. (Kent State, Brown University, Butler Hospital, Videra Health)",
+                description: "AI-powered detection of Tardive Dyskinesia and remote medication monitoring in behavioral health populations. Collaboration across 5 institutions. Study in progress.",
+                color: "#1e3a8a",
+                url: null as string | null,
               },
             ].map((pub, i) => (
               <FadeUp key={pub.title} delay={i * 0.08}>
-                <div className="bg-white p-8 rounded-2xl border-l-4 border border-gray-100 shadow-[0_1px_3px_rgba(8,145,178,0.04),0_4px_12px_rgba(8,145,178,0.06),0_16px_40px_rgba(30,58,138,0.06)] hover:shadow-[0_1px_3px_rgba(8,145,178,0.06),0_8px_20px_rgba(8,145,178,0.1),0_24px_48px_rgba(30,58,138,0.1)] transition-[box-shadow,transform] duration-300 hover:-translate-y-0.5" style={{ borderLeftColor: pub.color }}>
-                  <div className="flex items-start gap-4">
-                    <div className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0" style={{ backgroundColor: `${pub.color}10` }}>
-                      <FileText className="w-5 h-5" style={{ color: pub.color }} />
+                {pub.url ? (
+                  <a
+                    href={pub.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block bg-white p-8 rounded-2xl border-l-4 border border-gray-100 shadow-[0_1px_3px_rgba(8,145,178,0.04),0_4px_12px_rgba(8,145,178,0.06),0_16px_40px_rgba(30,58,138,0.06)] hover:shadow-[0_1px_3px_rgba(8,145,178,0.06),0_8px_20px_rgba(8,145,178,0.1),0_24px_48px_rgba(30,58,138,0.1)] transition-[box-shadow,transform] duration-300 hover:-translate-y-0.5 cursor-pointer group"
+                    style={{ borderLeftColor: pub.color }}
+                  >
+                    <div className="flex items-start gap-4">
+                      <div className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0" style={{ backgroundColor: `${pub.color}10` }}>
+                        <FileText className="w-5 h-5" style={{ color: pub.color }} />
+                      </div>
+                      <div className="flex-1">
+                        <h3 className="font-bold text-gray-900 mb-1 group-hover:text-[#0891b2] transition-colors">{pub.title}</h3>
+                        <p className="text-sm text-[#0891b2] font-medium mb-1">{pub.authors}</p>
+                        <p className="text-sm text-gray-500 mb-3">{pub.journal} &bull; {pub.date}</p>
+                        <p className="text-sm text-gray-600 leading-relaxed">{pub.description}</p>
+                      </div>
+                      <ArrowRight className="w-4 h-4 text-gray-400 group-hover:text-[#0891b2] transition-colors flex-shrink-0 mt-1" />
                     </div>
-                    <div>
-                      <h3 className="font-bold text-gray-900 mb-1">{pub.title}</h3>
-                      <p className="text-sm text-[#0891b2] font-medium mb-3">{pub.journal} &bull; {pub.date}</p>
-                      <p className="text-sm text-gray-600 leading-relaxed">{pub.description}</p>
+                  </a>
+                ) : (
+                  <div
+                    className="bg-white p-8 rounded-2xl border-l-4 border border-gray-100 shadow-[0_1px_3px_rgba(8,145,178,0.04),0_4px_12px_rgba(8,145,178,0.06),0_16px_40px_rgba(30,58,138,0.06)]"
+                    style={{ borderLeftColor: pub.color }}
+                  >
+                    <div className="flex items-start gap-4">
+                      <div className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0" style={{ backgroundColor: `${pub.color}10` }}>
+                        <FileText className="w-5 h-5" style={{ color: pub.color }} />
+                      </div>
+                      <div className="flex-1">
+                        <h3 className="font-bold text-gray-900 mb-1">{pub.title}</h3>
+                        <p className="text-sm text-[#0891b2] font-medium mb-1">{pub.authors}</p>
+                        <p className="text-sm text-gray-500 mb-3">{pub.journal} &bull; {pub.date}</p>
+                        <p className="text-sm text-gray-600 leading-relaxed">{pub.description}</p>
+                      </div>
                     </div>
                   </div>
-                </div>
+                )}
               </FadeUp>
             ))}
           </div>
+
+          {/* Google Scholar link */}
+          <p className="text-center text-sm text-gray-500 mb-10">
+            Dr. Sterns has authored 33 publications across gerontechnology, medication adherence, and health behavior.{" "}
+            <a
+              href="https://scholar.google.com/citations?hl=en&user=dkBa8G8AAAAJ"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[#0891b2] hover:underline font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0891b2]/40 rounded-sm"
+            >
+              View full publication list on Google Scholar &rarr;
+            </a>
+          </p>
 
           {/* Research Impact */}
           <FadeUp delay={0.2}>
