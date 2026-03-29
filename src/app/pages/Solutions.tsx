@@ -31,6 +31,7 @@ import { SplitHero } from "@/app/components/SplitHero";
 import { BentoGrid } from "@/app/components/BentoGrid";
 import { SectionDivider } from "@/app/components/SectionDivider";
 import { FloatingBadgeGroup } from "@/app/components/FloatingBadge";
+import { useSectionObserver } from "@/app/hooks/useSectionObserver";
 
 /* ─── Use Case Visual for Light Hero ─── */
 function UseCaseVisual() {
@@ -114,19 +115,18 @@ function UseCaseVisual() {
   );
 }
 
+const solutionSections = ["research", "mental-health", "pharmacies", "health-systems", "senior-living", "underwriters"];
+
 export function Solutions() {
+  const activeSection = useSectionObserver(solutionSections);
+
   return (
-    <div className="bg-white overflow-hidden">
+    <div className="bg-white">
       {/* ═══ Hero — Light Variant ═══ */}
       <SplitHero
         label="Solutions"
-        headline={
-          <>
-            Your patients. Your data.
-            <br />
-            <span className="text-[#0891b2]">Your peace of mind.</span>
-          </>
-        }
+        headline="Your patients. Your data."
+        tagline="Your peace of mind."
         subtitle="Whether you run clinical trials, manage behavioral health clients, fill prescriptions, or lead a health system — iRxReminder is configured for your use case."
         primaryCta={{ label: "Schedule a Pilot", to: "/schedule-pilot" }}
         secondaryCta={{ label: "See the Evidence", to: "/evidence" }}
@@ -139,6 +139,34 @@ export function Solutions() {
         visual={<UseCaseVisual />}
         variant="light"
       />
+
+      {/* Sticky Sub-Navigation */}
+      <div className="sticky top-20 z-40 bg-white/95 backdrop-blur-md border-b border-gray-100 shadow-[0_1px_3px_rgba(30,58,138,0.04)]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex overflow-x-auto py-3 gap-6 text-sm font-medium scrollbar-hide">
+            {[
+              { href: "#research", id: "research", label: "Clinical Research" },
+              { href: "#mental-health", id: "mental-health", label: "Behavioral Health" },
+              { href: "#pharmacies", id: "pharmacies", label: "Pharmacies" },
+              { href: "#health-systems", id: "health-systems", label: "Health Systems" },
+              { href: "#senior-living", id: "senior-living", label: "Senior Living" },
+              { href: "#underwriters", id: "underwriters", label: "Health Plans" },
+            ].map((item) => (
+              <a
+                key={item.href}
+                href={item.href}
+                className={`whitespace-nowrap transition-colors pb-2 border-b-2 ${
+                  activeSection === item.id
+                    ? "text-[#0891b2] border-[#0891b2] font-semibold"
+                    : "text-gray-500 hover:text-[#0891b2] border-transparent"
+                }`}
+              >
+                {item.label}
+              </a>
+            ))}
+          </div>
+        </div>
+      </div>
 
       {/* ═══ Use Case Overview — BentoGrid ═══ */}
       <section className="py-24 bg-[#f8fafc]">
@@ -188,6 +216,7 @@ export function Solutions() {
                 description:
                   "Patient retention via 90-day pod fills. Real medication use data, not just fill data. Technology competitors can't match.",
                 color: "#0891b2",
+                href: "#pharmacies",
               },
               {
                 icon: Building2,
@@ -195,6 +224,7 @@ export function Solutions() {
                 description:
                   "Post-discharge monitoring in real time. Reduce readmission penalties. 3x cost recovery via RPM/RTM billing codes.",
                 color: "#1e3a8a",
+                href: "#health-systems",
               },
               {
                 icon: Heart,
@@ -496,74 +526,70 @@ export function Solutions() {
 
       <SectionDivider fromColor="#f8fafc" toColor="#ffffff" direction="right" />
 
-      {/* ═══ SECTION 3: PHARMACIES & HEALTH SYSTEMS ═══ */}
-      <section className="py-24 md:py-32 bg-white">
+      {/* ═══ SECTION 3: PHARMACIES ═══ */}
+      <section
+        id="pharmacies"
+        className="py-24 md:py-32 bg-white scroll-mt-32"
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <FadeUp>
-            <p className="text-[#0891b2] font-semibold text-sm tracking-widest uppercase mb-4 text-center">
-              More Use Cases
-            </p>
-            <h2
-              className="text-4xl md:text-5xl font-bold text-[#1e3a8a] text-center mb-16 tracking-tight"
-              style={{ fontFamily: "var(--font-display)" }}
-            >
-              Growth Opportunities for Pharmacies &amp; Health Systems
-            </h2>
-          </FadeUp>
-
-          <div className="grid md:grid-cols-2 gap-8">
-            {/* Pharmacies */}
-            <FadeUp delay={0.1}>
-              <div
-                className="bg-white p-8 md:p-10 rounded-2xl border border-gray-100 h-full"
-                style={{
-                  boxShadow:
-                    "0 1px 3px rgba(8,145,178,0.04), 0 4px 12px rgba(8,145,178,0.06), 0 16px 40px rgba(30,58,138,0.06)",
-                }}
-              >
-                <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-6 bg-[#0891b2]/10">
-                  <Pill className="w-6 h-6 text-[#0891b2]" />
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
+            <FadeUp>
+              <div>
+                <div className="w-14 h-14 rounded-xl flex items-center justify-center mb-6 bg-[#0891b2]/10">
+                  <Pill className="w-7 h-7 text-[#0891b2]" />
                 </div>
-                <h3
-                  className="text-2xl font-bold text-gray-900 mb-3 tracking-tight"
+                <h2
+                  className="text-3xl md:text-4xl font-bold text-[#1e3a8a] mb-6 tracking-tight"
                   style={{ fontFamily: "var(--font-display)" }}
                 >
-                  Differentiate with Technology Your Competitors Can&rsquo;t
-                  Match
-                </h3>
-                <p className="text-gray-600 leading-relaxed mb-6">
+                  Differentiate with Technology Your Competitors Can&rsquo;t Match
+                </h2>
+                <p className="text-xl text-gray-600 leading-relaxed mb-6">
                   You fill prescriptions, but what happens after the patient
                   leaves? You have no visibility. iRxReminder changes that.
                 </p>
-                <ul className="text-gray-600 text-sm space-y-2.5 mb-6">
-                  {[
-                    {
-                      bold: "Patient retention:",
-                      text: "Pods require 90-day fills at your pharmacy.",
-                    },
-                    {
-                      bold: "Real medication use data",
-                      text: "\u2009\u2014 not just fill data.",
-                    },
-                    {
-                      bold: "Customer intimacy",
-                      text: " through shared adherence data and tailored service.",
-                    },
-                    {
-                      bold: "Reduced liability",
-                      text: " from consumer sorting errors.",
-                    },
-                  ].map((item, i) => (
-                    <li key={i} className="flex items-start gap-2">
-                      <CheckCircle2 className="w-4 h-4 text-[#0891b2] flex-shrink-0 mt-0.5" />
-                      <span>
-                        <strong>{item.bold}</strong>
-                        {item.text}
-                      </span>
-                    </li>
-                  ))}
-                </ul>
-                <div className="bg-gradient-to-br from-[#f0fdfa] to-[#e0f7fa] p-5 rounded-xl border border-[#0891b2]/10">
+                <div
+                  className="text-5xl md:text-6xl font-extrabold text-[#0891b2] tracking-tight"
+                  style={{ fontFamily: "var(--font-display)" }}
+                >
+                  90-day
+                </div>
+                <p className="text-gray-500 font-medium mt-1">
+                  patient retention via pod refill cycles
+                </p>
+              </div>
+            </FadeUp>
+
+            <div className="space-y-5">
+              <FadeUp delay={0.1}>
+                <div
+                  className="bg-white p-7 rounded-2xl border border-gray-100"
+                  style={{
+                    boxShadow:
+                      "0 1px 3px rgba(8,145,178,0.04), 0 4px 12px rgba(8,145,178,0.06), 0 16px 40px rgba(30,58,138,0.06)",
+                  }}
+                >
+                  <h4 className="font-bold text-gray-900 mb-4">
+                    How iRxReminder Helps
+                  </h4>
+                  <ul className="text-gray-600 space-y-2.5 leading-relaxed">
+                    {[
+                      "Patient retention: Pods require 90-day fills at your pharmacy.",
+                      "Real medication use data \u2014 not just fill data.",
+                      "Customer intimacy through shared adherence data and tailored service.",
+                      "Reduced liability from consumer sorting errors.",
+                    ].map((text, i) => (
+                      <li key={i} className="flex items-start gap-2">
+                        <CheckCircle2 className="w-4 h-4 text-[#0891b2] flex-shrink-0 mt-1" />
+                        <span>{text}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </FadeUp>
+
+              <FadeUp delay={0.15}>
+                <div className="bg-gradient-to-br from-[#f0fdfa] to-[#e0f7fa] p-7 rounded-2xl border border-[#0891b2]/10">
                   <div className="flex items-center gap-2 mb-2">
                     <Clock className="w-4 h-4 text-[#0891b2]" />
                     <h4 className="font-semibold text-gray-900 text-sm">
@@ -575,62 +601,120 @@ export function Solutions() {
                     takes less than 1 hour per pharmacist.
                   </p>
                 </div>
-              </div>
-            </FadeUp>
+              </FadeUp>
 
-            {/* Health Systems */}
-            <FadeUp delay={0.2}>
-              <div
-                className="bg-white p-8 md:p-10 rounded-2xl border border-gray-100 h-full"
-                style={{
-                  boxShadow:
-                    "0 1px 3px rgba(8,145,178,0.04), 0 4px 12px rgba(8,145,178,0.06), 0 16px 40px rgba(30,58,138,0.06)",
-                }}
-              >
-                <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-6 bg-[#1e3a8a]/10">
-                  <Building2 className="w-6 h-6 text-[#1e3a8a]" />
-                </div>
-                <h3
-                  className="text-2xl font-bold text-gray-900 mb-3 tracking-tight"
-                  style={{ fontFamily: "var(--font-display)" }}
+              <FadeUp delay={0.2}>
+                <div
+                  className="bg-white p-7 rounded-2xl border border-gray-100"
+                  style={{
+                    boxShadow:
+                      "0 1px 3px rgba(8,145,178,0.04), 0 4px 12px rgba(8,145,178,0.06)",
+                  }}
                 >
-                  Reduce Readmissions. Increase Bundled Payment Margins.
-                </h3>
-                <p className="text-gray-600 leading-relaxed mb-6">
-                  Patients are discharged, and you have almost no visibility
-                  into whether they&rsquo;re taking medications. Readmissions
-                  erode margins. Post-discharge non-adherence is the silent
-                  driver.
-                </p>
-                <ul className="text-gray-600 text-sm space-y-2.5 mb-6">
-                  {[
-                    {
-                      bold: "Post-discharge monitoring:",
-                      text: " Track medication behavior at home in real time.",
-                    },
-                    {
-                      bold: "Reduce readmission penalties",
-                      text: " with proactive intervention.",
-                    },
-                    {
-                      bold: "3x cost recovery",
-                      text: " via RPM/RTM billing codes.",
-                    },
-                    {
-                      bold: "100% EHR integration",
-                      text: "\u2009\u2014 no workflow disruption.",
-                    },
-                  ].map((item, i) => (
-                    <li key={i} className="flex items-start gap-2">
-                      <CheckCircle2 className="w-4 h-4 text-[#0891b2] flex-shrink-0 mt-0.5" />
-                      <span>
-                        <strong>{item.bold}</strong>
-                        {item.text}
-                      </span>
-                    </li>
-                  ))}
-                </ul>
-                <div className="bg-gradient-to-br from-[#f8fafc] to-[#eef5ff] p-5 rounded-xl border border-[#1e3a8a]/10">
+                  <Accordion type="multiple">
+                    <AccordionItem value="pharmacy-revenue">
+                      <AccordionTrigger>
+                        New Revenue Streams
+                      </AccordionTrigger>
+                      <AccordionContent>
+                        <ul className="space-y-2 list-disc pl-4">
+                          <li>
+                            90-day pod refills create predictable recurring
+                            revenue per patient
+                          </li>
+                          <li>
+                            RPM/RTM billing codes generate additional
+                            reimbursement for monitoring services
+                          </li>
+                          <li>
+                            Adherence data enables value-based contracts with
+                            payers and health plans
+                          </li>
+                          <li>
+                            Differentiation attracts institutional partnerships
+                            (health systems, behavioral health providers)
+                          </li>
+                        </ul>
+                      </AccordionContent>
+                    </AccordionItem>
+                    <AccordionItem value="pharmacy-competitive">
+                      <AccordionTrigger>
+                        Competitive Advantage
+                      </AccordionTrigger>
+                      <AccordionContent>
+                        <ul className="space-y-2 list-disc pl-4">
+                          <li>
+                            Offer services mail-order and big-box pharmacies
+                            cannot replicate
+                          </li>
+                          <li>
+                            Real medication use data creates stickier patient
+                            relationships
+                          </li>
+                          <li>
+                            Pod technology requires your pharmacy for
+                            refills&nbsp;&mdash; built-in retention
+                          </li>
+                          <li>
+                            White-label reporting for prescriber partners
+                          </li>
+                        </ul>
+                        <Link
+                          to="/schedule-pilot"
+                          className="inline-flex items-center gap-2 text-[#0891b2] font-semibold text-sm mt-4 hover:gap-3 transition-[gap]"
+                        >
+                          Schedule a pilot{" "}
+                          <ArrowRight className="w-3.5 h-3.5" />
+                        </Link>
+                      </AccordionContent>
+                    </AccordionItem>
+                  </Accordion>
+                </div>
+              </FadeUp>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <SectionDivider fromColor="#ffffff" toColor="#f8fafc" direction="left" />
+
+      {/* ═══ SECTION 3B: HEALTH SYSTEMS ═══ */}
+      <section
+        id="health-systems"
+        className="py-24 md:py-32 bg-[#f8fafc] scroll-mt-32"
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
+            <div className="order-2 lg:order-1 space-y-5">
+              <FadeUp delay={0.1}>
+                <div
+                  className="bg-white p-7 rounded-2xl border border-gray-100"
+                  style={{
+                    boxShadow:
+                      "0 1px 3px rgba(8,145,178,0.04), 0 4px 12px rgba(8,145,178,0.06), 0 16px 40px rgba(30,58,138,0.06)",
+                  }}
+                >
+                  <h4 className="font-bold text-gray-900 mb-4">
+                    How iRxReminder Helps
+                  </h4>
+                  <ul className="text-gray-600 space-y-2.5 leading-relaxed">
+                    {[
+                      "Post-discharge monitoring: Track medication behavior at home in real time.",
+                      "Reduce readmission penalties with proactive intervention.",
+                      "3x cost recovery via RPM/RTM billing codes.",
+                      "100% EHR integration \u2014 no workflow disruption.",
+                    ].map((text, i) => (
+                      <li key={i} className="flex items-start gap-2">
+                        <CheckCircle2 className="w-4 h-4 text-[#0891b2] flex-shrink-0 mt-1" />
+                        <span>{text}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </FadeUp>
+
+              <FadeUp delay={0.15}>
+                <div className="bg-gradient-to-br from-[#f8fafc] to-[#eef5ff] p-7 rounded-2xl border border-[#1e3a8a]/10">
                   <div className="flex items-center gap-2 mb-2">
                     <Shield className="w-4 h-4 text-[#1e3a8a]" />
                     <h4 className="font-semibold text-gray-900 text-sm">
@@ -642,18 +726,117 @@ export function Solutions() {
                     pathway.
                   </p>
                 </div>
-              </div>
-            </FadeUp>
+              </FadeUp>
+
+              <FadeUp delay={0.2}>
+                <div
+                  className="bg-white p-7 rounded-2xl border border-gray-100"
+                  style={{
+                    boxShadow:
+                      "0 1px 3px rgba(8,145,178,0.04), 0 4px 12px rgba(8,145,178,0.06)",
+                  }}
+                >
+                  <Accordion type="multiple">
+                    <AccordionItem value="health-readmission">
+                      <AccordionTrigger>
+                        Readmission Reduction Details
+                      </AccordionTrigger>
+                      <AccordionContent>
+                        <ul className="space-y-2 list-disc pl-4">
+                          <li>
+                            CMS penalizes hospitals up to 3% of Medicare
+                            reimbursement for excess readmissions
+                          </li>
+                          <li>
+                            Post-discharge medication non-adherence is a leading
+                            driver of 30-day readmissions
+                          </li>
+                          <li>
+                            Real-time alerts allow care coordinators to
+                            intervene before patients decompensate
+                          </li>
+                          <li>
+                            Automated compliance reports for bundled payment
+                            quality metrics
+                          </li>
+                        </ul>
+                      </AccordionContent>
+                    </AccordionItem>
+                    <AccordionItem value="health-revenue">
+                      <AccordionTrigger>
+                        Revenue &amp; Billing Impact
+                      </AccordionTrigger>
+                      <AccordionContent>
+                        <ul className="space-y-2 list-disc pl-4">
+                          <li>
+                            RPM (99453, 99454, 99457, 99458) and RTM codes
+                            generate $120&ndash;$180/patient/month
+                          </li>
+                          <li>
+                            At 500 monitored patients, platform generates
+                            $720K&ndash;$1.08M annually
+                          </li>
+                          <li>
+                            Improved quality scores support value-based
+                            contract bonuses
+                          </li>
+                          <li>
+                            Reduced readmission penalties protect existing
+                            Medicare revenue
+                          </li>
+                        </ul>
+                        <Link
+                          to="/roi-calculator"
+                          className="inline-flex items-center gap-2 text-[#0891b2] font-semibold text-sm mt-4 hover:gap-3 transition-[gap]"
+                        >
+                          Calculate your ROI{" "}
+                          <ArrowRight className="w-3.5 h-3.5" />
+                        </Link>
+                      </AccordionContent>
+                    </AccordionItem>
+                  </Accordion>
+                </div>
+              </FadeUp>
+            </div>
+
+            <div className="order-1 lg:order-2">
+              <FadeUp>
+                <div className="w-14 h-14 rounded-xl flex items-center justify-center mb-6 bg-[#1e3a8a]/10">
+                  <Building2 className="w-7 h-7 text-[#1e3a8a]" />
+                </div>
+                <h2
+                  className="text-3xl md:text-4xl font-bold text-[#1e3a8a] mb-6 tracking-tight"
+                  style={{ fontFamily: "var(--font-display)" }}
+                >
+                  Reduce Readmissions. Increase Bundled Payment Margins.
+                </h2>
+                <p className="text-xl text-gray-600 leading-relaxed mb-6">
+                  Patients are discharged, and you have almost no visibility
+                  into whether they&rsquo;re taking medications. Readmissions
+                  erode margins. Post-discharge non-adherence is the silent
+                  driver.
+                </p>
+                <div
+                  className="text-5xl md:text-6xl font-extrabold text-[#1e3a8a] tracking-tight"
+                  style={{ fontFamily: "var(--font-display)" }}
+                >
+                  3&times;
+                </div>
+                <p className="text-gray-500 font-medium mt-1">
+                  cost recovery via RPM/RTM billing codes
+                </p>
+              </FadeUp>
+            </div>
           </div>
         </div>
       </section>
 
-      <SectionDivider fromColor="#ffffff" toColor="#f8fafc" direction="left" />
+      <SectionDivider fromColor="#f8fafc" toColor="#ffffff" direction="right" />
 
       {/* ═══ SECTION 4: SENIOR LIVING & HOME HEALTH ═══ */}
       <section
         id="senior-living"
-        className="py-24 md:py-32 bg-[#f8fafc] scroll-mt-32"
+        className="py-24 md:py-32 bg-white scroll-mt-32"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
@@ -787,12 +970,12 @@ export function Solutions() {
         </div>
       </section>
 
-      <SectionDivider fromColor="#f8fafc" toColor="#ffffff" direction="right" />
+      <SectionDivider fromColor="#ffffff" toColor="#f8fafc" direction="left" />
 
       {/* ═══ SECTION 5: HEALTHCARE UNDERWRITERS ═══ */}
       <section
         id="underwriters"
-        className="py-24 md:py-32 bg-white scroll-mt-32"
+        className="py-24 md:py-32 bg-[#f8fafc] scroll-mt-32"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
@@ -926,8 +1109,10 @@ export function Solutions() {
         </div>
       </section>
 
+      <SectionDivider fromColor="#f8fafc" toColor="#ffffff" direction="right" />
+
       {/* ═══ PERSONA PATHS ═══ */}
-      <section className="py-24 md:py-32 bg-[#f8fafc]">
+      <section className="py-24 md:py-32 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <FadeUp>
             <p className="text-[#0891b2] font-semibold text-sm tracking-widest uppercase mb-4 text-center">

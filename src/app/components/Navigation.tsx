@@ -14,6 +14,8 @@ const navLinks = [
   { to: "/contact", label: "Contact" },
 ];
 
+// TODO: Replace text logo with image when brand assets are provided:
+// <img src="/images/brand/irx-logo.svg" alt="iRxReminder" className="h-8 w-auto" />
 export function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);

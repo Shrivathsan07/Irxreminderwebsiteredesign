@@ -35,14 +35,14 @@ const leaders = [
   {
     name: "Anthony Sterns, PhD",
     title: "Founder & Chief Executive Officer",
-    bio: "Spent a decade researching why people with dementia lose their independence. The answer kept coming back to medication. 12 US patents, 33 publications, 100+ international presentations. Created Memory Magic Program impacting 500K+ older adults across 2,400+ facilities in 7 countries.",
+    bio: "Engineer and health behavior expert who has taken 7 products to market. Spent a decade researching why people with dementia lose their independence. The answer kept coming back to medication. 12 US patents, 33 publications, 100+ international presentations. Created Memory Magic Program impacting 500K+ older adults across 2,400+ facilities in 7 countries.",
     email: "asterns@irxreminder.com",
     image: "/images/team/anthony-sterns.jpg",
   },
   {
     name: "Fred Ma, MD, PhD",
     title: "Chief Operating Officer",
-    bio: "Industry executive and FDA expert. 1,200+ clinical trials. 200+ drugs and medical devices through FDA validation and clearance. Leading iRxReminder\u2019s FDA Class II clearance submission.",
+    bio: "Industry executive and FDA expert. Formerly at Johnson & Johnson and Merck. 1,200+ clinical trials. 200+ drugs and medical devices through FDA validation and clearance. Leading iRxReminder\u2019s FDA Class II clearance submission.",
     email: "fma@irxreminder.com",
     image: "/images/team/fred-ma.jpeg",
   },
@@ -209,7 +209,7 @@ export function About() {
       };
 
   return (
-    <div className="bg-white overflow-hidden">
+    <div className="bg-white">
       {/* ═══ HERO ═══ */}
       <section className="relative min-h-[60vh] flex items-center overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-[#0f1d3d] via-[#152c6e] to-[#1e3a8a]" />
@@ -226,13 +226,17 @@ export function About() {
                 Our Story
               </p>
               <h1
-                className="text-5xl sm:text-6xl lg:text-7xl font-extrabold text-white tracking-tight leading-[1.05] mb-6"
+                className="text-5xl sm:text-6xl lg:text-7xl font-extrabold text-white tracking-tight leading-[1.05] mb-3"
                 style={{ fontFamily: "var(--font-display)" }}
               >
-                Built from a
-                <br />
-                <span className="text-[#0891b2]">decade of research.</span>
+                Built from a decade of research.
               </h1>
+              <p
+                className="text-2xl sm:text-3xl lg:text-4xl font-bold text-[#0891b2] tracking-tight mb-6"
+                style={{ fontFamily: "var(--font-display)" }}
+              >
+                Proven in the clinic. Ready for scale.
+              </p>
               <p className="text-xl md:text-2xl text-blue-200 leading-relaxed max-w-2xl">
                 Dr. Anthony Sterns spent ten years studying why people with
                 dementia lose their independence. The answer kept coming back to
@@ -762,7 +766,7 @@ export function About() {
                 variant="outline"
                 className="border-white/80 bg-white/5 hover:border-white hover:bg-white/15 text-white text-lg px-8 py-6 transition-colors"
               >
-                <Link to="/schedule-pilot">Schedule a Pilot</Link>
+                <Link to="/evidence">See the Evidence</Link>
               </Button>
             </div>
           </FadeUp>

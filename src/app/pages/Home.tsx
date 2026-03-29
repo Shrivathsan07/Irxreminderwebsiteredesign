@@ -37,7 +37,24 @@ import { ComparisonChart } from "@/app/components/ComparisonChart";
 import { TimelineTrack } from "@/app/components/TimelineTrack";
 import { useReducedMotion } from "@/app/hooks/useReducedMotion";
 
-/** Placeholder device mockup visual for hero */
+/**
+ * Placeholder device mockup visual for hero.
+ * TODO: Replace with actual product imagery when available.
+ * William has requested product photos from the investor deck be used.
+ * When images are ready, replace this entire component with:
+ *
+ * function DeviceMockup() {
+ *   return (
+ *     <div className="relative">
+ *       <img
+ *         src="/images/product/irx-system-hero.png"
+ *         alt="iRxReminder platform: iLidRx pod, mobile app, and Control Center dashboard"
+ *         className="w-full max-w-lg mx-auto"
+ *       />
+ *     </div>
+ *   );
+ * }
+ */
 function DeviceMockup() {
   const prefersReducedMotion = useReducedMotion();
 
@@ -118,20 +135,21 @@ export function Home() {
   const prefersReducedMotion = useReducedMotion();
 
   return (
-    <div className="bg-white overflow-hidden">
+    <div className="bg-white">
       {/* ======= SECTION 1: HERO — SplitHero ======= */}
+      {/* TODO: William requested slide 2 imagery (iLidRx pod + doctor/patient photo).
+          Replace DeviceMockup with actual product photography when provided. */}
       <SplitHero
         label="AI Clinical Intelligence Platform"
         headline={
           <>
-            Know when your patients
+            Saving Lives. Reducing
             <br />
-            take their medications.
-            <br />
-            <span className="text-[#0891b2]">Act when they don&rsquo;t.</span>
+            Healthcare Costs.
           </>
         }
-        subtitle="iRxReminder connects healthcare teams to their patients' daily medication behavior through smart dispensing, real-time monitoring, and targeted intervention."
+        tagline="Connect. Monitor. Interact."
+        subtitle="AI digital health technologies empowering patients to achieve and thrive in independence — improving medication adherence from 48% to over 80%."
         primaryCta={{ label: "Schedule a Pilot", to: "/schedule-pilot" }}
         secondaryCta={{ label: "See the Research", to: "/evidence" }}
         trustItems={[
@@ -459,6 +477,8 @@ export function Home() {
         </div>
       </Section>
 
+      <SectionDivider fromColor="#f8fafc" toColor="#ffffff" direction="left" />
+
       {/* ======= SECTION 5B: COMPETITIVE COMPARISON ======= */}
       <Section className="py-24 md:py-32 bg-white">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -663,6 +683,8 @@ export function Home() {
         </div>
       </Section>
 
+      <SectionDivider fromColor="#1e3a8a" toColor="#f8fafc" direction="right" />
+
       {/* ======= SECTION 7: SOCIAL PROOF — Testimonial ======= */}
       <Section className="py-24 md:py-28 bg-[#f8fafc]">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -690,6 +712,8 @@ export function Home() {
           </FadeUp>
         </div>
       </Section>
+
+      <SectionDivider fromColor="#f8fafc" toColor="#0f1d3d" direction="left" height={60} />
 
       {/* ======= SECTION 8: ROI TEASER — ComparisonChart ======= */}
       <Section className="relative py-24 md:py-32 overflow-hidden">
@@ -753,6 +777,8 @@ export function Home() {
           </div>
         </div>
       </Section>
+
+      <SectionDivider fromColor="#1e3a8a" toColor="#ffffff" direction="right" />
 
       {/* ======= SECTION 9: STAKES REMINDER ======= */}
       <Section className="py-16 md:py-20 bg-white">

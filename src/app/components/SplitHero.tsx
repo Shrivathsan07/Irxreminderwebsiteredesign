@@ -8,6 +8,8 @@ import { useReducedMotion } from "@/app/hooks/useReducedMotion";
 interface SplitHeroProps {
   label: string;
   headline: React.ReactNode;
+  /** Optional tagline rendered below the headline at a smaller size in teal */
+  tagline?: string;
   subtitle: string;
   primaryCta?: { label: string; to: string };
   secondaryCta?: { label: string; to: string };
@@ -21,6 +23,7 @@ interface SplitHeroProps {
 export function SplitHero({
   label,
   headline,
+  tagline,
   subtitle,
   primaryCta,
   secondaryCta,
@@ -95,11 +98,19 @@ export function SplitHero({
                 {label}
               </p>
               <h1
-                className={`text-5xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight leading-[1.05] mb-6 ${isDark ? "text-white" : "text-[#1e3a8a]"}`}
+                className={`text-5xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight leading-[1.05] ${tagline ? "mb-3" : "mb-6"} ${isDark ? "text-white" : "text-[#1e3a8a]"}`}
                 style={{ fontFamily: "var(--font-display)" }}
               >
                 {headline}
               </h1>
+              {tagline && (
+                <p
+                  className="text-2xl sm:text-3xl lg:text-4xl font-bold text-[#0891b2] tracking-tight mb-6"
+                  style={{ fontFamily: "var(--font-display)" }}
+                >
+                  {tagline}
+                </p>
+              )}
               <p className={`text-xl md:text-2xl leading-relaxed mb-10 max-w-xl ${isDark ? "text-blue-200" : "text-gray-600"}`}>
                 {subtitle}
               </p>

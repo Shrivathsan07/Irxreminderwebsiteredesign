@@ -2,6 +2,7 @@ import { useForm } from "react-hook-form";
 import { Button } from "../components/ui/button";
 import { Input } from "../components/ui/input";
 import { Label } from "../components/ui/label";
+import { Textarea } from "../components/ui/textarea";
 import { Shield, TrendingUp, Award, Lock, CheckCircle2 } from "lucide-react";
 import { motion } from "motion/react";
 import { FadeUp } from "@/app/components/animations";
@@ -15,6 +16,7 @@ interface PilotFormData {
   organization: string;
   email: string;
   phone: string;
+  message: string;
 }
 
 export function SchedulePilot() {
@@ -45,9 +47,15 @@ export function SchedulePilot() {
             <p className="text-[#0891b2] font-semibold text-sm tracking-widest uppercase mb-4">
               Get Started
             </p>
-            <h1 className="text-4xl md:text-5xl font-extrabold text-white mb-6 tracking-tight" style={{ fontFamily: "var(--font-display)" }}>
-              Schedule a <span className="text-[#0891b2]">Pilot Program</span>
+            <h1 className="text-4xl md:text-5xl font-extrabold text-white mb-3 tracking-tight" style={{ fontFamily: "var(--font-display)" }}>
+              Schedule a Pilot Program
             </h1>
+            <p
+              className="text-xl sm:text-2xl md:text-3xl font-bold text-[#0891b2] tracking-tight mb-6"
+              style={{ fontFamily: "var(--font-display)" }}
+            >
+              Get Started in 30 Days
+            </p>
             <p className="text-xl text-blue-200 max-w-2xl mx-auto">
               See firsthand how iRxReminder improves medication adherence,
               reduces readmissions, and generates reimbursable revenue
@@ -147,6 +155,16 @@ export function SchedulePilot() {
                       </div>
                     </div>
 
+                    <div>
+                      <Label htmlFor="message">Message (Optional)</Label>
+                      <Textarea
+                        id="message"
+                        placeholder="Tell us about your organization, patient population, or what you're hoping to achieve with a pilot program."
+                        {...register("message")}
+                        className="mt-1.5 min-h-[120px]"
+                      />
+                    </div>
+
                     <Button
                       type="submit"
                       size="lg"
@@ -157,7 +175,7 @@ export function SchedulePilot() {
                     <div className="mt-4">
                       <FloatingBadgeGroup
                         badges={[
-                          { icon: Shield, text: "FDA Cleared" },
+                          { icon: Shield, text: "FDA 510(k) Pathway" },
                           { icon: Lock, text: "HIPAA Compliant" },
                           { icon: CheckCircle2, text: "SOC 2 Type II" },
                         ]}

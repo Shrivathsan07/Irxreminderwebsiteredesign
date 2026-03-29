@@ -23,6 +23,8 @@ import {
   MessageCircle,
   AlertTriangle,
   BarChart3,
+  HeartPulse,
+  TrendingUp,
 } from "lucide-react";
 import { Button } from "../components/ui/button";
 import {
@@ -40,8 +42,9 @@ import { SectionDivider } from "@/app/components/SectionDivider";
 import { FloatingBadgeGroup } from "@/app/components/FloatingBadge";
 import { TimelineTrack } from "@/app/components/TimelineTrack";
 import { StatCard } from "@/app/components/StatCard";
+import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/app/components/ui/tabs";
 
-const platformSections = ["pod", "app", "dashboard", "integration"];
+const platformSections = ["pod", "app", "dashboard", "integration", "ai"];
 
 /* ─── Product Visual for Hero ─── */
 function PlatformVisual() {
@@ -165,10 +168,9 @@ export function Platform() {
             One Platform.
             <br />
             Three Components.
-            <br />
-            <span className="text-[#0891b2]">Complete Visibility.</span>
           </>
         }
+        tagline="Complete Visibility."
         subtitle="See exactly what's happening with your patients' medication behavior — from dispensing to adherence to intervention."
         primaryCta={{ label: "Schedule a Pilot", to: "/schedule-pilot" }}
         secondaryCta={{ label: "Calculate Your ROI", to: "/roi-calculator" }}
@@ -199,6 +201,11 @@ export function Platform() {
                 id: "integration",
                 label: "EHR Integration",
               },
+              {
+                href: "#ai",
+                id: "ai",
+                label: "AI Intelligence",
+              },
             ].map((item) => (
               <a
                 key={item.href}
@@ -216,6 +223,8 @@ export function Platform() {
         </div>
       </div>
 
+      {/* TODO: Add product image when available
+          <img src="/images/product/ilidrx-pod.png" alt="iLidRx intelligent medication dispensing pod" /> */}
       {/* ═══ iLidRx Pod ═══ */}
       <section id="pod" className="py-24 bg-[#f8fafc] scroll-mt-32">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -1100,6 +1109,8 @@ export function Platform() {
         </div>
       </section>
 
+      <SectionDivider fromColor="#ffffff" toColor="#0f1d3d" direction="left" height={60} />
+
       {/* ═══ Platform Stats Band ═══ */}
       <section className="relative py-20 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-[#0a1628] via-[#152c6e] to-[#1e3a8a]" />
@@ -1152,8 +1163,10 @@ export function Platform() {
         </div>
       </section>
 
-      {/* ═══ AI Clinical Intelligence ═══ */}
-      <section className="py-24 md:py-32 bg-white">
+      <SectionDivider fromColor="#1e3a8a" toColor="#ffffff" direction="right" />
+
+      {/* ═══ AI Clinical Intelligence — Tabbed Modules ═══ */}
+      <section id="ai" className="py-24 md:py-32 bg-white scroll-mt-32">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <FadeUp>
             <p className="text-[#0891b2] font-semibold text-sm tracking-widest uppercase mb-4 text-center">
@@ -1172,67 +1185,363 @@ export function Platform() {
               A Clinical Intelligence Platform.
             </p>
             <p className="text-xl text-gray-600 text-center mb-16 max-w-3xl mx-auto leading-relaxed">
-              {/* TODO: Confirm with leadership which AI features are live vs. in development before final launch */}
-              iRxReminder goes beyond dispensing and monitoring. Our AI layer transforms raw medication data into clinical insights that drive better outcomes.
+              iRxReminder goes beyond dispensing and monitoring. Five AI modules transform raw medication data into clinical insights that drive better outcomes.
             </p>
           </FadeUp>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-            {[
-              {
-                icon: Brain,
-                title: "Predictive Non-Adherence Alerts",
-                description: "AI models analyze dosing patterns to predict which patients are at risk of dropping off\u2009\u2014\u2009before it happens.",
-                color: "#0891b2",
-              },
-              {
-                icon: AlertTriangle,
-                title: "TDtect\u2122 Diagnostic AI",
-                description: "NIMH-funded AI system for remote detection and monitoring of Tardive Dyskinesia in behavioral health populations.",
-                color: "#1e3a8a",
-              },
-              {
-                icon: GitBranch,
-                title: "Adaptive Intervention Routing",
-                description: "Automatically routes missed-dose alerts to the right care team member based on severity, patient history, and escalation rules.",
-                color: "#0891b2",
-              },
-              {
-                icon: BarChart3,
-                title: "Population Health Analytics",
-                description: "Aggregate adherence data across cohorts, facilities, and regimens. Identify systemic patterns, not just individual behavior.",
-                color: "#1e3a8a",
-              },
-              {
-                icon: MessageCircle,
-                title: "Smart Patient Engagement",
-                description: "Context-aware messaging that only activates when a patient genuinely needs support. No alert fatigue. No nagging.",
-                color: "#0891b2",
-              },
-            ].map((feature, i) => (
-              <FadeUp key={feature.title} delay={0.1 + i * 0.06}>
-                <div
-                  className="bg-white p-7 rounded-2xl border border-gray-100 h-full hover:-translate-y-1 transition-[box-shadow,transform] duration-300"
-                  style={{
-                    boxShadow:
-                      "0 1px 3px rgba(8,145,178,0.04), 0 4px 12px rgba(8,145,178,0.06), 0 16px 40px rgba(30,58,138,0.06)",
-                  }}
-                >
-                  <div
-                    className="w-11 h-11 rounded-xl flex items-center justify-center mb-5"
-                    style={{ backgroundColor: `${feature.color}10` }}
-                  >
-                    <feature.icon className="w-5 h-5" style={{ color: feature.color }} />
-                  </div>
-                  <h3 className="text-lg font-bold text-gray-900 mb-3">{feature.title}</h3>
-                  <p className="text-gray-600 text-sm leading-relaxed">{feature.description}</p>
-                </div>
-              </FadeUp>
-            ))}
-          </div>
+          <FadeUp delay={0.1}>
+            <Tabs defaultValue="overview" className="w-full">
+              <div className="flex justify-center mb-10">
+                <TabsList className="flex-wrap gap-1">
+                  <TabsTrigger value="overview">Overview</TabsTrigger>
+                  <TabsTrigger value="predictive">Predictive Risk</TabsTrigger>
+                  <TabsTrigger value="intervention">Intervention Pathways</TabsTrigger>
+                  <TabsTrigger value="withdrawal">Withdrawal Detection</TabsTrigger>
+                  <TabsTrigger value="engagement">Patient Engagement</TabsTrigger>
+                  <TabsTrigger value="analytics">Data Analysis</TabsTrigger>
+                </TabsList>
+              </div>
 
-          <FadeUp delay={0.4}>
-            <p className="text-center text-sm text-gray-500">
+              {/* ── Overview Tab ── */}
+              <TabsContent value="overview">
+                <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {[
+                    {
+                      icon: Brain,
+                      title: "Predictive Non-Adherence Risk",
+                      description: "Forecast dropout and non-adherence risk over the next 72 hours. Prioritize outreach to highest-risk patients.",
+                      color: "#0891b2",
+                      tab: "predictive",
+                    },
+                    {
+                      icon: GitBranch,
+                      title: "Intervention Pathways",
+                      description: "Automated escalation from patient reminder to caregiver alert to clinician outreach to crisis protocol.",
+                      color: "#1e3a8a",
+                      tab: "intervention",
+                    },
+                    {
+                      icon: AlertTriangle,
+                      title: "Withdrawal Detection",
+                      description: "Early withdrawal risk detection to improve OUD induction safety. Key differentiator in the fentanyl era.",
+                      color: "#0891b2",
+                      tab: "withdrawal",
+                    },
+                    {
+                      icon: MessageCircle,
+                      title: "Patient Engagement",
+                      description: "HIPAA-safe coaching and adherence reinforcement. 24/7 support that reduces staff workload.",
+                      color: "#1e3a8a",
+                      tab: "engagement",
+                    },
+                    {
+                      icon: BarChart3,
+                      title: "Data Analysis",
+                      description: "Quantify outcomes: retention, ER visits, relapse markers. ROI dashboards for payers and providers.",
+                      color: "#0891b2",
+                      tab: "analytics",
+                    },
+                    {
+                      icon: HeartPulse,
+                      title: "TDtect\u2122 Diagnostic AI",
+                      description: "NIMH-funded AI system for remote detection and monitoring of Tardive Dyskinesia in behavioral health populations.",
+                      color: "#1e3a8a",
+                      tab: null,
+                    },
+                  ].map((feature, i) => (
+                    <FadeUp key={feature.title} delay={0.05 + i * 0.04}>
+                      <div
+                        className="bg-white p-7 rounded-2xl border border-gray-100 h-full hover:-translate-y-1 transition-[box-shadow,transform] duration-300"
+                        style={{
+                          boxShadow:
+                            "0 1px 3px rgba(8,145,178,0.04), 0 4px 12px rgba(8,145,178,0.06), 0 16px 40px rgba(30,58,138,0.06)",
+                        }}
+                      >
+                        <div
+                          className="w-11 h-11 rounded-xl flex items-center justify-center mb-5"
+                          style={{ backgroundColor: `${feature.color}10` }}
+                        >
+                          <feature.icon className="w-5 h-5" style={{ color: feature.color }} />
+                        </div>
+                        <h3 className="text-lg font-bold text-gray-900 mb-3">{feature.title}</h3>
+                        <p className="text-gray-600 text-sm leading-relaxed">{feature.description}</p>
+                      </div>
+                    </FadeUp>
+                  ))}
+                </div>
+              </TabsContent>
+
+              {/* ── Module 1: Predictive Non-Adherence Risk ── */}
+              <TabsContent value="predictive">
+                <div className="grid lg:grid-cols-2 gap-10 items-start">
+                  <div>
+                    <div className="w-14 h-14 rounded-xl flex items-center justify-center mb-6 bg-[#0891b2]/10">
+                      <Brain className="w-7 h-7 text-[#0891b2]" />
+                    </div>
+                    <h3
+                      className="text-3xl font-bold text-[#1e3a8a] mb-4 tracking-tight"
+                      style={{ fontFamily: "var(--font-display)" }}
+                    >
+                      AI Module 1: Predictive Non-Adherence Risk
+                    </h3>
+                    <p className="text-xl text-gray-600 leading-relaxed mb-6">
+                      Forecast dropout and non-adherence risk over the next 72 hours. Don&rsquo;t wait for a patient to disappear&nbsp;&mdash; intervene while you can still make a difference.
+                    </p>
+                    <div
+                      className="text-5xl font-extrabold text-[#0891b2] tracking-tight mb-2"
+                      style={{ fontFamily: "var(--font-display)" }}
+                    >
+                      72hr
+                    </div>
+                    <p className="text-gray-500 font-medium">predictive window for risk forecasting</p>
+                  </div>
+                  <div className="space-y-5">
+                    <div
+                      className="bg-white p-7 rounded-2xl border border-gray-100"
+                      style={{ boxShadow: "0 1px 3px rgba(8,145,178,0.04), 0 4px 12px rgba(8,145,178,0.06), 0 16px 40px rgba(30,58,138,0.06)" }}
+                    >
+                      <h4 className="font-bold text-gray-900 mb-4">Key Capabilities</h4>
+                      <ul className="text-gray-600 space-y-2.5 leading-relaxed">
+                        {[
+                          "AI models analyze dosing patterns to predict which patients are at risk of dropping off",
+                          "Prioritize outreach to the highest-risk patients first",
+                          "Improve retention and reduce adverse events before they happen",
+                          "Effective data input component for continuous self-improvement",
+                        ].map((text, i) => (
+                          <li key={i} className="flex items-start gap-2">
+                            <CheckCircle2 className="w-4 h-4 text-[#0891b2] flex-shrink-0 mt-1" />
+                            <span>{text}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                    <div className="bg-gradient-to-br from-[#f8fafc] to-[#eef5ff] p-6 rounded-2xl border border-[#1e3a8a]/10">
+                      <p className="text-sm text-gray-700 leading-relaxed">
+                        <strong className="text-[#1e3a8a]">Why it matters:</strong> Traditional systems only tell you a patient missed a dose <em>after</em> it happened. Predictive risk scoring lets you act <em>before</em> the pattern becomes a crisis.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </TabsContent>
+
+              {/* ── Module 2: Intervention Pathways ── */}
+              <TabsContent value="intervention">
+                <div className="grid lg:grid-cols-2 gap-10 items-start">
+                  <div>
+                    <div className="w-14 h-14 rounded-xl flex items-center justify-center mb-6 bg-[#1e3a8a]/10">
+                      <GitBranch className="w-7 h-7 text-[#1e3a8a]" />
+                    </div>
+                    <h3
+                      className="text-3xl font-bold text-[#1e3a8a] mb-4 tracking-tight"
+                      style={{ fontFamily: "var(--font-display)" }}
+                    >
+                      AI Module 2: Intervention Pathways
+                    </h3>
+                    <p className="text-xl text-gray-600 leading-relaxed mb-6">
+                      Automated escalation workflows that standardize care and reduce staff burden. Individualized actions and decisions, not broad categories.
+                    </p>
+                  </div>
+                  <div className="space-y-5">
+                    <div
+                      className="bg-white p-7 rounded-2xl border border-gray-100"
+                      style={{ boxShadow: "0 1px 3px rgba(8,145,178,0.04), 0 4px 12px rgba(8,145,178,0.06), 0 16px 40px rgba(30,58,138,0.06)" }}
+                    >
+                      <h4 className="font-bold text-gray-900 mb-4">Escalation Workflow</h4>
+                      <div className="space-y-4">
+                        {[
+                          { step: "1", label: "Patient Reminder", desc: "Context-aware nudge only when a dose is genuinely at risk of being missed" },
+                          { step: "2", label: "Caregiver Alert", desc: "Family member or assigned caregiver is notified if the patient doesn\u2019t respond" },
+                          { step: "3", label: "Clinician Outreach", desc: "Care team member receives prioritized alert with patient history context" },
+                          { step: "4", label: "Crisis Protocol", desc: "Automated escalation to emergency contacts and clinical intervention team" },
+                        ].map((item) => (
+                          <div key={item.step} className="flex items-start gap-4">
+                            <div className="w-8 h-8 rounded-full bg-[#0891b2]/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+                              <span className="text-sm font-bold text-[#0891b2]">{item.step}</span>
+                            </div>
+                            <div>
+                              <div className="font-semibold text-gray-900 text-sm">{item.label}</div>
+                              <p className="text-sm text-gray-500">{item.desc}</p>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                    <div className="bg-gradient-to-br from-[#f8fafc] to-[#eef5ff] p-6 rounded-2xl border border-[#1e3a8a]/10">
+                      <p className="text-sm text-gray-700 leading-relaxed">
+                        <strong className="text-[#1e3a8a]">Collaboration-driven:</strong> Every interaction feeds back into the system, creating an effective data input component for continuous self-improvement.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </TabsContent>
+
+              {/* ── Module 3: Withdrawal Detection ── */}
+              <TabsContent value="withdrawal">
+                <div className="grid lg:grid-cols-2 gap-10 items-start">
+                  <div>
+                    <div className="w-14 h-14 rounded-xl flex items-center justify-center mb-6 bg-[#0891b2]/10">
+                      <AlertTriangle className="w-7 h-7 text-[#0891b2]" />
+                    </div>
+                    <h3
+                      className="text-3xl font-bold text-[#1e3a8a] mb-4 tracking-tight"
+                      style={{ fontFamily: "var(--font-display)" }}
+                    >
+                      AI Module 3: Withdrawal Detection
+                    </h3>
+                    <p className="text-xl text-gray-600 leading-relaxed mb-6">
+                      Early withdrawal risk detection to improve OUD induction safety. A key differentiator in the fentanyl era.
+                    </p>
+                    <div className="bg-gradient-to-br from-red-50 to-orange-50 p-5 rounded-xl border border-red-100">
+                      <p className="text-sm text-gray-700 leading-relaxed">
+                        <strong className="text-red-700">Critical for behavioral health:</strong> Supports micro-dosing and retention protocols where early withdrawal detection can prevent relapse and save lives.
+                      </p>
+                    </div>
+                  </div>
+                  <div className="space-y-5">
+                    <div
+                      className="bg-white p-7 rounded-2xl border border-gray-100"
+                      style={{ boxShadow: "0 1px 3px rgba(8,145,178,0.04), 0 4px 12px rgba(8,145,178,0.06), 0 16px 40px rgba(30,58,138,0.06)" }}
+                    >
+                      <h4 className="font-bold text-gray-900 mb-4">Key Capabilities</h4>
+                      <ul className="text-gray-600 space-y-2.5 leading-relaxed">
+                        {[
+                          "AI-enabled behavioral analysis detects early signs of medication withdrawal",
+                          "Substance use relapse pattern recognition from dosing behavior",
+                          "Supports micro-dosing protocols for OUD induction safety",
+                          "Enables proactive clinical intervention before crisis escalation",
+                          "Integrated with TDtect\u2122 for comprehensive behavioral health monitoring",
+                        ].map((text, i) => (
+                          <li key={i} className="flex items-start gap-2">
+                            <CheckCircle2 className="w-4 h-4 text-[#0891b2] flex-shrink-0 mt-1" />
+                            <span>{text}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </TabsContent>
+
+              {/* ── Module 4: Patient Engagement ── */}
+              <TabsContent value="engagement">
+                <div className="grid lg:grid-cols-2 gap-10 items-start">
+                  <div>
+                    <div className="w-14 h-14 rounded-xl flex items-center justify-center mb-6 bg-[#1e3a8a]/10">
+                      <MessageCircle className="w-7 h-7 text-[#1e3a8a]" />
+                    </div>
+                    <h3
+                      className="text-3xl font-bold text-[#1e3a8a] mb-4 tracking-tight"
+                      style={{ fontFamily: "var(--font-display)" }}
+                    >
+                      AI Module 4: Patient Engagement
+                    </h3>
+                    <p className="text-xl text-gray-600 leading-relaxed mb-6">
+                      HIPAA-safe coaching and adherence reinforcement that provides 24/7 support&nbsp;&mdash; without adding to staff workload.
+                    </p>
+                    <div
+                      className="text-5xl font-extrabold text-[#0891b2] tracking-tight mb-2"
+                      style={{ fontFamily: "var(--font-display)" }}
+                    >
+                      24/7
+                    </div>
+                    <p className="text-gray-500 font-medium">always-on patient support</p>
+                  </div>
+                  <div className="space-y-5">
+                    <div
+                      className="bg-white p-7 rounded-2xl border border-gray-100"
+                      style={{ boxShadow: "0 1px 3px rgba(8,145,178,0.04), 0 4px 12px rgba(8,145,178,0.06), 0 16px 40px rgba(30,58,138,0.06)" }}
+                    >
+                      <h4 className="font-bold text-gray-900 mb-4">Key Capabilities</h4>
+                      <ul className="text-gray-600 space-y-2.5 leading-relaxed">
+                        {[
+                          "HIPAA-safe coaching that reinforces adherence behavior",
+                          "Context-aware messaging \u2014 only activates when a patient genuinely needs support",
+                          "24/7 automated support reduces staff workload for agencies",
+                          "No alert fatigue \u2014 proven to maintain engagement beyond 90 days",
+                        ].map((text, i) => (
+                          <li key={i} className="flex items-start gap-2">
+                            <CheckCircle2 className="w-4 h-4 text-[#0891b2] flex-shrink-0 mt-1" />
+                            <span>{text}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                    <div className="bg-gradient-to-br from-[#f8fafc] to-[#eef5ff] p-6 rounded-2xl border border-[#1e3a8a]/10">
+                      <p className="text-sm text-gray-700 leading-relaxed">
+                        <strong className="text-[#1e3a8a]">Staff impact:</strong> Agencies spend significant staff time on manual follow-up calls and medication check-ins. AI engagement automates the routine interactions so your team can focus on patients who need human attention.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </TabsContent>
+
+              {/* ── Module 5: Data Analysis ── */}
+              <TabsContent value="analytics">
+                <div className="grid lg:grid-cols-2 gap-10 items-start">
+                  <div>
+                    <div className="w-14 h-14 rounded-xl flex items-center justify-center mb-6 bg-[#0891b2]/10">
+                      <BarChart3 className="w-7 h-7 text-[#0891b2]" />
+                    </div>
+                    <h3
+                      className="text-3xl font-bold text-[#1e3a8a] mb-4 tracking-tight"
+                      style={{ fontFamily: "var(--font-display)" }}
+                    >
+                      AI Module 5: Data Analysis
+                    </h3>
+                    <p className="text-xl text-gray-600 leading-relaxed mb-6">
+                      Quantify outcomes across retention, ER visits, and relapse markers. Generate evidence packages for payers, providers, and pharma sponsors.
+                    </p>
+                  </div>
+                  <div className="space-y-5">
+                    <div
+                      className="bg-white p-7 rounded-2xl border border-gray-100"
+                      style={{ boxShadow: "0 1px 3px rgba(8,145,178,0.04), 0 4px 12px rgba(8,145,178,0.06), 0 16px 40px rgba(30,58,138,0.06)" }}
+                    >
+                      <h4 className="font-bold text-gray-900 mb-4">Output Capabilities</h4>
+                      <div className="grid sm:grid-cols-3 gap-4">
+                        {[
+                          { icon: TrendingUp, label: "Retention Analytics", desc: "Track patient retention and adherence trends across cohorts" },
+                          { icon: BarChart3, label: "ROI Dashboards", desc: "Real-time dashboards for payers and providers showing financial impact" },
+                          { icon: FileText, label: "Evidence Packages", desc: "Publication-ready data for pharma sponsors and trial reporting" },
+                        ].map((item, i) => (
+                          <div key={i} className="bg-[#f8fafc] p-5 rounded-xl border border-gray-100 text-center">
+                            <div className="w-10 h-10 rounded-lg bg-[#0891b2]/10 flex items-center justify-center mx-auto mb-3">
+                              <item.icon className="w-5 h-5 text-[#0891b2]" />
+                            </div>
+                            <div className="font-semibold text-gray-900 text-sm mb-1">{item.label}</div>
+                            <p className="text-xs text-gray-500">{item.desc}</p>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                    <div
+                      className="bg-white p-7 rounded-2xl border border-gray-100"
+                      style={{ boxShadow: "0 1px 3px rgba(8,145,178,0.04), 0 4px 12px rgba(8,145,178,0.06)" }}
+                    >
+                      <h4 className="font-bold text-gray-900 mb-4">Key Metrics Tracked</h4>
+                      <ul className="text-gray-600 space-y-2.5 leading-relaxed">
+                        {[
+                          "Medication adherence rates by patient, cohort, and facility",
+                          "ER visit reduction and hospitalization avoidance metrics",
+                          "Relapse markers and early warning indicators",
+                          "Cost savings and reimbursement revenue per patient",
+                          "Population-level trend analysis for strategic planning",
+                        ].map((text, i) => (
+                          <li key={i} className="flex items-start gap-2">
+                            <CheckCircle2 className="w-4 h-4 text-[#0891b2] flex-shrink-0 mt-1" />
+                            <span>{text}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </TabsContent>
+            </Tabs>
+          </FadeUp>
+
+          <FadeUp delay={0.3}>
+            <p className="text-center text-sm text-gray-500 mt-12">
               Protected by 12 US patents covering dispensing, monitoring, and clinical intelligence technologies.
             </p>
           </FadeUp>
