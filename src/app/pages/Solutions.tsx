@@ -136,7 +136,16 @@ export function Solutions() {
           { icon: Lock, text: "HIPAA Compliant" },
           { icon: Activity, text: "Real-Time Data" },
         ]}
-        visual={<UseCaseVisual />}
+        visual={
+          <div className="relative rounded-2xl overflow-hidden" style={{ boxShadow: "0 4px 24px rgba(8,145,178,0.12), 0 16px 56px rgba(30,58,138,0.16)" }}>
+            <img
+              src="/images/banners/irx_banner_care.jpg"
+              alt="iRxReminder medication management in a care setting"
+              className="w-full h-auto object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#1e3a8a]/20 to-transparent" />
+          </div>
+        }
         variant="light"
       />
 

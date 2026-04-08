@@ -338,34 +338,44 @@ export function About() {
           </FadeUp>
 
           <FadeUp delay={0.1}>
-            <div
-              className="relative bg-white p-8 md:p-12 rounded-2xl border border-[#1e3a8a]/10"
-              style={{
-                boxShadow:
-                  "0 1px 3px rgba(30,58,138,0.04), 0 4px 12px rgba(30,58,138,0.06), 0 16px 40px rgba(30,58,138,0.06)",
-              }}
-            >
-              <div className="absolute top-6 left-8 text-[#1e3a8a]/10 text-8xl font-serif leading-none">
-                &ldquo;
+            <div className="grid lg:grid-cols-2 gap-10 items-center">
+              <div
+                className="relative bg-white p-8 md:p-12 rounded-2xl border border-[#1e3a8a]/10"
+                style={{
+                  boxShadow:
+                    "0 1px 3px rgba(30,58,138,0.04), 0 4px 12px rgba(30,58,138,0.06), 0 16px 40px rgba(30,58,138,0.06)",
+                }}
+              >
+                <div className="absolute top-6 left-8 text-[#1e3a8a]/10 text-8xl font-serif leading-none">
+                  &ldquo;
+                </div>
+                <div className="relative pl-4 md:pl-8">
+                  <p className="text-lg md:text-xl text-gray-700 leading-relaxed mb-6">
+                    Dr. Sterns spent a decade researching why people with dementia
+                    lose their independence. The answer kept coming back to
+                    medication. They had the right prescriptions. They just
+                    couldn&rsquo;t manage them.
+                  </p>
+                  <p className="text-lg md:text-xl text-gray-700 leading-relaxed">
+                    Medication non-adherence costs the U.S. healthcare system{" "}
+                    <strong className="text-[#1e3a8a]">
+                      $300 billion+ annually
+                    </strong>{" "}
+                    and takes 125,000 lives each year. Existing tools were part of
+                    the problem&nbsp;&mdash; pill organizers cause sorting errors,
+                    text reminders get ignored, bottle caps count openings without
+                    knowing if the right dose was taken. Every existing approach
+                    added burden instead of removing it.
+                  </p>
+                </div>
               </div>
-              <div className="relative pl-4 md:pl-8">
-                <p className="text-lg md:text-xl text-gray-700 leading-relaxed mb-6">
-                  Dr. Sterns spent a decade researching why people with dementia
-                  lose their independence. The answer kept coming back to
-                  medication. They had the right prescriptions. They just
-                  couldn&rsquo;t manage them.
-                </p>
-                <p className="text-lg md:text-xl text-gray-700 leading-relaxed">
-                  Medication non-adherence costs the U.S. healthcare system{" "}
-                  <strong className="text-[#1e3a8a]">
-                    $300 billion+ annually
-                  </strong>{" "}
-                  and takes 125,000 lives each year. Existing tools were part of
-                  the problem&nbsp;&mdash; pill organizers cause sorting errors,
-                  text reminders get ignored, bottle caps count openings without
-                  knowing if the right dose was taken. Every existing approach
-                  added burden instead of removing it.
-                </p>
+              <div className="relative rounded-2xl overflow-hidden" style={{ boxShadow: "0 4px 16px rgba(30,58,138,0.1), 0 12px 32px rgba(30,58,138,0.08)" }}>
+                <img
+                  src="/images/team/tony-joel-pod.png"
+                  alt="Tony Sterns and Joel demonstrating the iRxReminder pod"
+                  className="w-full h-auto object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#1e3a8a]/20 to-transparent" />
               </div>
             </div>
           </FadeUp>
