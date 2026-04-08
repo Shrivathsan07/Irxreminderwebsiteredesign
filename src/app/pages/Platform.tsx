@@ -180,7 +180,16 @@ export function Platform() {
           { icon: Lock, text: "HIPAA Compliant" },
           { icon: Activity, text: "Real-Time Data" },
         ]}
-        visual={<PlatformVisual />}
+        visual={
+          <div className="relative rounded-2xl overflow-hidden" style={{ boxShadow: "0 4px 24px rgba(8,145,178,0.12), 0 16px 56px rgba(30,58,138,0.16)" }}>
+            <img
+              src="/images/product/with-phone.jpg"
+              alt="iRxReminder pod with smartphone app showing medication management"
+              className="w-full h-auto object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#152c6e]/30 to-transparent" />
+          </div>
+        }
         variant="dark"
       />
 
@@ -223,13 +232,12 @@ export function Platform() {
         </div>
       </div>
 
-      {/* TODO: Add product image when available
-          <img src="/images/product/ilidrx-pod.png" alt="iLidRx intelligent medication dispensing pod" /> */}
       {/* ═══ iLidRx Pod ═══ */}
       <section id="pod" className="py-24 bg-[#f8fafc] scroll-mt-32">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <FadeUp>
-            <div className="max-w-3xl">
+            <div className="grid lg:grid-cols-2 gap-12 items-center mb-14">
+            <div>
               <p className="text-[#0891b2] font-semibold text-sm tracking-widest uppercase mb-4">
                 Smart Dispensing
               </p>
@@ -245,6 +253,15 @@ export function Platform() {
                 The iLidRx Pod dispenses the right medication, at the right
                 time, one dose at a time.
               </p>
+            </div>
+            <div className="relative rounded-2xl overflow-hidden" style={{ boxShadow: "0 4px 16px rgba(30,58,138,0.1), 0 12px 32px rgba(30,58,138,0.08)" }}>
+              <img
+                src="/images/product/frontIsolated.jpg"
+                alt="iLidRx intelligent medication dispensing pod - front view"
+                className="w-full h-auto object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#1e3a8a]/10 to-transparent" />
+            </div>
             </div>
           </FadeUp>
 
@@ -510,7 +527,23 @@ export function Platform() {
             />
           </div>
 
+          {/* App Screenshots */}
           <FadeUp delay={0.2}>
+            <div className="mt-14 grid grid-cols-2 md:grid-cols-4 gap-4">
+              {[
+                { src: "/images/app/adherence-screen.png", alt: "iRxCapture adherence tracking screen" },
+                { src: "/images/app/reminder-screen.png", alt: "iRxCapture smart medication reminder" },
+                { src: "/images/app/calendar-view.png", alt: "iRxCapture medication calendar view" },
+                { src: "/images/app/drug-detail.png", alt: "iRxCapture drug detail information" },
+              ].map((img) => (
+                <div key={img.src} className="relative rounded-xl overflow-hidden border border-gray-100" style={{ boxShadow: "0 1px 3px rgba(30,58,138,0.04), 0 4px 12px rgba(30,58,138,0.06)" }}>
+                  <img src={img.src} alt={img.alt} className="w-full h-auto object-cover" />
+                </div>
+              ))}
+            </div>
+          </FadeUp>
+
+          <FadeUp delay={0.25}>
             <p
               className="mt-12 text-[#1e3a8a] font-semibold text-center text-lg"
               style={{ fontFamily: "var(--font-display)" }}
@@ -675,7 +708,19 @@ export function Platform() {
             />
           </div>
 
+          {/* Dashboard Screenshot */}
           <FadeUp delay={0.2}>
+            <div className="mt-14 relative rounded-2xl overflow-hidden border border-gray-100" style={{ boxShadow: "0 4px 16px rgba(30,58,138,0.1), 0 12px 32px rgba(30,58,138,0.08)" }}>
+              <img
+                src="/images/clinical/control-center.png"
+                alt="iRxControl Center provider dashboard showing real-time medication adherence data"
+                className="w-full h-auto object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#1e3a8a]/10 to-transparent" />
+            </div>
+          </FadeUp>
+
+          <FadeUp delay={0.25}>
             <p
               className="mt-12 text-[#1e3a8a] font-semibold text-center text-lg"
               style={{ fontFamily: "var(--font-display)" }}

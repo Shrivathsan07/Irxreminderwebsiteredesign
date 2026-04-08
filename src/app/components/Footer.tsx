@@ -44,12 +44,11 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
           {/* Column 1: Brand */}
           <div>
-            <span
-              className="text-2xl font-extrabold tracking-tight"
-              style={{ fontFamily: "var(--font-display)" }}
-            >
-              iRx<span className="text-[#0891b2]">Reminder</span>
-            </span>
+            <img
+              src="/images/brand/irx-logo.png"
+              alt="iRxReminder"
+              className="h-10 w-auto brightness-0 invert"
+            />
             <p className="text-sm text-blue-200 mt-3 mb-4 leading-relaxed">
               Safe. Connected. Reimbursable.
             </p>

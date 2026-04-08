@@ -14,8 +14,6 @@ const navLinks = [
   { to: "/contact", label: "Contact" },
 ];
 
-// TODO: Replace text logo with image when brand assets are provided:
-// <img src="/images/brand/irx-logo.svg" alt="iRxReminder" className="h-8 w-auto" />
 export function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -48,13 +46,11 @@ export function Navigation() {
         <div className="flex justify-between items-center h-20">
           {/* Logo */}
           <Link to="/" className="flex items-center group">
-            <span
-              className="text-2xl font-extrabold tracking-tight"
-              style={{ fontFamily: "var(--font-display)" }}
-            >
-              <span className="text-[#1e3a8a]">iRx</span>
-              <span className="text-[#0891b2]">Reminder</span>
-            </span>
+            <img
+              src="/images/brand/irx-logo.png"
+              alt="iRxReminder"
+              className="h-10 w-auto"
+            />
           </Link>
 
           {/* Desktop Navigation */}
