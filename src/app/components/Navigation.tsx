@@ -46,13 +46,11 @@ export function Navigation() {
         <div className="flex justify-between items-center h-20">
           {/* Logo */}
           <Link to="/" className="flex items-center group">
-            <span
-              className="text-2xl font-extrabold tracking-tight"
-              style={{ fontFamily: "var(--font-display)" }}
-            >
-              <span className="text-[#1e3a8a]">iRx</span>
-              <span className="text-[#0891b2]">Reminder</span>
-            </span>
+            <img
+              src="/images/brand/irx-logo.png"
+              alt="iRxReminder"
+              className="h-10 w-auto"
+            />
           </Link>
 
           {/* Desktop Navigation */}

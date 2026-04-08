@@ -36,79 +36,13 @@ import { FloatingBadgeGroup } from "@/app/components/FloatingBadge";
 function UseCaseVisual() {
   return (
     <div className="relative">
-      <div
-        className="bg-white rounded-2xl border border-gray-200 p-6 md:p-8"
-        style={{
-          boxShadow:
-            "0 1px 3px rgba(8,145,178,0.04), 0 4px 12px rgba(8,145,178,0.08), 0 16px 40px rgba(30,58,138,0.10)",
-        }}
-      >
-        <div className="text-xs font-semibold uppercase tracking-widest text-gray-500 mb-5">
-          Configured For
-        </div>
-        <div className="space-y-3">
-          {[
-            {
-              icon: FlaskConical,
-              label: "Clinical Research",
-              color: "#1e3a8a",
-              stat: "25% fewer dropouts",
-            },
-            {
-              icon: Activity,
-              label: "Behavioral Health",
-              color: "#0891b2",
-              stat: "83% adherence",
-            },
-            {
-              icon: Pill,
-              label: "Pharmacies",
-              color: "#0891b2",
-              stat: "90-day retention",
-            },
-            {
-              icon: Building2,
-              label: "Health Systems",
-              color: "#1e3a8a",
-              stat: "3x cost recovery",
-            },
-            {
-              icon: Heart,
-              label: "Senior Living",
-              color: "#0891b2",
-              stat: "Zero sorting errors",
-            },
-            {
-              icon: BarChart3,
-              label: "Health Plans",
-              color: "#1e3a8a",
-              stat: "Verified data",
-            },
-          ].map((item) => (
-            <div
-              key={item.label}
-              className="flex items-center gap-4 p-3 rounded-xl bg-[#f8fafc] border border-gray-100"
-            >
-              <div
-                className="w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0"
-                style={{ backgroundColor: `${item.color}10` }}
-              >
-                <item.icon className="w-4 h-4" style={{ color: item.color }} />
-              </div>
-              <div className="flex-1">
-                <div className="text-sm font-semibold text-gray-900">
-                  {item.label}
-                </div>
-              </div>
-              <div
-                className="text-xs font-bold"
-                style={{ color: item.color }}
-              >
-                {item.stat}
-              </div>
-            </div>
-          ))}
-        </div>
+      <div className="rounded-2xl overflow-hidden shadow-[0_4px_24px_rgba(30,58,138,0.12)]">
+        <img
+          src="/images/banners/irx_banner_care.jpg"
+          alt="Healthcare professional using iRxReminder for patient medication management"
+          className="w-full h-auto"
+          loading="eager"
+        />
       </div>
     </div>
   );

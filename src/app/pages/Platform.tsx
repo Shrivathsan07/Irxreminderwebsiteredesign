@@ -42,105 +42,13 @@ const platformSections = ["pod", "app", "dashboard", "integration"];
 function PlatformVisual() {
   return (
     <div className="relative">
-      {/* Main dashboard card */}
-      <div
-        className="relative bg-white/[0.08] backdrop-blur-sm border border-white/15 rounded-2xl p-6 md:p-8"
-        style={{
-          boxShadow:
-            "0 4px 24px rgba(8,145,178,0.12), 0 16px 56px rgba(30,58,138,0.16)",
-        }}
-      >
-        {/* Dashboard header */}
-        <div className="flex items-center gap-3 mb-6">
-          <div className="w-3 h-3 rounded-full bg-[#0891b2]" />
-          <div className="w-3 h-3 rounded-full bg-[#0891b2]/50" />
-          <div className="w-3 h-3 rounded-full bg-[#0891b2]/25" />
-          <div className="ml-auto text-xs text-blue-200/80 font-medium">
-            iRxControl Center
-          </div>
-        </div>
-
-        {/* Three product columns */}
-        <div className="grid grid-cols-3 gap-4">
-          {/* Pod */}
-          <div className="bg-white/[0.06] rounded-xl p-4 border border-white/10">
-            <div className="w-8 h-8 rounded-lg bg-[#0891b2]/20 flex items-center justify-center mb-3">
-              <Radio className="w-4 h-4 text-[#0891b2]" />
-            </div>
-            <div className="text-sm font-semibold text-white mb-1">Pod</div>
-            <div className="text-xs text-blue-200/80">IoT Device</div>
-            <div className="mt-3 flex gap-1">
-              <div className="h-1.5 flex-1 rounded-full bg-green-400/60" />
-              <div className="h-1.5 flex-1 rounded-full bg-green-400/40" />
-              <div className="h-1.5 flex-1 rounded-full bg-green-400/20" />
-            </div>
-          </div>
-
-          {/* App */}
-          <div className="bg-white/[0.06] rounded-xl p-4 border border-white/10">
-            <div className="w-8 h-8 rounded-lg bg-[#0891b2]/20 flex items-center justify-center mb-3">
-              <Smartphone className="w-4 h-4 text-[#0891b2]" />
-            </div>
-            <div className="text-sm font-semibold text-white mb-1">App</div>
-            <div className="text-xs text-blue-200/80">Patient</div>
-            <div className="mt-3 flex gap-1">
-              <div className="h-1.5 flex-1 rounded-full bg-[#0891b2]/60" />
-              <div className="h-1.5 flex-1 rounded-full bg-[#0891b2]/40" />
-              <div className="h-1.5 flex-1 rounded-full bg-[#0891b2]/20" />
-            </div>
-          </div>
-
-          {/* Dashboard */}
-          <div className="bg-white/[0.06] rounded-xl p-4 border border-white/10">
-            <div className="w-8 h-8 rounded-lg bg-[#0891b2]/20 flex items-center justify-center mb-3">
-              <Monitor className="w-4 h-4 text-[#0891b2]" />
-            </div>
-            <div className="text-sm font-semibold text-white mb-1">
-              Dashboard
-            </div>
-            <div className="text-xs text-blue-200/80">Provider</div>
-            <div className="mt-3 flex gap-1">
-              <div className="h-1.5 flex-1 rounded-full bg-[#1e3a8a]/80" />
-              <div className="h-1.5 flex-1 rounded-full bg-[#1e3a8a]/50" />
-              <div className="h-1.5 flex-1 rounded-full bg-[#1e3a8a]/30" />
-            </div>
-          </div>
-        </div>
-
-        {/* Connecting data flow arrow */}
-        <div className="mt-5 flex items-center gap-2 px-4">
-          <div className="h-px flex-1 bg-gradient-to-r from-[#0891b2]/60 to-[#0891b2]/20" />
-          <Wifi className="w-4 h-4 text-[#0891b2]/50" />
-          <div className="h-px flex-1 bg-gradient-to-r from-[#0891b2]/20 to-[#0891b2]/60" />
-        </div>
-
-        {/* Stats row */}
-        <div className="mt-5 grid grid-cols-3 gap-4 text-center">
-          <div>
-            <div className="text-lg font-bold text-[#0891b2]">94%</div>
-            <div className="text-[10px] text-blue-200/80 uppercase tracking-wider">
-              Adherence
-            </div>
-          </div>
-          <div>
-            <div className="text-lg font-bold text-white">Real-Time</div>
-            <div className="text-[10px] text-blue-200/80 uppercase tracking-wider">
-              Monitoring
-            </div>
-          </div>
-          <div>
-            <div className="text-lg font-bold text-[#0891b2]">HIPAA</div>
-            <div className="text-[10px] text-blue-200/80 uppercase tracking-wider">
-              Compliant
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Floating badge */}
-      <div className="absolute -top-4 -right-4 bg-white/[0.1] backdrop-blur-sm border border-white/20 rounded-xl px-4 py-2.5 flex items-center gap-2">
-        <Shield className="w-4 h-4 text-[#0891b2]" />
-        <span className="text-xs font-semibold text-white">FDA Cleared</span>
+      <div className="relative rounded-2xl overflow-hidden shadow-[0_8px_32px_rgba(0,0,0,0.3)]">
+        <img
+          src="/images/product/with-phone.jpg"
+          alt="iRxReminder platform — pod device and mobile app"
+          className="w-full h-auto"
+          loading="eager"
+        />
       </div>
     </div>
   );
@@ -213,22 +121,32 @@ export function Platform() {
       <section id="pod" className="py-24 bg-[#f8fafc] scroll-mt-32">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <FadeUp>
-            <div className="max-w-3xl">
-              <p className="text-[#0891b2] font-semibold text-sm tracking-widest uppercase mb-4">
-                Smart Dispensing
-              </p>
-              <h2
-                className="text-4xl md:text-5xl font-bold text-[#1e3a8a] mb-4 tracking-tight"
-                style={{ fontFamily: "var(--font-display)" }}
-              >
-                iLidRx Pod
-              </h2>
-              <p className="text-xl text-gray-600 leading-relaxed">
-                Pill organizers cause sorting errors that send patients to the
-                ER. Bottle caps count openings but can&rsquo;t verify dosing.
-                The iLidRx Pod dispenses the right medication, at the right
-                time, one dose at a time.
-              </p>
+            <div className="grid lg:grid-cols-5 gap-10 items-center">
+              <div className="lg:col-span-3">
+                <p className="text-[#0891b2] font-semibold text-sm tracking-widest uppercase mb-4">
+                  Smart Dispensing
+                </p>
+                <h2
+                  className="text-4xl md:text-5xl font-bold text-[#1e3a8a] mb-4 tracking-tight"
+                  style={{ fontFamily: "var(--font-display)" }}
+                >
+                  iLidRx Pod
+                </h2>
+                <p className="text-xl text-gray-600 leading-relaxed">
+                  Pill organizers cause sorting errors that send patients to the
+                  ER. Bottle caps count openings but can&rsquo;t verify dosing.
+                  The iLidRx Pod dispenses the right medication, at the right
+                  time, one dose at a time.
+                </p>
+              </div>
+              <div className="lg:col-span-2">
+                <img
+                  src="/images/product/frontIsolated.jpg"
+                  alt="iLidRx Pod — front view of the smart medication dispensing device"
+                  className="w-full max-w-xs mx-auto rounded-2xl shadow-[0_4px_24px_rgba(30,58,138,0.12)]"
+                  loading="lazy"
+                />
+              </div>
             </div>
           </FadeUp>
 
@@ -494,7 +412,26 @@ export function Platform() {
             />
           </div>
 
+          {/* App Screenshots */}
           <FadeUp delay={0.2}>
+            <div className="mt-12 grid grid-cols-3 gap-4 max-w-2xl mx-auto">
+              {[
+                { src: "/images/app/adherence-screen.png", alt: "Adherence tracking screen" },
+                { src: "/images/app/reminder-screen.png", alt: "Smart reminder notification" },
+                { src: "/images/app/drug-detail.png", alt: "Medication detail and education" },
+              ].map((img) => (
+                <img
+                  key={img.src}
+                  src={img.src}
+                  alt={img.alt}
+                  className="rounded-xl shadow-[0_4px_16px_rgba(30,58,138,0.1)] w-full"
+                  loading="lazy"
+                />
+              ))}
+            </div>
+          </FadeUp>
+
+          <FadeUp delay={0.25}>
             <p
               className="mt-12 text-[#1e3a8a] font-semibold text-center text-lg"
               style={{ fontFamily: "var(--font-display)" }}
@@ -659,7 +596,19 @@ export function Platform() {
             />
           </div>
 
+          {/* Dashboard Screenshot */}
           <FadeUp delay={0.2}>
+            <div className="mt-12 max-w-4xl mx-auto">
+              <img
+                src="/images/clinical/control-center.png"
+                alt="iRxControl Center dashboard — real-time patient adherence monitoring"
+                className="w-full rounded-2xl shadow-[0_4px_24px_rgba(30,58,138,0.12)] border border-gray-100"
+                loading="lazy"
+              />
+            </div>
+          </FadeUp>
+
+          <FadeUp delay={0.25}>
             <p
               className="mt-12 text-[#1e3a8a] font-semibold text-center text-lg"
               style={{ fontFamily: "var(--font-display)" }}

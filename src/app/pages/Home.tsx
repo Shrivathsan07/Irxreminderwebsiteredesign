@@ -10,14 +10,12 @@ import {
   Pill,
   Building2,
   AlertTriangle,
-  Cpu,
   Eye,
   Settings,
   Radio,
   Quote,
 } from "lucide-react";
 import { Button } from "../components/ui/button";
-import { motion } from "motion/react";
 import { FadeUp, Section, CountUp } from "@/app/components/animations";
 import { LogoTicker } from "@/app/components/LogoTicker";
 import { GrainTexture } from "@/app/components/GrainTexture";
@@ -28,88 +26,25 @@ import { FloatingBadgeGroup } from "@/app/components/FloatingBadge";
 import { SectionDivider } from "@/app/components/SectionDivider";
 import { ComparisonChart } from "@/app/components/ComparisonChart";
 import { TimelineTrack } from "@/app/components/TimelineTrack";
-import { useReducedMotion } from "@/app/hooks/useReducedMotion";
 
-/** Placeholder device mockup visual for hero */
+/** Product visual for hero */
 function DeviceMockup() {
-  const prefersReducedMotion = useReducedMotion();
-
   return (
     <div className="relative">
-      {/* Glow behind device */}
       <div className="absolute -inset-8 bg-[#0891b2]/10 rounded-3xl blur-[60px]" />
-
-      {/* Device frame */}
-      <motion.div
-        animate={prefersReducedMotion ? {} : { y: [0, -8, 0] }}
-        transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-        className="relative"
-      >
-        {/* Dashboard card */}
-        <div className="relative bg-white/[0.08] backdrop-blur-md border border-white/15 rounded-2xl p-6 shadow-[0_8px_32px_rgba(0,0,0,0.3)]">
-          <div className="flex items-center gap-3 mb-5">
-            <div className="w-3 h-3 rounded-full bg-green-400" />
-            <div className="w-3 h-3 rounded-full bg-yellow-400" />
-            <div className="w-3 h-3 rounded-full bg-red-400" />
-            <div className="ml-auto text-xs text-white/70 font-mono">iRxControl Center</div>
-          </div>
-          {/* Mini stat row */}
-          <div className="grid grid-cols-3 gap-3 mb-4">
-            {[
-              { label: "Adherence", value: "83%", color: "#0891b2" },
-              { label: "Patients", value: "247", color: "#ffffff" },
-              { label: "Alerts", value: "3", color: "#f59e0b" },
-            ].map((s) => (
-              <div key={s.label} className="bg-white/[0.06] rounded-lg p-3 text-center">
-                <div className="text-lg font-bold" style={{ color: s.color }}>{s.value}</div>
-                <div className="text-[10px] text-white/70 uppercase tracking-wider">{s.label}</div>
-              </div>
-            ))}
-          </div>
-          {/* Mini chart bars */}
-          <div className="space-y-2">
-            {[85, 72, 91, 68, 88].map((w, i) => (
-              <div key={i} className="flex items-center gap-2">
-                <div className="w-16 text-[10px] text-white/70 truncate">Patient {i + 1}</div>
-                <div className="flex-1 h-2 bg-white/[0.06] rounded-full overflow-hidden">
-                  <div
-                    className="h-full rounded-full"
-                    style={{
-                      width: `${w}%`,
-                      background: w > 80 ? "linear-gradient(90deg, #0891b2, #06a7ce)" : w > 70 ? "#f59e0b" : "#ef4444",
-                    }}
-                  />
-                </div>
-                <div className="w-8 text-[10px] text-white/80 text-right">{w}%</div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Floating pod card (offset) */}
-        <motion.div
-          animate={prefersReducedMotion ? {} : { y: [0, -4, 0] }}
-          transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-          className="absolute -bottom-6 -left-8 bg-white/[0.1] backdrop-blur-md border border-white/15 rounded-xl p-3 shadow-[0_4px_20px_rgba(0,0,0,0.2)]"
-        >
-          <div className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-lg bg-[#0891b2]/20 flex items-center justify-center">
-              <Cpu className="w-4 h-4 text-[#0891b2]" />
-            </div>
-            <div>
-              <div className="text-xs font-semibold text-white">iLidRx Pod</div>
-              <div className="text-[10px] text-green-400">Dose dispensed</div>
-            </div>
-          </div>
-        </motion.div>
-      </motion.div>
+      <div className="relative rounded-2xl overflow-hidden shadow-[0_8px_32px_rgba(0,0,0,0.3)]">
+        <img
+          src="/images/product/with-phone.jpg"
+          alt="iRxReminder pod and mobile app showing real-time medication monitoring"
+          className="w-full h-auto"
+          loading="eager"
+        />
+      </div>
     </div>
   );
 }
 
 export function Home() {
-  const prefersReducedMotion = useReducedMotion();
-
   return (
     <div className="bg-white overflow-hidden">
       {/* ======= SECTION 1: HERO — SplitHero ======= */}
