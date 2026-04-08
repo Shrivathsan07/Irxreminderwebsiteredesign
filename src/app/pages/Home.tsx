@@ -157,7 +157,16 @@ export function Home() {
           { icon: Award, text: "12 US Patents" },
           { icon: FileCheck, text: "350+ Clinical Subjects" },
         ]}
-        visual={<DeviceMockup />}
+        visual={
+          <div className="relative rounded-2xl overflow-hidden" style={{ boxShadow: "0 4px 24px rgba(8,145,178,0.12), 0 16px 56px rgba(30,58,138,0.16)" }}>
+            <img
+              src="/images/product/with-phone.jpg"
+              alt="iRxReminder pod with smartphone app showing medication management"
+              className="w-full h-auto object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#152c6e]/30 to-transparent" />
+          </div>
+        }
       />
 
       {/* Trust logos bar */}

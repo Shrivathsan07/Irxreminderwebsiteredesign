@@ -25,6 +25,7 @@ import {
   BarChart3,
   HeartPulse,
   TrendingUp,
+  Cpu,
 } from "lucide-react";
 import { Button } from "../components/ui/button";
 import {
@@ -33,8 +34,10 @@ import {
   AccordionTrigger,
   AccordionContent,
 } from "../components/ui/accordion";
+import { motion } from "motion/react";
 import { FadeUp } from "@/app/components/animations";
 import { GrainTexture } from "@/app/components/GrainTexture";
+import { useReducedMotion } from "@/app/hooks/useReducedMotion";
 import { useSectionObserver } from "@/app/hooks/useSectionObserver";
 import { SplitHero } from "@/app/components/SplitHero";
 import { BentoGrid } from "@/app/components/BentoGrid";
@@ -46,111 +49,64 @@ import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/app/components/ui/ta
 
 const platformSections = ["pod", "app", "dashboard", "integration", "ai"];
 
-/* ─── Product Visual for Hero ─── */
-function PlatformVisual() {
+/* ─── 3D Device Mockup for Hero ─── */
+function DeviceMockup() {
+  const prefersReducedMotion = useReducedMotion();
   return (
     <div className="relative">
-      {/* Main dashboard card */}
-      <div
-        className="relative bg-white/[0.08] backdrop-blur-sm border border-white/15 rounded-2xl p-6 md:p-8"
-        style={{
-          boxShadow:
-            "0 4px 24px rgba(8,145,178,0.12), 0 16px 56px rgba(30,58,138,0.16)",
-        }}
+      <div className="absolute -inset-8 bg-[#0891b2]/10 rounded-3xl blur-[60px]" />
+      <motion.div
+        animate={prefersReducedMotion ? {} : { y: [0, -8, 0] }}
+        transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+        className="relative"
       >
-        {/* Dashboard header */}
-        <div className="flex items-center gap-3 mb-6">
-          <div className="w-3 h-3 rounded-full bg-[#0891b2]" />
-          <div className="w-3 h-3 rounded-full bg-[#0891b2]/50" />
-          <div className="w-3 h-3 rounded-full bg-[#0891b2]/25" />
-          <div className="ml-auto text-xs text-blue-200/80 font-medium">
-            iRxControl Center
+        <div className="relative bg-white/[0.08] backdrop-blur-md border border-white/15 rounded-2xl p-6 shadow-[0_8px_32px_rgba(0,0,0,0.3)]">
+          <div className="flex items-center gap-3 mb-5">
+            <div className="w-3 h-3 rounded-full bg-green-400" />
+            <div className="w-3 h-3 rounded-full bg-yellow-400" />
+            <div className="w-3 h-3 rounded-full bg-red-400" />
+            <div className="ml-auto text-xs text-white/70 font-mono">iRxControl Center</div>
+          </div>
+          <div className="grid grid-cols-3 gap-3 mb-4">
+            {[
+              { label: "Adherence", value: "83%", color: "#0891b2" },
+              { label: "Patients", value: "247", color: "#ffffff" },
+              { label: "Alerts", value: "3", color: "#f59e0b" },
+            ].map((s) => (
+              <div key={s.label} className="bg-white/[0.06] rounded-lg p-3 text-center">
+                <div className="text-lg font-bold" style={{ color: s.color }}>{s.value}</div>
+                <div className="text-[10px] text-white/70 uppercase tracking-wider">{s.label}</div>
+              </div>
+            ))}
+          </div>
+          <div className="space-y-2">
+            {[85, 72, 91, 68, 88].map((w, i) => (
+              <div key={i} className="flex items-center gap-2">
+                <div className="w-16 text-[10px] text-white/70 truncate">Patient {i + 1}</div>
+                <div className="flex-1 h-2 bg-white/[0.06] rounded-full overflow-hidden">
+                  <div className="h-full rounded-full" style={{ width: `${w}%`, background: w > 80 ? "linear-gradient(90deg, #0891b2, #06a7ce)" : w > 70 ? "#f59e0b" : "#ef4444" }} />
+                </div>
+                <div className="w-8 text-[10px] text-white/80 text-right">{w}%</div>
+              </div>
+            ))}
           </div>
         </div>
-
-        {/* Three product columns */}
-        <div className="grid grid-cols-3 gap-4">
-          {/* Pod */}
-          <div className="bg-white/[0.06] rounded-xl p-4 border border-white/10">
-            <div className="w-8 h-8 rounded-lg bg-[#0891b2]/20 flex items-center justify-center mb-3">
-              <Radio className="w-4 h-4 text-[#0891b2]" />
+        <motion.div
+          animate={prefersReducedMotion ? {} : { y: [0, -4, 0] }}
+          transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+          className="absolute -bottom-6 -left-8 bg-white/[0.1] backdrop-blur-md border border-white/15 rounded-xl p-3 shadow-[0_4px_20px_rgba(0,0,0,0.2)]"
+        >
+          <div className="flex items-center gap-2">
+            <div className="w-8 h-8 rounded-lg bg-[#0891b2]/20 flex items-center justify-center">
+              <Cpu className="w-4 h-4 text-[#0891b2]" />
             </div>
-            <div className="text-sm font-semibold text-white mb-1">Pod</div>
-            <div className="text-xs text-blue-200/80">IoT Device</div>
-            <div className="mt-3 flex gap-1">
-              <div className="h-1.5 flex-1 rounded-full bg-green-400/60" />
-              <div className="h-1.5 flex-1 rounded-full bg-green-400/40" />
-              <div className="h-1.5 flex-1 rounded-full bg-green-400/20" />
+            <div>
+              <div className="text-xs font-semibold text-white">iLidRx Pod</div>
+              <div className="text-[10px] text-green-400">Dose dispensed</div>
             </div>
           </div>
-
-          {/* App */}
-          <div className="bg-white/[0.06] rounded-xl p-4 border border-white/10">
-            <div className="w-8 h-8 rounded-lg bg-[#0891b2]/20 flex items-center justify-center mb-3">
-              <Smartphone className="w-4 h-4 text-[#0891b2]" />
-            </div>
-            <div className="text-sm font-semibold text-white mb-1">App</div>
-            <div className="text-xs text-blue-200/80">Patient</div>
-            <div className="mt-3 flex gap-1">
-              <div className="h-1.5 flex-1 rounded-full bg-[#0891b2]/60" />
-              <div className="h-1.5 flex-1 rounded-full bg-[#0891b2]/40" />
-              <div className="h-1.5 flex-1 rounded-full bg-[#0891b2]/20" />
-            </div>
-          </div>
-
-          {/* Dashboard */}
-          <div className="bg-white/[0.06] rounded-xl p-4 border border-white/10">
-            <div className="w-8 h-8 rounded-lg bg-[#0891b2]/20 flex items-center justify-center mb-3">
-              <Monitor className="w-4 h-4 text-[#0891b2]" />
-            </div>
-            <div className="text-sm font-semibold text-white mb-1">
-              Dashboard
-            </div>
-            <div className="text-xs text-blue-200/80">Provider</div>
-            <div className="mt-3 flex gap-1">
-              <div className="h-1.5 flex-1 rounded-full bg-[#1e3a8a]/80" />
-              <div className="h-1.5 flex-1 rounded-full bg-[#1e3a8a]/50" />
-              <div className="h-1.5 flex-1 rounded-full bg-[#1e3a8a]/30" />
-            </div>
-          </div>
-        </div>
-
-        {/* Connecting data flow arrow */}
-        <div className="mt-5 flex items-center gap-2 px-4">
-          <div className="h-px flex-1 bg-gradient-to-r from-[#0891b2]/60 to-[#0891b2]/20" />
-          <Wifi className="w-4 h-4 text-[#0891b2]/50" />
-          <div className="h-px flex-1 bg-gradient-to-r from-[#0891b2]/20 to-[#0891b2]/60" />
-        </div>
-
-        {/* Stats row */}
-        <div className="mt-5 grid grid-cols-3 gap-4 text-center">
-          <div>
-            <div className="text-lg font-bold text-[#0891b2]">94%</div>
-            <div className="text-[10px] text-blue-200/80 uppercase tracking-wider">
-              Adherence
-            </div>
-          </div>
-          <div>
-            <div className="text-lg font-bold text-white">Real-Time</div>
-            <div className="text-[10px] text-blue-200/80 uppercase tracking-wider">
-              Monitoring
-            </div>
-          </div>
-          <div>
-            <div className="text-lg font-bold text-[#0891b2]">HIPAA</div>
-            <div className="text-[10px] text-blue-200/80 uppercase tracking-wider">
-              Compliant
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Floating badge */}
-      <div className="absolute -top-4 -right-4 bg-white/[0.1] backdrop-blur-sm border border-white/20 rounded-xl px-4 py-2.5 flex items-center gap-2">
-        <Shield className="w-4 h-4 text-[#0891b2]" />
-        {/* TODO: Update to "FDA 510(k) Cleared" once clearance is granted */}
-        <span className="text-xs font-semibold text-white">FDA 510(k) Pathway</span>
-      </div>
+        </motion.div>
+      </motion.div>
     </div>
   );
 }
@@ -180,16 +136,7 @@ export function Platform() {
           { icon: Lock, text: "HIPAA Compliant" },
           { icon: Activity, text: "Real-Time Data" },
         ]}
-        visual={
-          <div className="relative rounded-2xl overflow-hidden" style={{ boxShadow: "0 4px 24px rgba(8,145,178,0.12), 0 16px 56px rgba(30,58,138,0.16)" }}>
-            <img
-              src="/images/product/with-phone.jpg"
-              alt="iRxReminder pod with smartphone app showing medication management"
-              className="w-full h-auto object-cover"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#152c6e]/30 to-transparent" />
-          </div>
-        }
+        visual={<DeviceMockup />}
         variant="dark"
       />
 
